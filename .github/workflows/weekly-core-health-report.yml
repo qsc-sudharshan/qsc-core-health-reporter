@@ -13,17 +13,78 @@ on:
         required: false
         default: "eternia-Core24-d447"
 
-  # ── Event trigger: called by Grafana Automation via repository_dispatch ──────
-  # Grafana sends:
-  #   POST https://api.github.com/repos/qsc-sudharshan/qsc-core-health-reporter/dispatches
-  #   { "event_type": "generate-core-health-report",
-  #     "client_payload": { "core_id": "eternia-Core24-d447" } }
   repository_dispatch:
-    types: [generate-core-health-report]
+    types:
+      # ── Triggered by Grafana automation (raw metrics pipeline) ───────────────
+      # Payload: { "core_id": "eternia-Core24-d447" }
+      - generate-core-health-report
 
+      # ── Triggered by Grafana AI automation (pre-built HTML relay) ────────────
+      # Grafana AI generates the rich report, can't POST to Confluence directly
+      # due to network security. It sends the HTML here; GitHub posts to Confluence.
+      # Payload: { "page_title": "...", "html_body": "<full HTML report>" }
+      - publish-grafana-report
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# JOB 1 — Publish Grafana AI Report (HTML relay: Grafana → GitHub → Confluence)
+# Triggered by: repository_dispatch with event_type=publish-grafana-report
+# ═══════════════════════════════════════════════════════════════════════════════
 jobs:
+  publish-grafana-ai-report:
+    name: "Publish Grafana AI Report → Confluence"
+    if: github.event_name == 'repository_dispatch' && github.event.action == 'publish-grafana-report'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        env:
+          FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        env:
+          FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Publish Grafana AI report to Confluence
+        env:
+          # Report content sent from Grafana AI automation
+          REPORT_TITLE: ${{ github.event.client_payload.page_title }}
+          REPORT_HTML:  ${{ github.event.client_payload.html_body }}
+          # Confluence credentials
+          CONFLUENCE_BASE_URL:      ${{ secrets.CONFLUENCE_BASE_URL }}
+          CONFLUENCE_EMAIL:         ${{ secrets.CONFLUENCE_EMAIL }}
+          CONFLUENCE_API_TOKEN:     ${{ secrets.CONFLUENCE_API_TOKEN }}
+          CONFLUENCE_SPACE_KEY:     ${{ secrets.CONFLUENCE_SPACE_KEY }}
+          CONFLUENCE_PARENT_PAGE_ID: ${{ secrets.CONFLUENCE_PARENT_PAGE_ID }}
+        run: python src/publish_only.py
+
+      - name: "✅ Grafana AI report published"
+        if: success()
+        run: echo "Grafana AI report successfully relayed to Confluence."
+
+      - name: "❌ Publish failed"
+        if: failure()
+        run: echo "Failed to publish Grafana AI report to Confluence. Check logs above."
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# JOB 2 — Generate & Publish (Python metrics pipeline — scheduled / manual)
+# Triggered by: schedule (Monday 08:00 UTC), workflow_dispatch, or
+#               repository_dispatch with event_type=generate-core-health-report
+# ═══════════════════════════════════════════════════════════════════════════════
   generate-and-publish:
     name: "Generate & Publish Core Health Report"
+    if: >
+      github.event_name == 'schedule' ||
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'repository_dispatch' && github.event.action == 'generate-core-health-report')
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
@@ -64,19 +125,15 @@ jobs:
       # ── 5. Generate report and publish to Confluence ─────────────────────────
       - name: Generate and publish Core Health Report
         env:
-          # Grafana Cloud credentials (set these in GitHub → Settings → Secrets → Actions)
-          GRAFANA_PROMETHEUS_URL: ${{ secrets.GRAFANA_PROMETHEUS_URL }}
-          GRAFANA_LOKI_URL: ${{ secrets.GRAFANA_LOKI_URL }}
-          GRAFANA_INSTANCE_ID: ${{ secrets.GRAFANA_INSTANCE_ID }}
-          # Service Account token (glsa_...) — replaces deprecated GRAFANA_API_KEY
-          GRAFANA_SERVICE_TOKEN: ${{ secrets.GRAFANA_SERVICE_TOKEN }}
-          # Confluence credentials
-          CONFLUENCE_BASE_URL: ${{ secrets.CONFLUENCE_BASE_URL }}
-          CONFLUENCE_EMAIL: ${{ secrets.CONFLUENCE_EMAIL }}
-          CONFLUENCE_API_TOKEN: ${{ secrets.CONFLUENCE_API_TOKEN }}
-          CONFLUENCE_SPACE_KEY: ${{ secrets.CONFLUENCE_SPACE_KEY }}
+          GRAFANA_PROMETHEUS_URL:   ${{ secrets.GRAFANA_PROMETHEUS_URL }}
+          GRAFANA_LOKI_URL:         ${{ secrets.GRAFANA_LOKI_URL }}
+          GRAFANA_INSTANCE_ID:      ${{ secrets.GRAFANA_INSTANCE_ID }}
+          GRAFANA_SERVICE_TOKEN:    ${{ secrets.GRAFANA_SERVICE_TOKEN }}
+          CONFLUENCE_BASE_URL:      ${{ secrets.CONFLUENCE_BASE_URL }}
+          CONFLUENCE_EMAIL:         ${{ secrets.CONFLUENCE_EMAIL }}
+          CONFLUENCE_API_TOKEN:     ${{ secrets.CONFLUENCE_API_TOKEN }}
+          CONFLUENCE_SPACE_KEY:     ${{ secrets.CONFLUENCE_SPACE_KEY }}
           CONFLUENCE_PARENT_PAGE_ID: ${{ secrets.CONFLUENCE_PARENT_PAGE_ID }}
-          # Core target
           CORE_ID: ${{ steps.resolve.outputs.core_id }}
         run: python src/main.py
 
