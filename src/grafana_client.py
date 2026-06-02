@@ -22,8 +22,12 @@ class GrafanaClient:
         self.prometheus_url = os.environ["GRAFANA_PROMETHEUS_URL"].rstrip("/")
         self.loki_url = os.environ["GRAFANA_LOKI_URL"].rstrip("/")
         self.instance_id = os.environ["GRAFANA_INSTANCE_ID"]
-        self.api_key = os.environ["GRAFANA_API_KEY"]
-        self.auth = HTTPBasicAuth(self.instance_id, self.api_key)
+        # GRAFANA_SERVICE_TOKEN: token from a Grafana Service Account
+        # (Grafana 9+ recommended replacement for deprecated API Keys)
+        # Create at: sleestack.grafana.net → Administration → Users and access → Service accounts
+        self.service_token = os.environ["GRAFANA_SERVICE_TOKEN"]
+        # Grafana Cloud auth: HTTP Basic — username=instance_id, password=service_token
+        self.auth = HTTPBasicAuth(self.instance_id, self.service_token)
 
         now = datetime.now(timezone.utc)
         self.end_time = now
