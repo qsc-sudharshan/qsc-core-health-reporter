@@ -1,0 +1,85 @@
+name: "Weekly QSC Core Health Report — eternia-Core24-d447"
+
+on:
+  # ── Primary trigger: every Monday at 08:00 UTC ──────────────────────────────
+  schedule:
+    - cron: "0 8 * * 1"
+
+  # ── Manual trigger from GitHub UI ───────────────────────────────────────────
+  workflow_dispatch:
+    inputs:
+      core_id:
+        description: "Core ID to report on"
+        required: false
+        default: "eternia-Core24-d447"
+
+  # ── Event trigger: called by Grafana Automation via repository_dispatch ──────
+  # Grafana sends:
+  #   POST https://api.github.com/repos/qsc-sudharshan/qsc-core-health-reporter/dispatches
+  #   { "event_type": "generate-core-health-report",
+  #     "client_payload": { "core_id": "eternia-Core24-d447" } }
+  repository_dispatch:
+    types: [generate-core-health-report]
+
+jobs:
+  generate-and-publish:
+    name: "Generate & Publish Core Health Report"
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      # ── 1. Checkout ──────────────────────────────────────────────────────────
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ── 2. Python setup ──────────────────────────────────────────────────────
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      # ── 3. Install dependencies ───────────────────────────────────────────────
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # ── 4. Resolve core_id across all trigger types ──────────────────────────
+      - name: Resolve core_id
+        id: resolve
+        run: |
+          CORE="${{ github.event.inputs.core_id }}"
+          if [ -z "$CORE" ]; then
+            CORE="${{ github.event.client_payload.core_id }}"
+          fi
+          if [ -z "$CORE" ]; then
+            CORE="eternia-Core24-d447"
+          fi
+          echo "core_id=$CORE" >> "$GITHUB_OUTPUT"
+          echo "Resolved core_id: $CORE"
+
+      # ── 5. Generate report and publish to Confluence ─────────────────────────
+      - name: Generate and publish Core Health Report
+        env:
+          # Grafana Cloud credentials (set these in GitHub → Settings → Secrets → Actions)
+          GRAFANA_PROMETHEUS_URL: ${{ secrets.GRAFANA_PROMETHEUS_URL }}
+          GRAFANA_LOKI_URL: ${{ secrets.GRAFANA_LOKI_URL }}
+          GRAFANA_INSTANCE_ID: ${{ secrets.GRAFANA_INSTANCE_ID }}
+          GRAFANA_API_KEY: ${{ secrets.GRAFANA_API_KEY }}
+          # Confluence credentials
+          CONFLUENCE_BASE_URL: ${{ secrets.CONFLUENCE_BASE_URL }}
+          CONFLUENCE_EMAIL: ${{ secrets.CONFLUENCE_EMAIL }}
+          CONFLUENCE_API_TOKEN: ${{ secrets.CONFLUENCE_API_TOKEN }}
+          CONFLUENCE_SPACE_KEY: ${{ secrets.CONFLUENCE_SPACE_KEY }}
+          CONFLUENCE_PARENT_PAGE_ID: ${{ secrets.CONFLUENCE_PARENT_PAGE_ID }}
+          # Core target
+          CORE_ID: ${{ steps.resolve.outputs.core_id }}
+        run: python src/main.py
+
+      # ── 6. Status summary ────────────────────────────────────────────────────
+      - name: "✅ Report published"
+        if: success()
+        run: echo "Core Health Report successfully published to Confluence."
+
+      - name: "❌ Report failed"
+        if: failure()
+        run: echo "Failed to generate or publish the Core Health Report. Check logs above."
