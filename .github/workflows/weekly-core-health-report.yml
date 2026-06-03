@@ -1,9 +1,9 @@
 name: "Weekly QSC Core Health Report — eternia-Core24-d447"
 
 on:
-  # ── Primary trigger: every Monday at 08:00 UTC ──────────────────────────────
+  # ── Primary trigger: every Monday at 09:00 IST (03:30 UTC) ─────────────────
   schedule:
-    - cron: "0 8 * * 1"
+    - cron: "0 3 * * 1"
 
   # ── Manual trigger from GitHub UI ───────────────────────────────────────────
   workflow_dispatch:
@@ -76,7 +76,7 @@ jobs:
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # JOB 2 — Generate & Publish (Python metrics pipeline — scheduled / manual)
-# Triggered by: schedule (Monday 08:00 UTC), workflow_dispatch, or
+# Triggered by: schedule (Monday 09:00 IST / 03:30 UTC), workflow_dispatch, or
 #               repository_dispatch with event_type=generate-core-health-report
 # ═══════════════════════════════════════════════════════════════════════════════
   generate-and-publish:
