@@ -1,0 +1,72 @@
+name: "QSC Core Health Report - Multi-Core Publisher"
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'trigger/*/dispatch.json'
+  workflow_dispatch:
+    inputs:
+      trigger_file:
+        description: 'Path to dispatch file'
+        required: true
+        default: 'trigger/COS-Core-24f/dispatch.json'
+
+jobs:
+  publish-report:
+    name: "Publish Core Health Report to Confluence"
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        env:
+          FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        env:
+          FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+        with:
+          python-version: "3.11"
+          cache: "pip"
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Resolve trigger file path
+        id: resolve
+        run: |
+          if [ "$GITHUB_EVENT_NAME" = "push" ]; then
+            TRIGGER_FILE=$(git diff --name-only HEAD~1 HEAD | grep 'trigger/.*/dispatch.json' | head -1)
+          else
+            TRIGGER_FILE="${{ github.event.inputs.trigger_file }}"
+          fi
+          if [ -z "$TRIGGER_FILE" ]; then echo "No trigger file found." ; exit 1; fi
+          echo "trigger_file=$TRIGGER_FILE" >> "$GITHUB_OUTPUT"
+          CORE_ID=$(echo "$TRIGGER_FILE" | sed 's|trigger/||' | sed 's|/dispatch.json||')
+          echo "core_id=$CORE_ID" >> "$GITHUB_OUTPUT"
+      - name: Load report from trigger file
+        run: |
+          F="${{ steps.resolve.outputs.trigger_file }}"
+          echo "DISPATCH_TITLE=$(jq -r '.page_title' "$F")" >> "$GITHUB_ENV"
+          P=$(jq -r '.parent_page_id // empty' "$F")
+          [ -n "$P" ] && echo "DISPATCH_PARENT_PAGE_ID=$P" >> "$GITHUB_ENV"
+          { echo 'DISPATCH_HTML<<HTMLEOF'; jq -r '.html_body' "$F"; echo 'HTMLEOF'; } >> "$GITHUB_ENV"
+      - name: Set Confluence parent page
+        run: |
+          if [ -n "$DISPATCH_PARENT_PAGE_ID" ]; then
+            echo "CONFLUENCE_PARENT_PAGE_ID=$DISPATCH_PARENT_PAGE_ID" >> "$GITHUB_ENV"
+          else
+            echo "CONFLUENCE_PARENT_PAGE_ID=${{ secrets.CONFLUENCE_PARENT_PAGE_ID }}" >> "$GITHUB_ENV"
+          fi
+      - name: Publish report to Confluence
+        env:
+          CONFLUENCE_BASE_URL: ${{ secrets.CONFLUENCE_BASE_URL }}
+          CONFLUENCE_EMAIL: ${{ secrets.CONFLUENCE_EMAIL }}
+          CONFLUENCE_API_TOKEN: ${{ secrets.CONFLUENCE_API_TOKEN }}
+          CONFLUENCE_SPACE_KEY: ${{ secrets.CONFLUENCE_SPACE_KEY }}
+        run: |
+          export REPORT_TITLE="$DISPATCH_TITLE"
+          export REPORT_HTML="$DISPATCH_HTML"
+          python src/publish_only.py
+      - name: Report status
+        if: always()
+        run: |
+          [ "${{ job.status }}" = "success" ] && echo "Published: ${{ steps.resolve.outputs.core_id }}" || echo "Failed: ${{ steps.resolve.outputs.core_id }}"
