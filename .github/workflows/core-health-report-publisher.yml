@@ -47,10 +47,11 @@ jobs:
       - name: Load report from trigger file
         run: |
           F="${{ steps.resolve.outputs.trigger_file }}"
+          CORE_DIR=$(dirname "$F")
           echo "DISPATCH_TITLE=$(jq -r '.page_title' "$F")" >> "$GITHUB_ENV"
           P=$(jq -r '.parent_page_id // empty' "$F")
           [ -n "$P" ] && echo "DISPATCH_PARENT_PAGE_ID=$P" >> "$GITHUB_ENV"
-          { echo 'DISPATCH_HTML<<HTMLEOF'; jq -r '.html_body' "$F"; echo 'HTMLEOF'; } >> "$GITHUB_ENV"
+          cp "$CORE_DIR/html_body.html" /tmp/report_html.html
       - name: Set Confluence parent page
         run: |
           if [ -n "$DISPATCH_PARENT_PAGE_ID" ]; then
@@ -65,9 +66,16 @@ jobs:
           CONFLUENCE_API_TOKEN: ${{ secrets.CONFLUENCE_API_TOKEN }}
           CONFLUENCE_SPACE_KEY: ${{ secrets.CONFLUENCE_SPACE_KEY }}
         run: |
-          export REPORT_TITLE="$DISPATCH_TITLE"
-          export REPORT_HTML="$DISPATCH_HTML"
-          python src/publish_only.py
+          python3 - << 'PYEOF'
+          import os, subprocess
+          with open('/tmp/report_html.html', 'r', encoding='utf-8') as f:
+              html = f.read()
+          env = os.environ.copy()
+          env['REPORT_TITLE'] = os.environ['DISPATCH_TITLE']
+          env['REPORT_HTML'] = html
+          result = subprocess.run(['python', 'src/publish_only.py'], env=env)
+          raise SystemExit(result.returncode)
+          PYEOF
       - name: Report status
         if: always()
         run: |
