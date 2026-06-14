@@ -1,272 +1,236 @@
 <h1>QSC Core Health Analysis Report</h1>
-<p><strong>Core Instance:</strong> COS-Core-24f | <strong>Period:</strong> 2026-06-08 05:48 UTC to 2026-06-09 05:48 UTC (24 hours)</p>
-<hr>
+<p><strong>Core:</strong> COS-Core-24f | <strong>Analysis Period:</strong> 2026-06-13 22:00 UTC to 2026-06-14 22:00 UTC (24 hours) | <strong>Generated:</strong> 2026-06-15 03:30 IST</p>
 
 <h2>1. CORE IDENTITY</h2>
-<ul>
-<li><strong>Core Instance:</strong> COS-Core-24f</li>
-<li><strong>Analysis Period:</strong> 2026-06-08 05:48:36 UTC to 2026-06-09 05:48:36 UTC (24 hours)</li>
-<li><strong>Datasources:</strong> Prometheus (grafanacloud-prom), Loki (grafanacloud-logs)</li>
-<li><strong>Active Processes:</strong> audio_engine, runtime_engine, video_engine, node, engine_discover</li>
-</ul>
+<p><strong>Core Name:</strong> COS-Core-24f<br>
+<strong>Instance Label:</strong> COS-Core-24f<br>
+<strong>Active Processes:</strong> 6 (audio_engine, runtime_engine, node, engine_discover, video_engine×2)<br>
+<strong>Monitoring Period:</strong> 24 hours (2026-06-13 22:00 UTC to 2026-06-14 22:00 UTC)<br>
+<strong>Data Quality:</strong> 100% coverage, 1,441 data points per metric, zero gaps</p>
 
 <h2>2. SYSTEM RESOURCE SUMMARY</h2>
-<ul>
-<li><strong>Peak CPU:</strong> 11.6% (audio_engine PID 11317, user-space)</li>
-<li><strong>Peak Memory:</strong> 398.78 MB (node PID 9587)</li>
-<li><strong>Memory Utilization:</strong> runtime_engine 2.38%, node 2.14-2.49%</li>
-<li><strong>Fatal Crashes:</strong> 0 stacktrace errors detected</li>
-<li><strong>System Stability:</strong> Stable with one coordinated restart event at 11:28 UTC</li>
-</ul>
+<table>
+<tr><th>Metric</th><th>Value</th><th>Details</th></tr>
+<tr><td>Total CPU Utilization</td><td>~16.6% average</td><td>audio_engine dominates at 12.2% combined (system+user)</td></tr>
+<tr><td>Total Memory Usage</td><td>~859 MB average</td><td>runtime_engine highest at 312.4 MB average</td></tr>
+<tr><td>Total Active Threads</td><td>279 threads</td><td>runtime_engine accounts for 190 (68%)</td></tr>
+<tr><td>Process Stability</td><td>100% uptime</td><td>Zero restarts detected across all 6 processes</td></tr>
+<tr><td>Crash Events</td><td>0 crashes</td><td>No stacktrace fatal errors in 24-hour period</td></tr>
+</table>
 
 <h2>3. CPU STATE BREAKDOWN</h2>
-<p><strong>Dominant Consumers:</strong></p>
+<p><strong>Dominant Process:</strong> audio_engine consumes ~73% of measurable CPU</p>
 <ul>
-<li><strong>audio_engine</strong> (PID 11317): 7.9% avg user CPU, peak 11.4% at 11:56 UTC</li>
-<li><strong>audio_engine</strong> (PID 25567): 7.8% avg user CPU, peak 12.2% at 06:32 UTC</li>
-<li><strong>runtime_engine</strong> (PID 26165): 3.7% avg user CPU, peak 4.8% at 07:42 UTC</li>
-<li><strong>node</strong> (PID 9587): 1.7% avg user CPU, peak 2.8% at 12:01 UTC</li>
+<li><strong>audio_engine:</strong> User 7.77% avg (peak 12.26% at 2026-06-14 20:14 UTC), System 4.41% avg (peak 12.25%). Combined ~12.2% avg with 1.58x peak-to-average ratio indicating episodic spikes.</li>
+<li><strong>runtime_engine:</strong> User 2.34% avg (peak 3.35% at 2026-06-14 09:28 UTC), System 0.77% avg (peak 1.17%). Combined ~3.1% avg, second-largest consumer.</li>
+<li><strong>node:</strong> User 1.03% avg (peak 1.52% at 2026-06-14 17:22 UTC), System 0.24% avg. Stable and well-controlled.</li>
+<li><strong>engine_discover:</strong> User 0.0012% avg, System 0.0003% avg. Negligible footprint.</li>
+<li><strong>video_engine (PID 9723, 9724):</strong> Near-zero utilization, minimal CPU contribution.</li>
 </ul>
-<p><strong>Key Findings:</strong></p>
-<ul>
-<li>User-space CPU consistently exceeds system-space by 2-20x</li>
-<li>Zero wait-state CPU detected (no I/O blocking)</li>
-<li>video_engine processes universally idle (&lt;0.2%)</li>
-<li>engine_discover negligible load (0.1% peak)</li>
-</ul>
+<p><strong>I/O Wait:</strong> Zero wait-state CPU across all processes—no disk/network contention detected.</p>
+<p><strong>End-of-Window Status:</strong> audio_engine sustained high utilization (12.18% at end vs 12.26% peak), runtime_engine dropped to 1.76%.</p>
 
 <h2>4. MEMORY STATE BREAKDOWN</h2>
-<p><strong>Top Memory Consumers:</strong></p>
-<ul>
-<li><strong>runtime_engine</strong> (PID 26165): 2.38% avg (381.88 MB), stable baseline</li>
-<li><strong>node</strong> (PID 9587): 2.14% avg → 2.49% peak, <strong>108% growth</strong> from 191.66 MB to 398.78 MB</li>
-<li><strong>audio_engine</strong> (4 instances): 1.15-1.16% each (~186 MB per instance)</li>
-<li><strong>node</strong> (PID 8938): 1.48% avg (237.84 MB)</li>
-</ul>
-<p><strong>Concerns:</strong></p>
-<ul>
-<li>node PID 9587 shows severe memory growth pattern (108% over 18.35h)</li>
-<li>Aggregate audio_engine consumption ~4.6% warrants monitoring</li>
-</ul>
+<table>
+<tr><th>Process</th><th>PID</th><th>Avg Memory</th><th>Peak Memory</th><th>Trend</th><th>Status</th></tr>
+<tr><td>runtime_engine</td><td>11516</td><td>312.4 MB (1.95%)</td><td>328.2 MB (2.05%)</td><td>+31.6 MB (+10.7%) growth over 24h</td><td style="color: #ff8b00;"><strong>WARNING</strong></td></tr>
+<tr><td>node</td><td>8929</td><td>237.5 MB (1.48%)</td><td>241.2 MB (1.50%)</td><td>Variable, -14.9 MB mid-period then stabilized</td><td style="color: #00875a;"><strong>HEALTHY</strong></td></tr>
+<tr><td>audio_engine</td><td>10948</td><td>186.6 MB (1.16%)</td><td>186.6 MB (1.16%)</td><td>Flat, 0% variance</td><td style="color: #00875a;"><strong>HEALTHY</strong></td></tr>
+<tr><td>video_engine</td><td>9724</td><td>74.85 MB (0.47%)</td><td>74.85 MB (0.47%)</td><td>Flat, 0% variance</td><td style="color: #00875a;"><strong>HEALTHY</strong></td></tr>
+<tr><td>engine_discover</td><td>10444</td><td>12.85 MB (0.08%)</td><td>12.85 MB (0.08%)</td><td>Flat, 0% variance</td><td style="color: #00875a;"><strong>HEALTHY</strong></td></tr>
+<tr><td>video_engine</td><td>9723</td><td>7.24 MB (0.045%)</td><td>7.24 MB (0.045%)</td><td>Flat, 0% variance</td><td style="color: #00875a;"><strong>HEALTHY</strong></td></tr>
+</table>
+<p><strong>Total Memory Across 6 Processes:</strong> ~859 MB average<br>
+<strong>Top 2 Consumers:</strong> runtime_engine + node = 64% of total memory</p>
 
 <h2>5. PROCESS-LEVEL ANALYSIS</h2>
-<table border="1" cellpadding="8" cellspacing="0" style="border-collapse:collapse; width:100%;">
-<tr style="background-color:#f4f5f7;">
-<th>Process</th>
-<th>PID</th>
-<th>CPU Avg</th>
-<th>CPU Peak</th>
-<th>Memory Avg</th>
-<th>Memory Peak</th>
-<th>Threads</th>
-<th>Uptime</th>
-</tr>
-<tr>
-<td>audio_engine</td>
-<td>11317</td>
-<td>7.9%</td>
-<td>11.4%</td>
-<td>1.16% (186 MB)</td>
-<td>-</td>
-<td>12</td>
-<td>0.55h</td>
-</tr>
-<tr>
-<td>audio_engine</td>
-<td>25567</td>
-<td>7.8%</td>
-<td>12.2%</td>
-<td>1.16% (186 MB)</td>
-<td>-</td>
-<td>12</td>
-<td>3.3h</td>
-</tr>
-<tr>
-<td>runtime_engine</td>
-<td>26165</td>
-<td>3.7%</td>
-<td>4.8%</td>
-<td>2.38% (382 MB)</td>
-<td>384 MB</td>
-<td>193</td>
-<td>3.3h</td>
-</tr>
-<tr>
-<td>runtime_engine</td>
-<td>13368</td>
-<td>3.0%</td>
-<td>4.1%</td>
-<td>1.50% (240 MB)</td>
-<td>-</td>
-<td>191</td>
-<td>0.55h</td>
-</tr>
-<tr>
-<td>node</td>
-<td>9587</td>
-<td>1.7%</td>
-<td>2.8%</td>
-<td>2.14-2.49%</td>
-<td style="color:#de350b; font-weight:bold;">398.78 MB</td>
-<td>13</td>
-<td>18.35h</td>
-</tr>
-<tr>
-<td>node</td>
-<td>8938</td>
-<td>-</td>
-<td>-</td>
-<td>1.48% (238 MB)</td>
-<td>243 MB</td>
-<td>13</td>
-<td>4.9h</td>
-</tr>
-<tr>
-<td>video_engine</td>
-<td>10410</td>
-<td>&lt;0.2%</td>
-<td>-</td>
-<td>0.46% (75 MB)</td>
-<td>-</td>
-<td>55</td>
-<td>18.35h</td>
-</tr>
-<tr>
-<td>video_engine</td>
-<td>9773</td>
-<td>&lt;0.2%</td>
-<td>-</td>
-<td>0.47% (64 MB)</td>
-<td>-</td>
-<td>59</td>
-<td>4.9h</td>
-</tr>
-<tr>
-<td>engine_discover</td>
-<td>11136</td>
-<td>0.1%</td>
-<td>-</td>
-<td>0.073% (116 MB)</td>
-<td>-</td>
-<td>1</td>
-<td>18.35h</td>
-</tr>
-</table>
-<p><strong>Process Health:</strong></p>
+<h3>runtime_engine (PID 11516)</h3>
 <ul>
-<li><strong>audio_engine:</strong> Healthy, stable thread count (12), consistent CPU load</li>
-<li><strong>runtime_engine:</strong> Elevated thread count (191-193) requires investigation for potential thread leak</li>
-<li><strong>node:</strong> Critical memory growth concern (PID 9587)</li>
-<li><strong>video_engine:</strong> Idle/disabled, declining memory patterns suggest intentional scaling</li>
-<li><strong>engine_discover:</strong> Stable, low-impact background service</li>
+<li><strong>CPU:</strong> 3.1% combined avg (user 2.34%, system 0.77%)</li>
+<li><strong>Memory:</strong> 312.4 MB avg → 328.2 MB peak (+10.7% growth over 24h)</li>
+<li><strong>Threads:</strong> 190 stable (68% of system total)</li>
+<li><strong>Uptime:</strong> ~159,590 seconds avg, zero restarts</li>
+<li><strong>Status:</strong> <span style="color: #ff8b00;"><strong>WARNING</strong></span> - Persistent memory growth pattern indicates potential leak</li>
+</ul>
+
+<h3>audio_engine (PID 10948)</h3>
+<ul>
+<li><strong>CPU:</strong> 12.2% combined avg (user 7.77%, system 4.41%), peak 12.26% user</li>
+<li><strong>Memory:</strong> 186.6 MB flat, 0% variance</li>
+<li><strong>Threads:</strong> 12 stable</li>
+<li><strong>Uptime:</strong> ~159,590 seconds avg, zero restarts</li>
+<li><strong>Status:</strong> <span style="color: #00875a;"><strong>HEALTHY</strong></span> - High CPU is expected for audio processing workload</li>
+</ul>
+
+<h3>node (PID 8929)</h3>
+<ul>
+<li><strong>CPU:</strong> 1.3% combined avg (user 1.03%, system 0.24%)</li>
+<li><strong>Memory:</strong> 237.5 MB avg, variable but stable (211.96-241.16 MB range)</li>
+<li><strong>Threads:</strong> 13 stable</li>
+<li><strong>Uptime:</strong> ~176,580 seconds avg, zero restarts</li>
+<li><strong>Status:</strong> <span style="color: #00875a;"><strong>HEALTHY</strong></span> - Stable resource profile</li>
+</ul>
+
+<h3>video_engine (PID 9724)</h3>
+<ul>
+<li><strong>CPU:</strong> Near-zero utilization</li>
+<li><strong>Memory:</strong> 74.85 MB flat, 0% variance</li>
+<li><strong>Threads:</strong> 62 stable</li>
+<li><strong>Uptime:</strong> ~176,580 seconds avg, zero restarts</li>
+<li><strong>Status:</strong> <span style="color: #00875a;"><strong>HEALTHY</strong></span> - Minimal activity, stable</li>
+</ul>
+
+<h3>engine_discover (PID 10444)</h3>
+<ul>
+<li><strong>CPU:</strong> 0.0015% combined avg, negligible</li>
+<li><strong>Memory:</strong> 12.85 MB flat, 0% variance</li>
+<li><strong>Threads:</strong> 1 stable</li>
+<li><strong>Uptime:</strong> ~176,580 seconds avg, zero restarts</li>
+<li><strong>Status:</strong> <span style="color: #00875a;"><strong>HEALTHY</strong></span> - Minimal footprint, stable</li>
+</ul>
+
+<h3>video_engine (PID 9723)</h3>
+<ul>
+<li><strong>CPU:</strong> Near-zero utilization</li>
+<li><strong>Memory:</strong> 7.24 MB flat, 0% variance</li>
+<li><strong>Threads:</strong> 1 stable</li>
+<li><strong>Uptime:</strong> ~176,580 seconds avg, zero restarts</li>
+<li><strong>Status:</strong> <span style="color: #00875a;"><strong>HEALTHY</strong></span> - Minimal footprint, stable</li>
 </ul>
 
 <h2>6. MEMORY LEAK DETECTION</h2>
-<p><strong style="color:#de350b;">CRITICAL: node PID 9587</strong></p>
+<p><strong>Leak Detected:</strong> <span style="color: #ff8b00;"><strong>YES - runtime_engine</strong></span></p>
 <ul>
-<li>Growth: 191.66 MB → 398.78 MB over 18.35 hours (108% increase)</li>
-<li>Rate: ~11 MB/hour continuous growth</li>
-<li>Pattern: Sustained elevation without deallocation</li>
-<li><strong>Status:</strong> Active memory leak suspected</li>
+<li><strong>Process:</strong> runtime_engine (PID 11516)</li>
+<li><strong>Growth Pattern:</strong> Monotonic increase from 296.6 MB → 328.2 MB over 24 hours</li>
+<li><strong>Growth Rate:</strong> +31.6 MB total (+10.7%), consistent gains across all time buckets</li>
+<li><strong>Leak Confidence:</strong> HIGH - Linear upward trend with no plateau or GC cycles observed</li>
+<li><strong>Projected Impact:</strong> At current rate (~1.3 MB/hour), 100 MB additional growth expected in ~77 hours</li>
 </ul>
-<p><strong style="color:#ff8b00;">MEDIUM: engine_discover PID 11136</strong></p>
-<ul>
-<li>Growth: 104.86 MB → 116.65 MB over 18.35 hours (11% increase)</li>
-<li>Rate: ~0.64 MB/hour</li>
-<li>Pattern: Gradual steady increase</li>
-<li><strong>Status:</strong> Monitor for continued growth</li>
-</ul>
-<p><strong style="color:#00875a;">HEALTHY: video_engine processes</strong></p>
-<ul>
-<li>PIDs 9773, 10410 show 44% memory reduction</li>
-<li>Indicates proper deallocation and process optimization</li>
-</ul>
+<p><strong>Other Processes:</strong> audio_engine, both video_engine instances, and engine_discover show 0% memory variance—perfectly flat profiles indicating no leaks. node process shows variable memory (211-241 MB) but no sustained growth trend.</p>
 
 <h2>7. CRASH AND STACKTRACE ANALYSIS</h2>
-<p><strong>Result:</strong> No fatal crashes detected</p>
+<p><strong>Crash Count:</strong> <span style="color: #00875a;"><strong>0 crashes</strong></span></p>
 <ul>
-<li>Loki query: <code>{service_name="stacktrace", instance="COS-Core-24f"}</code></li>
-<li>Time range: Last 24 hours</li>
-<li>Stacktrace count: 0</li>
-<li><strong style="color:#00875a;">Status: HEALTHY</strong></li>
+<li><strong>Loki Query Result:</strong> No stacktrace fatal errors found for service_name="stacktrace", instance="COS-Core-24f" over 24-hour period</li>
+<li><strong>Process Stability:</strong> All 6 processes maintained continuous operation with zero restarts</li>
+<li><strong>Error Logs:</strong> No fatal exceptions, panics, or abnormal terminations detected</li>
 </ul>
+<p><strong>Stability Assessment:</strong> Excellent—core operated crash-free throughout entire analysis window.</p>
 
 <h2>8. METRICS AND LOG CORRELATION</h2>
-<p><strong>No crash events to correlate.</strong> Process restart event at 11:28 UTC appears coordinated and graceful:</p>
+<p><strong>Correlation Status:</strong> No crash events to correlate</p>
 <ul>
-<li>All processes simultaneously restarted with new PIDs</li>
-<li>No stacktrace logs corresponding to restart time</li>
-<li>Post-restart stability: 18.35h continuous uptime</li>
-<li>Likely planned service restart or system maintenance</li>
+<li><strong>Uptime Metrics:</strong> All processes show monotonically increasing uptime with zero resets, confirming zero restarts</li>
+<li><strong>Log Data:</strong> Zero stacktrace entries in Loki for this core during analysis period</li>
+<li><strong>Memory Anomaly vs Crashes:</strong> runtime_engine memory growth occurred without any associated crashes or restarts, suggesting controlled (albeit concerning) allocation pattern rather than OOM failures</li>
+<li><strong>CPU Spikes vs Stability:</strong> audio_engine CPU spikes (peak 12.26% user) did not trigger process instability or errors</li>
 </ul>
+<p><strong>Assessment:</strong> Perfect metrics-log alignment confirms stable operation despite runtime_engine memory growth concern.</p>
 
 <h2>9. UPTIME AND RESTART ANALYSIS</h2>
-<p><strong>Restart Timeline:</strong></p>
-<ol>
-<li><strong>Pre-11:28 UTC:</strong> Long-running processes with 93-115 hours uptime</li>
-<li><strong>11:28 UTC:</strong> Coordinated restart event (all processes reset)</li>
-<li><strong>Post-restart:</strong> Stable 18.35h uptime on primary processes</li>
-</ol>
-<p><strong>Current Uptime (as of 05:49 UTC):</strong></p>
+<p><strong>Restart Count:</strong> <span style="color: #00875a;"><strong>0 restarts</strong></span> across all processes</p>
+<table>
+<tr><th>Process</th><th>PID</th><th>Start Uptime</th><th>End Uptime</th><th>Uptime Change</th><th>Restarts</th></tr>
+<tr><td>audio_engine</td><td>10948</td><td>116,390s (~32.3h)</td><td>202,790s (~56.3h)</td><td>+86,400s (+24h)</td><td>0</td></tr>
+<tr><td>runtime_engine</td><td>11516</td><td>116,390s (~32.3h)</td><td>202,790s (~56.3h)</td><td>+86,400s (+24h)</td><td>0</td></tr>
+<tr><td>node</td><td>8929</td><td>133,380s (~37.1h)</td><td>219,780s (~61.1h)</td><td>+86,400s (+24h)</td><td>0</td></tr>
+<tr><td>engine_discover</td><td>10444</td><td>133,380s (~37.1h)</td><td>219,780s (~61.1h)</td><td>+86,400s (+24h)</td><td>0</td></tr>
+<tr><td>video_engine</td><td>9723</td><td>133,380s (~37.1h)</td><td>219,780s (~61.1h)</td><td>+86,400s (+24h)</td><td>0</td></tr>
+<tr><td>video_engine</td><td>9724</td><td>133,380s (~37.1h)</td><td>219,780s (~61.1h)</td><td>+86,400s (+24h)</td><td>0</td></tr>
+</table>
+<p><strong>Observations:</strong></p>
 <ul>
-<li>engine_discover (PID 11136): 66,131 seconds (18.4h)</li>
-<li>node (PID 9587): 66,131 seconds (18.4h)</li>
-<li>video_engine (PIDs 10409, 10410): 66,131 seconds (18.4h)</li>
+<li>Two startup cohorts: audio_engine + runtime_engine started together (~32.3h before analysis); other 4 processes started ~6.7h earlier (~37.1h before)</li>
+<li>All processes show perfect monotonic uptime increase with zero gaps or resets</li>
+<li>100% data collection quality (1,441/1,441 expected points) confirms no monitoring infrastructure issues</li>
 </ul>
-<p><strong>Assessment:</strong> No unplanned downtime. Restart appears graceful and coordinated. Stable operation post-restart.</p>
+<p><strong>Stability Score:</strong> 100% - No restarts, no crashes, continuous operation</p>
 
 <h2>10. ANOMALIES</h2>
-<ol>
-<li><strong style="color:#de350b;">node PID 9587 memory explosion</strong> (CRITICAL): 108% growth over 18h, reaching 399 MB peak</li>
-<li><strong style="color:#ff8b00;">runtime_engine elevated threads</strong> (WARNING): 191-193 threads vs 12-13 for other engines (15x higher)</li>
-<li><strong style="color:#ff8b00;">audio_engine system-space spike</strong> (PID 11338): 11.5% system CPU peak at 10:44 UTC (bursty kernel activity)</li>
-<li><strong>video_engine universally idle</strong> (INFO): All instances &lt;0.2% CPU, suggests disabled video processing</li>
-<li><strong>Data gap 10:42-11:28 UTC</strong> (46 minutes): No metrics during restart window</li>
-</ol>
+<p><strong>Detected Anomalies:</strong> 2</p>
+
+<h3>ANOMALY 1: runtime_engine Memory Growth (WARNING)</h3>
+<ul>
+<li><strong>Type:</strong> Potential Memory Leak</li>
+<li><strong>Process:</strong> runtime_engine (PID 11516)</li>
+<li><strong>Pattern:</strong> Linear memory growth +10.7% over 24 hours (296.6 MB → 328.2 MB)</li>
+<li><strong>Impact:</strong> Moderate - No immediate stability risk, but sustained growth could lead to resource exhaustion</li>
+<li><strong>Recommendation:</strong> Monitor for continued growth; investigate if trend persists beyond 72 hours or exceeds 500 MB</li>
+</ul>
+
+<h3>ANOMALY 2: audio_engine CPU Spikes (LOW SEVERITY)</h3>
+<ul>
+<li><strong>Type:</strong> Episodic CPU Bursts</li>
+<li><strong>Process:</strong> audio_engine (PID 10948)</li>
+<li><strong>Pattern:</strong> Peak-to-average ratio 1.58x (user state), spikes to 12.26% at 2026-06-14 20:14 UTC</li>
+<li><strong>Impact:</strong> Low - Expected behavior for audio processing workloads, no stability issues</li>
+<li><strong>Recommendation:</strong> No action required; within normal operating parameters</li>
+</ul>
+
+<h3>Non-Anomalies (Confirmed Normal):</h3>
+<ul>
+<li><strong>Flat Memory Profiles:</strong> 4 processes (audio_engine, video_engine×2, engine_discover) show 0% memory variance—indicates constant memory allocation, not data collection artifacts</li>
+<li><strong>Thread Stability:</strong> All processes maintain constant thread counts with zero spikes or drops</li>
+<li><strong>Synchronized Uptime:</strong> Process startup cohorts (audio+runtime vs others) reflect normal dependency-based initialization</li>
+</ul>
 
 <h2>11. SUMMARY AND RISK ASSESSMENT</h2>
-<p><strong>Overall Status:</strong> <span style="background-color:#ff8b00; color:#fff; padding:4px 12px; border-radius:4px; font-weight:bold;">WARNING</span></p>
-<p><strong>Risk Factors:</strong></p>
+<p style="font-size: 18px;"><strong>Overall Core Health Status: <span style="color: #ff8b00;">WARNING ⚠️</span></strong></p>
+
+<h3>Key Findings:</h3>
 <ul>
-<li><strong style="color:#de350b;">CRITICAL:</strong> node PID 9587 memory leak (399 MB, 108% growth) — immediate investigation required</li>
-<li><strong style="color:#ff8b00;">WARNING:</strong> runtime_engine thread count (191-193 threads) — potential thread leak</li>
-<li><strong style="color:#00875a;">HEALTHY:</strong> Zero crashes, stable CPU patterns, successful restart recovery</li>
+<li><strong>Stability:</strong> <span style="color: #00875a;">EXCELLENT</span> - Zero crashes, zero restarts, 100% uptime across all 6 processes over 24 hours</li>
+<li><strong>CPU Performance:</strong> <span style="color: #00875a;">HEALTHY</span> - audio_engine dominates at 12.2% avg (expected for workload), no contention or wait states</li>
+<li><strong>Memory Health:</strong> <span style="color: #ff8b00;">WARNING</span> - runtime_engine shows +10.7% growth pattern indicating potential leak; other processes stable</li>
+<li><strong>Thread Management:</strong> <span style="color: #00875a;">HEALTHY</span> - 279 total threads, stable allocation, no anomalies</li>
+<li><strong>Error Rate:</strong> <span style="color: #00875a;">EXCELLENT</span> - Zero fatal errors, no stacktrace events detected</li>
 </ul>
-<p><strong>Performance Summary:</strong></p>
+
+<h3>Risk Level: MODERATE</h3>
+<p>COS-Core-24f demonstrates strong operational stability with perfect uptime and zero crashes. The primary concern is runtime_engine's sustained memory growth (+31.6 MB over 24h), which warrants monitoring but poses no immediate risk. If growth continues at current rate, intervention may be required within 72-120 hours to prevent resource exhaustion.</p>
+
+<h3>Confidence in Assessment: HIGH</h3>
 <ul>
-<li>CPU load dominated by audio_engine (7-12%), acceptable levels</li>
-<li>Memory consumption led by runtime_engine (2.38%, stable) and node (2.49%, growing)</li>
-<li>18.35h stable uptime post-restart</li>
-<li>No fatal errors or stacktrace events</li>
+<li>100% data coverage (1,441 data points per metric)</li>
+<li>Zero monitoring gaps or collection failures</li>
+<li>Consistent patterns across all processes</li>
+<li>Perfect correlation between uptime metrics and log data</li>
 </ul>
 
 <h2>12. RECOMMENDED ACTIONS</h2>
-<p><strong style="color:#de350b;">1. IMMEDIATE (Next 4 hours):</strong></p>
+<h3>IMMEDIATE (Within 24 hours):</h3>
+<ol>
+<li><strong>Enable Enhanced Monitoring for runtime_engine:</strong> Set up alerting if memory exceeds 400 MB or growth rate exceeds 2% per hour</li>
+<li><strong>Verify Memory Metrics:</strong> Confirm runtime_engine memory growth pattern persists by reviewing metrics for next 24-hour window</li>
+</ol>
+
+<h3>SHORT-TERM (Within 72 hours):</h3>
+<ol start="3">
+<li><strong>Investigate runtime_engine Memory Allocation:</strong> Enable heap profiling or memory dump analysis to identify source of growth (potential leak in PID 11516)</li>
+<li><strong>Review Application Logs:</strong> Check runtime_engine application logs for warnings about cache growth, connection pooling, or buffer accumulation</li>
+<li><strong>Establish Memory Threshold Alert:</strong> Configure alert rule to page on-call if runtime_engine memory exceeds 500 MB or reaches 3% utilization</li>
+</ol>
+
+<h3>MAINTENANCE (Within 7 days):</h3>
+<ol start="6">
+<li><strong>Baseline Comparison:</strong> Compare this 24-hour window to previous weeks—determine if 10.7% growth is one-time event or ongoing trend</li>
+<li><strong>Consider Controlled Restart:</strong> If memory leak confirmed and no fix available, schedule maintenance window to restart runtime_engine process to reclaim memory</li>
+<li><strong>Update Runbooks:</strong> Document runtime_engine memory growth pattern in operational runbooks for future reference</li>
+</ol>
+
+<h3>MONITORING (Continuous):</h3>
+<ol start="9">
+<li><strong>Daily Health Checks:</strong> Review COS-Core-24f metrics daily for next 7 days to track runtime_engine memory trend</li>
+<li><strong>Retain Current Metrics:</strong> Archive this 24-hour dataset as baseline for future comparison and trend analysis</li>
+</ol>
+
+<h3>NO ACTION REQUIRED:</h3>
 <ul>
-<li>Investigate node PID 9587 memory leak root cause</li>
-<li>Monitor memory growth rate; prepare restart if approaching limits</li>
-<li>Review application logs for node process allocation patterns</li>
+<li><strong>audio_engine CPU spikes:</strong> Within normal operating parameters for audio processing workload</li>
+<li><strong>video_engine low utilization:</strong> Expected behavior, no issues detected</li>
+<li><strong>node, engine_discover stability:</strong> Operating normally, no intervention needed</li>
 </ul>
-<p><strong style="color:#ff8b00;">2. SHORT-TERM (Next 24 hours):</strong></p>
-<ul>
-<li>Investigate runtime_engine thread count (191-193 threads)</li>
-<li>Enable heap profiling on node PID 9587 to identify leak source</li>
-<li>Validate video_engine intentional idle state or consider restart</li>
-</ul>
-<p><strong>3. ONGOING MONITORING:</strong></p>
-<ul>
-<li>Track node memory growth hourly (alert threshold: 450 MB)</li>
-<li>Monitor engine_discover gradual memory increase</li>
-<li>Track runtime_engine thread count for growth patterns</li>
-<li>Investigate audio_engine aggregate memory (4 instances × 186 MB = 744 MB total)</li>
-</ul>
-<p><strong>4. CONFIGURATION REVIEW:</strong></p>
-<ul>
-<li>Review video processing configuration (all video_engine idle)</li>
-<li>Audit restart procedure at 11:28 UTC for planned vs unplanned classification</li>
-<li>Validate memory limits and garbage collection settings for node processes</li>
-</ul>
+
 <hr>
-<p><strong>Report Generated:</strong> 2026-06-09 11:18:36 IST<br>
-<strong>Data Completeness:</strong> 100% (no gaps except 46min restart window)<br>
-<strong>Next Assessment:</strong> Recommended within 4 hours to track node memory leak progression</p>
+<p style="font-size: 12px; color: #666;"><em>Report generated by QSC Sleestack Core Health Analysis Agent | Data sources: Prometheus (grafanacloud-prom), Loki (grafanacloud-logs) | Analysis period: 2026-06-13 22:00 UTC to 2026-06-14 22:00 UTC | Report timestamp: 2026-06-15 03:30:11 IST</em></p>
