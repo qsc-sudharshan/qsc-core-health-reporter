@@ -1,512 +1,232 @@
-<h1>QSC Core Health Report — nv-32-h-c555-Krypton</h1>
-<p><strong>Report Date:</strong> 2026-06-15 | <strong>Analysis Period:</strong> 24 hours (2026-06-13 22:00 UTC to 2026-06-14 22:00 UTC)</p>
+<h1>QSC Core Health Analysis Report</h1>
+<p><strong>Core:</strong> nv-32-h-c555-Krypton</p>
+<p><strong>Analysis Period:</strong> 2026-06-20 22:00:05 UTC to 2026-06-21 22:00:05 UTC (24 hours)</p>
+<p><strong>Report Generated:</strong> 2026-06-22 03:30:05 IST</p>
+<hr>
 
 <h2>1. CORE IDENTITY</h2>
-<p><strong>Core Name:</strong> nv-32-h-c555-Krypton</p>
-<p><strong>Monitored Processes:</strong></p>
+<p><strong>Instance Name:</strong> nv-32-h-c555-Krypton</p>
+<p><strong>Status:</strong> <span style="color: #de350b; font-weight: bold;">NOT FOUND IN MONITORING SYSTEM</span></p>
+<p><strong>Available Cores in System:</strong></p>
 <ul>
-<li>audio_engine (PID 16827)</li>
-<li>runtime_engine (PID 17977)</li>
-<li>video_engine (PID 9763, 9764)</li>
-<li>node (PID 8136)</li>
-<li>engine_discover (PID 10511)</li>
+<li>core-sachin</li>
+<li>eternia-Core24-d447</li>
+<li>eternia-vsa100-b5c0</li>
+<li>Eternia-NV-Decoder</li>
+<li>Eternia-NV-Encoder</li>
+<li>Eternia-NV-Encoder1</li>
 </ul>
-<p><strong>Data Sources:</strong> Prometheus (grafanacloud-prom), Loki (grafanacloud-logs)</p>
-<p><strong>Observation Window:</strong> 24 hours | <strong>Data Completeness:</strong> 100% (1442/1442 data points, 0% gaps)</p>
+<p><strong>Verification Result:</strong> The requested core "nv-32-h-c555-Krypton" does not exist in the Prometheus metrics database (grafanacloud-prom) for the specified time range. No metrics or logs were found for this instance.</p>
 
 <h2>2. SYSTEM RESOURCE SUMMARY</h2>
-<table border="1" cellpadding="5" cellspacing="0">
+<p><strong>Data Availability:</strong> NO DATA</p>
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%;">
+<thead>
 <tr style="background-color: #f4f5f7;">
 <th>Metric</th>
-<th>Average</th>
-<th>Peak</th>
 <th>Status</th>
 </tr>
-<tr>
-<td>Total CPU Utilization</td>
-<td>~26%</td>
-<td>30.7% at 2026-06-14T21:56:00</td>
-<td style="color: #00875a;"><strong>HEALTHY</strong></td>
-</tr>
-<tr>
-<td>Total Memory Utilization</td>
-<td>~14.6%</td>
-<td>15.11% (combined top 3 processes)</td>
-<td style="color: #00875a;"><strong>HEALTHY</strong></td>
-</tr>
-<tr>
-<td>Total Memory Footprint</td>
-<td>~663 MB</td>
-<td>~670 MB</td>
-<td style="color: #00875a;"><strong>HEALTHY</strong></td>
-</tr>
-<tr>
-<td>Thread Count (Total)</td>
-<td>~193 threads</td>
-<td>193 threads (static)</td>
-<td style="color: #00875a;"><strong>HEALTHY</strong></td>
-</tr>
-<tr>
-<td>Process Restarts</td>
-<td>0</td>
-<td>N/A</td>
-<td style="color: #00875a;"><strong>HEALTHY</strong></td>
-</tr>
-<tr>
-<td>Fatal Crashes</td>
-<td>0</td>
-<td>N/A</td>
-<td style="color: #00875a;"><strong>HEALTHY</strong></td>
-</tr>
+</thead>
+<tbody>
+<tr><td>CPU Utilization</td><td style="color: #de350b;">No data available</td></tr>
+<tr><td>Memory Utilization</td><td style="color: #de350b;">No data available</td></tr>
+<tr><td>Memory Usage (Bytes)</td><td style="color: #de350b;">No data available</td></tr>
+<tr><td>Process Uptime</td><td style="color: #de350b;">No data available</td></tr>
+<tr><td>Thread Count</td><td style="color: #de350b;">No data available</td></tr>
+</tbody>
 </table>
 
 <h2>3. CPU STATE BREAKDOWN</h2>
-<table border="1" cellpadding="5" cellspacing="0">
-<tr style="background-color: #f4f5f7;">
-<th>Process</th>
-<th>Average CPU</th>
-<th>Peak CPU</th>
-<th>Contribution</th>
-<th>Status</th>
-</tr>
-<tr>
-<td>audio_engine</td>
-<td>20.96%</td>
-<td>24.09% at 2026-06-14T21:56:00</td>
-<td>80% of total load</td>
-<td style="color: #00875a;"><strong>STABLE</strong></td>
-</tr>
-<tr>
-<td>runtime_engine</td>
-<td>5.01%</td>
-<td>4.05% at 2026-06-13T23:18:00</td>
-<td>Secondary consumer</td>
-<td style="color: #00875a;"><strong>STABLE</strong></td>
-</tr>
-<tr>
-<td>node</td>
-<td>2.39%</td>
-<td>2.76% at 2026-06-14T18:04:00</td>
-<td>Tertiary contributor</td>
-<td style="color: #00875a;"><strong>STABLE</strong></td>
-</tr>
-<tr>
-<td>engine_discover</td>
-<td>0.16%</td>
-<td>0.19% at 2026-06-13T22:44:00</td>
-<td>Negligible</td>
-<td style="color: #00875a;"><strong>STABLE</strong></td>
-</tr>
-<tr>
-<td>video_engine (9763)</td>
-<td>0.00%</td>
-<td>0.00%</td>
-<td>Inactive</td>
-<td style="color: #ff8b00;"><strong>IDLE</strong></td>
-</tr>
-<tr>
-<td>video_engine (9764)</td>
-<td>0.001%</td>
-<td>0.10% at 2026-06-13T23:17:00</td>
-<td>Minimal activity</td>
-<td style="color: #ff8b00;"><strong>LOW ACTIVITY</strong></td>
-</tr>
-</table>
-<p><strong>Key Observations:</strong></p>
+<p><strong>Data Availability:</strong> NO DATA</p>
+<p>No CPU metrics (process_cpu_utilization_ratio) found for core nv-32-h-c555-Krypton.</p>
+<p><strong>Expected Metrics:</strong></p>
 <ul>
-<li>audio_engine dominates CPU at 7x higher than any other process</li>
-<li>No wait-state CPU detected across all processes (zero I/O blocking)</li>
-<li>Stable load distribution with no anomalous spikes</li>
-<li>video_engine (PID 9763) appears inactive throughout entire period</li>
+<li>process_cpu_utilization_ratio{instance="nv-32-h-c555-Krypton", state="user"}</li>
+<li>process_cpu_utilization_ratio{instance="nv-32-h-c555-Krypton", state="system"}</li>
+<li>process_cpu_utilization_ratio{instance="nv-32-h-c555-Krypton", state="wait"}</li>
 </ul>
+<p><strong>Analysis:</strong> Unable to determine CPU state breakdown (user/system/wait time) due to missing data.</p>
 
 <h2>4. MEMORY STATE BREAKDOWN</h2>
-<table border="1" cellpadding="5" cellspacing="0">
-<tr style="background-color: #f4f5f7;">
-<th>Process</th>
-<th>Average Memory</th>
-<th>Peak Memory</th>
-<th>Memory Bytes</th>
-<th>Status</th>
-</tr>
-<tr>
-<td>runtime_engine</td>
-<td>5.11%</td>
-<td>5.12% at 2026-06-14T21:06:00</td>
-<td>201.6 MB (200.6-201.0 MB)</td>
-<td style="color: #00875a;"><strong>STABLE</strong></td>
-</tr>
-<tr>
-<td>node</td>
-<td>5.02%</td>
-<td>5.13% at 2026-06-14T21:30:00</td>
-<td>196.98 MB (158.1-201.26 MB)</td>
-<td style="color: #ff8b00;"><strong>VARIABLE</strong></td>
-</tr>
-<tr>
-<td>audio_engine</td>
-<td>4.44%</td>
-<td>4.44% (constant)</td>
-<td>174.13 MB (zero variation)</td>
-<td style="color: #00875a;"><strong>STABLE</strong></td>
-</tr>
-<tr>
-<td>video_engine (9764)</td>
-<td>1.86%</td>
-<td>1.86% (constant)</td>
-<td>72.91 MB (zero variation)</td>
-<td style="color: #00875a;"><strong>STABLE</strong></td>
-</tr>
-<tr>
-<td>engine_discover</td>
-<td>0.26%</td>
-<td>0.26% (constant)</td>
-<td>10.36 MB (zero variation)</td>
-<td style="color: #00875a;"><strong>STABLE</strong></td>
-</tr>
-<tr>
-<td>video_engine (9763)</td>
-<td>0.17%</td>
-<td>0.17% (constant)</td>
-<td>6.85 MB (zero variation)</td>
-<td style="color: #00875a;"><strong>STABLE</strong></td>
-</tr>
-</table>
-<p><strong>Key Observations:</strong></p>
+<p><strong>Data Availability:</strong> NO DATA</p>
+<p>No memory metrics (process_memory_utilization_ratio, process_memory_usage_bytes) found for core nv-32-h-c555-Krypton.</p>
+<p><strong>Expected Metrics:</strong></p>
 <ul>
-<li>runtime_engine largest consumer at 201.6 MB (~45% of total process memory)</li>
-<li>node process shows 27.3 MB swing (158.1 MB → 201.26 MB) suggesting dynamic workload or GC cycles</li>
-<li>audio_engine maintains rock-solid 174.13 MB with zero fluctuation (perfect stability)</li>
-<li>Combined top-3 processes consume ~14.6% of system memory</li>
+<li>process_memory_utilization_ratio{instance="nv-32-h-c555-Krypton"}</li>
+<li>process_memory_usage_bytes{instance="nv-32-h-c555-Krypton"}</li>
 </ul>
+<p><strong>Analysis:</strong> Unable to determine memory usage patterns, peak memory consumption, or memory pressure indicators.</p>
 
 <h2>5. PROCESS-LEVEL ANALYSIS</h2>
-<table border="1" cellpadding="5" cellspacing="0">
-<tr style="background-color: #f4f5f7;">
-<th>Process</th>
-<th>CPU</th>
-<th>Memory</th>
-<th>Threads</th>
-<th>Uptime</th>
-<th>Overall Status</th>
-</tr>
-<tr>
-<td>audio_engine</td>
-<td>20.96% avg</td>
-<td>174.13 MB (stable)</td>
-<td>9 (constant)</td>
-<td>~56.3 hrs (no restarts)</td>
-<td style="color: #00875a;"><strong>HEALTHY</strong></td>
-</tr>
-<tr>
-<td>runtime_engine</td>
-<td>5.01% avg</td>
-<td>201.6 MB (stable)</td>
-<td>83 (constant, 81-83 range)</td>
-<td>~56.3 hrs (no restarts)</td>
-<td style="color: #00875a;"><strong>HEALTHY</strong></td>
-</tr>
-<tr>
-<td>node</td>
-<td>2.39% avg</td>
-<td>196.98 MB (variable)</td>
-<td>13 (constant)</td>
-<td>~56.3 hrs (no restarts)</td>
-<td style="color: #ff8b00;"><strong>MONITOR</strong></td>
-</tr>
-<tr>
-<td>video_engine (9764)</td>
-<td>0.001% avg</td>
-<td>72.91 MB (stable)</td>
-<td>86 (constant)</td>
-<td>~56.3 hrs (no restarts)</td>
-<td style="color: #ff8b00;"><strong>LOW ACTIVITY</strong></td>
-</tr>
-<tr>
-<td>video_engine (9763)</td>
-<td>0.00% avg</td>
-<td>6.85 MB (stable)</td>
-<td>1 (constant)</td>
-<td>~56.3 hrs (no restarts)</td>
-<td style="color: #ff8b00;"><strong>IDLE</strong></td>
-</tr>
-<tr>
-<td>engine_discover</td>
-<td>0.16% avg</td>
-<td>10.36 MB (stable)</td>
-<td>1 (constant)</td>
-<td>~56.3 hrs (no restarts)</td>
-<td style="color: #00875a;"><strong>HEALTHY</strong></td>
-</tr>
-</table>
-<p><strong>Key Observations:</strong></p>
+<p><strong>Data Availability:</strong> NO DATA</p>
+<p><strong>Expected Processes:</strong></p>
 <ul>
-<li>All processes started within a 33-second window (~56.3 hours ago), indicating coordinated system boot</li>
-<li>runtime_engine maintains highest thread count (82-83 threads average)</li>
-<li>video_engine (PID 9764) shows high thread allocation (86) despite minimal CPU activity</li>
-<li>video_engine (PID 9763) appears to be a standby/inactive instance (single-threaded, zero CPU)</li>
-<li>node process flagged for monitoring due to memory variability (27.3 MB swing)</li>
+<li>audio_engine</li>
+<li>runtime_engine</li>
+<li>video_engine</li>
+<li>node</li>
+<li>engine_discover</li>
 </ul>
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%;">
+<thead>
+<tr style="background-color: #f4f5f7;">
+<th>Process Name</th>
+<th>CPU Utilization</th>
+<th>Memory Utilization</th>
+<th>Memory (Bytes)</th>
+<th>Threads</th>
+<th>Uptime (Hours)</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr><td colspan="7" style="text-align: center; color: #de350b;">No process-level data available for this core</td></tr>
+</tbody>
+</table>
 
 <h2>6. MEMORY LEAK DETECTION</h2>
-<table border="1" cellpadding="5" cellspacing="0">
-<tr style="background-color: #f4f5f7;">
-<th>Process</th>
-<th>Growth Pattern</th>
-<th>Variance</th>
-<th>Leak Status</th>
-</tr>
-<tr>
-<td>audio_engine</td>
-<td>Flat (zero growth)</td>
-<td>0 MB</td>
-<td style="color: #00875a;"><strong>NO LEAK</strong></td>
-</tr>
-<tr>
-<td>runtime_engine</td>
-<td>Flat (negligible 0.4 MB variance)</td>
-<td>0.4 MB</td>
-<td style="color: #00875a;"><strong>NO LEAK</strong></td>
-</tr>
-<tr>
-<td>node</td>
-<td>Cyclical (158.1 MB → 201.26 MB → stabilization)</td>
-<td>27.3 MB</td>
-<td style="color: #ff8b00;"><strong>POSSIBLE GC CYCLE</strong></td>
-</tr>
-<tr>
-<td>video_engine (9763)</td>
-<td>Flat (zero growth)</td>
-<td>0 MB</td>
-<td style="color: #00875a;"><strong>NO LEAK</strong></td>
-</tr>
-<tr>
-<td>video_engine (9764)</td>
-<td>Flat (zero growth)</td>
-<td>0 MB</td>
-<td style="color: #00875a;"><strong>NO LEAK</strong></td>
-</tr>
-<tr>
-<td>engine_discover</td>
-<td>Flat (zero growth)</td>
-<td>0 MB</td>
-<td style="color: #00875a;"><strong>NO LEAK</strong></td>
-</tr>
-</table>
-<p><strong>Analysis:</strong></p>
+<p><strong>Data Availability:</strong> NO DATA</p>
+<p><strong>Analysis Method:</strong> Memory leak detection requires time-series analysis of process_memory_usage_bytes over the 24-hour period to identify sustained upward trends.</p>
+<p><strong>Result:</strong> Unable to perform memory leak analysis due to missing metrics data.</p>
+<p><strong>Indicators Checked (all unavailable):</strong></p>
 <ul>
-<li><strong>5 of 6 processes show zero leak indicators</strong> with perfectly flat memory profiles</li>
-<li><strong>node process shows 4-phase memory cycle:</strong>
-  <ul>
-  <li>Phase 1 (0% bucket): 200 MB baseline</li>
-  <li>Phase 2 (20% bucket): 160-200 MB swing (drop to minimum)</li>
-  <li>Phase 3 (40% bucket): 170-200 MB range (recovery)</li>
-  <li>Phase 4 (60%+ bucket): 190-200 MB stabilization (sustained)</li>
-  </ul>
-</li>
-<li>This pattern suggests <strong>workload-driven variation or garbage collection events</strong> rather than uncontrolled leak</li>
-<li>No continuous upward memory trajectory detected in any process over 24-hour period</li>
+<li>Memory growth rate per process</li>
+<li>Correlation between uptime and memory usage</li>
+<li>Memory resets (indicating process restarts)</li>
+<li>Thread count growth patterns</li>
 </ul>
 
 <h2>7. CRASH AND STACKTRACE ANALYSIS</h2>
-<p style="color: #00875a; font-size: 18px;"><strong>✓ ZERO CRASHES DETECTED</strong></p>
-<table border="1" cellpadding="5" cellspacing="0">
+<p><strong>Data Availability:</strong> NO DATA</p>
+<p><strong>Loki Query Used:</strong> {service_name="stacktrace", instance="nv-32-h-c555-Krypton"}</p>
+<p><strong>Result:</strong> No fatal error stacktraces found in grafanacloud-logs for the 24-hour period.</p>
+<p><strong>Crash Events:</strong></p>
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%;">
+<thead>
 <tr style="background-color: #f4f5f7;">
-<th>Metric</th>
-<th>Count</th>
-<th>Status</th>
+<th>Timestamp</th>
+<th>Process</th>
+<th>Error Type</th>
+<th>Details</th>
 </tr>
-<tr>
-<td>Fatal Stacktraces</td>
-<td>0</td>
-<td style="color: #00875a;"><strong>CLEAN</strong></td>
-</tr>
-<tr>
-<td>Process Crashes</td>
-<td>0</td>
-<td style="color: #00875a;"><strong>CLEAN</strong></td>
-</tr>
-<tr>
-<td>Error Patterns</td>
-<td>None detected</td>
-<td style="color: #00875a;"><strong>CLEAN</strong></td>
-</tr>
+</thead>
+<tbody>
+<tr><td colspan="4" style="text-align: center; color: #6b778c;">No crash events detected (or core not reporting to logging system)</td></tr>
+</tbody>
 </table>
-<p><strong>Log Query Result:</strong> No data found in Loki logs for <code>{service_name="stacktrace", instance="nv-32-h-c555-Krypton"}</code> over the 24-hour monitoring period.</p>
-<p><strong>Analysis:</strong> Core nv-32-h-c555-Krypton experienced zero fatal errors, crashes, or stacktrace events during the entire observation window. This indicates excellent system stability.</p>
 
 <h2>8. METRICS AND LOG CORRELATION</h2>
-<p><strong>Correlation Analysis:</strong></p>
+<p><strong>Data Availability:</strong> NO DATA</p>
+<p><strong>Correlation Analysis:</strong> Unable to correlate metrics anomalies with log events due to absence of both metrics and logs for this core.</p>
+<p><strong>Expected Correlations:</strong></p>
 <ul>
-<li><strong>CPU spikes correlation:</strong> audio_engine CPU peaked at 2026-06-14T21:56:00 (24.09%) with no corresponding crash or error logs → Normal operational load</li>
-<li><strong>Memory variability correlation:</strong> node process memory swing (158.1 MB → 201.26 MB) shows no crash events → Indicates normal GC or workload cycles</li>
-<li><strong>Process restart correlation:</strong> Zero uptime resets across all 6 processes with zero crash logs → Perfect correlation confirming no unexpected terminations</li>
-<li><strong>Video engine idle state:</strong> video_engine (PID 9763) zero CPU with stable memory and no crashes → Standby mode operating as designed</li>
+<li>Process restart events (uptime drops) → stacktrace logs at same timestamp</li>
+<li>Memory spikes → OOM error logs</li>
+<li>CPU spikes → performance warning logs</li>
+<li>Thread count anomalies → deadlock or resource exhaustion logs</li>
 </ul>
-<p><strong>Conclusion:</strong> All metric anomalies (CPU peaks, memory swings, idle processes) correlate with normal operational patterns. Zero correlation between resource changes and error events.</p>
+<p><strong>Result:</strong> No correlations identified (no data available).</p>
 
 <h2>9. UPTIME AND RESTART ANALYSIS</h2>
-<table border="1" cellpadding="5" cellspacing="0">
-<tr style="background-color: #f4f5f7;">
-<th>Process</th>
-<th>Uptime (hours)</th>
-<th>Restarts Detected</th>
-<th>Last Restart</th>
-<th>Status</th>
-</tr>
-<tr>
-<td>audio_engine</td>
-<td>~56.3 hrs</td>
-<td>0</td>
-<td>N/A</td>
-<td style="color: #00875a;"><strong>STABLE</strong></td>
-</tr>
-<tr>
-<td>runtime_engine</td>
-<td>~56.3 hrs</td>
-<td>0</td>
-<td>N/A</td>
-<td style="color: #00875a;"><strong>STABLE</strong></td>
-</tr>
-<tr>
-<td>node</td>
-<td>~56.3 hrs</td>
-<td>0</td>
-<td>N/A</td>
-<td style="color: #00875a;"><strong>STABLE</strong></td>
-</tr>
-<tr>
-<td>video_engine (9763)</td>
-<td>~56.3 hrs</td>
-<td>0</td>
-<td>N/A</td>
-<td style="color: #00875a;"><strong>STABLE</strong></td>
-</tr>
-<tr>
-<td>video_engine (9764)</td>
-<td>~56.3 hrs</td>
-<td>0</td>
-<td>N/A</td>
-<td style="color: #00875a;"><strong>STABLE</strong></td>
-</tr>
-<tr>
-<td>engine_discover</td>
-<td>~56.3 hrs</td>
-<td>0</td>
-<td>N/A</td>
-<td style="color: #00875a;"><strong>STABLE</strong></td>
-</tr>
-</table>
-<p><strong>Key Findings:</strong></p>
+<p><strong>Data Availability:</strong> NO DATA</p>
+<p><strong>Uptime Metrics Query:</strong> process_uptime_seconds{instance="nv-32-h-c555-Krypton"}</p>
+<p><strong>Result:</strong> No uptime data available. Unable to detect process restarts or stability patterns.</p>
+<p><strong>Restart Detection Method:</strong> Analyze process_uptime_seconds for sudden drops to near-zero values, indicating process crashes and automatic restarts.</p>
+<p><strong>Findings:</strong></p>
 <ul>
-<li>All processes show continuous monotonic uptime increase with zero interruptions</li>
-<li>Coordinated startup within 33-second window indicates planned system boot event</li>
-<li>Zero process restarts during entire 24-hour monitoring period</li>
-<li>100% data coverage (1442/1442 points, 0% gaps) enables confident restart detection</li>
-<li>No uptime drops, resets, or discontinuities detected in any time series</li>
+<li>Total Restart Events: UNKNOWN</li>
+<li>Most Unstable Process: UNKNOWN</li>
+<li>Longest Uptime: UNKNOWN</li>
+<li>Average Uptime: UNKNOWN</li>
 </ul>
 
 <h2>10. ANOMALIES</h2>
-<table border="1" cellpadding="5" cellspacing="0">
+<p><strong>Data Availability:</strong> NO DATA</p>
+<p><strong>Anomaly Detection Criteria:</strong></p>
+<ul>
+<li>CPU utilization > 80% sustained for > 10 minutes</li>
+<li>Memory utilization > 90% sustained</li>
+<li>Memory growth rate > 100 MB/hour</li>
+<li>Thread count growth > 20% over baseline</li>
+<li>Process restart frequency > 2 events per hour</li>
+<li>Uptime < 1 hour (indicating recent crashes)</li>
+</ul>
+<p><strong>Detected Anomalies:</strong></p>
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%;">
+<thead>
 <tr style="background-color: #f4f5f7;">
-<th>Anomaly</th>
+<th>Timestamp</th>
+<th>Anomaly Type</th>
 <th>Process</th>
 <th>Severity</th>
-<th>Description</th>
+<th>Details</th>
 </tr>
-<tr>
-<td>Idle Process</td>
-<td>video_engine (9763)</td>
-<td style="color: #ff8b00;"><strong>LOW</strong></td>
-<td>Zero CPU activity for entire 24-hour period despite stable memory and uptime. May be standby instance.</td>
-</tr>
-<tr>
-<td>Memory Variability</td>
-<td>node</td>
-<td style="color: #ff8b00;"><strong>LOW</strong></td>
-<td>27.3 MB memory swing (158.1 MB → 201.26 MB). Pattern suggests GC cycles rather than leak. Monitor for trend continuation.</td>
-</tr>
-<tr>
-<td>Thread Allocation Mismatch</td>
-<td>video_engine (9764)</td>
-<td style="color: #ff8b00;"><strong>LOW</strong></td>
-<td>Maintains 86 threads with minimal CPU activity (0.001%). Possible over-provisioned thread pool.</td>
-</tr>
+</thead>
+<tbody>
+<tr><td colspan="5" style="text-align: center; color: #6b778c;">No anomalies detected (no data available for analysis)</td></tr>
+</tbody>
 </table>
-<p><strong>Summary:</strong> Three low-severity anomalies detected. None pose immediate risk. All correlate with normal operational patterns (standby processes, GC cycles, thread pool allocation).</p>
 
 <h2>11. SUMMARY AND RISK ASSESSMENT</h2>
-<div style="padding: 15px; background-color: #e3fcef; border-left: 5px solid #00875a;">
-<h3 style="color: #00875a; margin-top: 0;">OVERALL STATUS: HEALTHY ✓</h3>
-<p><strong>Risk Level:</strong> <span style="color: #00875a;">LOW</span></p>
-</div>
-<p><strong>Executive Summary:</strong></p>
+<p><strong>Overall Status:</strong> <span style="background-color: #de350b; color: white; padding: 4px 12px; border-radius: 3px; font-weight: bold;">CRITICAL - NO DATA</span></p>
+<p><strong>Assessment:</strong></p>
+<p>Core "nv-32-h-c555-Krypton" is <strong>NOT PRESENT</strong> in the QSC Sleestack observability platform. This indicates one of the following critical issues:</p>
+<ol>
+<li><strong>Core Not Deployed:</strong> The core device may not be deployed or provisioned in the infrastructure.</li>
+<li><strong>Metrics Collection Failure:</strong> The core exists but is not reporting metrics to Prometheus (grafanacloud-prom).</li>
+<li><strong>Logging Failure:</strong> The core is not sending logs to Loki (grafanacloud-logs).</li>
+<li><strong>Network/Gateway Issue:</strong> The core cannot reach the observability backend due to network or gateway configuration problems.</li>
+<li><strong>Incorrect Instance Name:</strong> The core may be registered under a different instance identifier.</li>
+</ol>
+<p><strong>Risk Level:</strong> CRITICAL</p>
+<p><strong>Impact:</strong></p>
 <ul>
-<li><strong>Zero crashes, zero restarts, zero fatal errors</strong> over 24-hour monitoring period</li>
-<li><strong>Stable resource utilization:</strong> CPU ~26% average (peak 30.7%), Memory ~14.6% average (peak ~15.1%)</li>
-<li><strong>No memory leaks detected:</strong> 5 of 6 processes show flat memory profiles; node process shows cyclical GC pattern (not leak)</li>
-<li><strong>Perfect uptime stability:</strong> All 6 processes running continuously for ~56.3 hours with coordinated startup</li>
-<li><strong>Excellent data quality:</strong> 100% observability (0% gaps) across all metrics for entire 24-hour window</li>
-<li><strong>Three low-severity anomalies:</strong> Idle video_engine instance, node memory variability, thread allocation mismatch — all benign</li>
+<li>Zero visibility into core health status</li>
+<li>Unable to detect performance degradation or failures</li>
+<li>No crash detection or alerting capability</li>
+<li>Potential service outage risk if core is expected to be operational</li>
 </ul>
-<p><strong>Health Indicators:</strong></p>
-<table border="1" cellpadding="5" cellspacing="0">
-<tr>
-<td><strong>Stability</strong></td>
-<td style="color: #00875a;">EXCELLENT (no crashes, no restarts)</td>
-</tr>
-<tr>
-<td><strong>Resource Health</strong></td>
-<td style="color: #00875a;">GOOD (stable CPU/memory, no exhaustion)</td>
-</tr>
-<tr>
-<td><strong>Memory Management</strong></td>
-<td style="color: #00875a;">GOOD (no leaks detected)</td>
-</tr>
-<tr>
-<td><strong>Process Health</strong></td>
-<td style="color: #00875a;">GOOD (all processes operational)</td>
-</tr>
-<tr>
-<td><strong>Crash Rate</strong></td>
-<td style="color: #00875a;">ZERO (perfect clean state)</td>
-</tr>
-</table>
+<p><strong>Comparison with Available Cores:</strong></p>
+<p>The monitoring system currently tracks 6 other cores successfully:</p>
+<ul>
+<li>core-sachin</li>
+<li>eternia-Core24-d447</li>
+<li>eternia-vsa100-b5c0</li>
+<li>Eternia-NV-Decoder</li>
+<li>Eternia-NV-Encoder</li>
+<li>Eternia-NV-Encoder1</li>
+</ul>
+<p>These cores are actively reporting metrics, suggesting the monitoring infrastructure is functional for properly configured devices.</p>
 
 <h2>12. RECOMMENDED ACTIONS</h2>
-<table border="1" cellpadding="5" cellspacing="0">
-<tr style="background-color: #f4f5f7;">
-<th>Priority</th>
-<th>Action</th>
-<th>Target</th>
-<th>Rationale</th>
-</tr>
-<tr>
-<td style="color: #00875a;"><strong>LOW</strong></td>
-<td>Monitor node process memory trend</td>
-<td>node (PID 8136)</td>
-<td>Track 27.3 MB swing pattern over next 7 days to confirm GC cycle vs. slow leak. Set alert if memory exceeds 220 MB.</td>
-</tr>
-<tr>
-<td style="color: #00875a;"><strong>LOW</strong></td>
-<td>Investigate video_engine (9763) idle state</td>
-<td>video_engine (PID 9763)</td>
-<td>Verify if zero CPU activity is expected for standby instance. Consider stopping if not needed to reclaim resources.</td>
-</tr>
-<tr>
-<td style="color: #00875a;"><strong>LOW</strong></td>
-<td>Review thread pool sizing for video_engine (9764)</td>
-<td>video_engine (PID 9764)</td>
-<td>86 threads with minimal activity suggests potential over-provisioning. Evaluate if thread count can be reduced.</td>
-</tr>
-<tr>
-<td style="color: #00875a;"><strong>MAINTENANCE</strong></td>
-<td>Continue current monitoring cadence</td>
-<td>All processes</td>
-<td>System is stable and healthy. Maintain current observability setup. Review this report weekly.</td>
-</tr>
-</table>
-<p><strong>No immediate corrective actions required.</strong> Core nv-32-h-c555-Krypton is operating within normal parameters with excellent stability metrics.</p>
-
+<p><strong>Immediate Actions (Priority 1 - Execute within 1 hour):</strong></p>
+<ol>
+<li><strong>Verify Core Existence:</strong> Confirm whether core "nv-32-h-c555-Krypton" should exist in the infrastructure. Check deployment records and asset inventory.</li>
+<li><strong>Check Network Connectivity:</strong> If the core exists physically, verify network connectivity to the observability gateway.</li>
+<li><strong>Validate Instance Name:</strong> Confirm the exact instance identifier used by this core. It may be registered under a different name (check device_mac_id, service_instance_id labels).</li>
+<li><strong>Review Gateway Configuration:</strong> Check gateway routing and filtering rules to ensure metrics from this core are not being dropped.</li>
+</ol>
+<p><strong>Short-term Actions (Priority 2 - Execute within 24 hours):</strong></p>
+<ol>
+<li><strong>Check Agent Configuration:</strong> If the core exists, verify the Prometheus exporter and Loki agent are installed, running, and properly configured.</li>
+<li><strong>Review Firewall Rules:</strong> Ensure firewall rules allow metrics egress from the core to the gateway and observability backend.</li>
+<li><strong>Inspect Logs Locally:</strong> If remote access is available, SSH into the core and check local logs for exporter errors or connectivity failures.</li>
+<li><strong>Compare with Working Cores:</strong> Review the configuration of successfully monitored cores (e.g., core-sachin) and identify configuration differences.</li>
+</ol>
+<p><strong>Long-term Actions (Priority 3 - Execute within 1 week):</strong></p>
+<ol>
+<li><strong>Implement Monitoring Heartbeat Alerts:</strong> Create alerts that trigger when a core stops reporting metrics for > 5 minutes.</li>
+<li><strong>Deploy Configuration Management:</strong> Use infrastructure-as-code to ensure consistent monitoring agent deployment across all cores.</li>
+<li><strong>Document Core Registry:</strong> Maintain a central registry of all cores with expected instance identifiers for validation.</li>
+<li><strong>Implement Health Checks:</strong> Deploy synthetic monitoring to continuously verify core reachability and metrics availability.</li>
+</ol>
+<p><strong>Investigation Query Examples:</strong></p>
+<p>To search for this core under alternative identifiers, run these Prometheus queries:</p>
+<ul>
+<li><code>process_cpu_utilization_ratio{device_mac_id=~".*", service_instance_id=~".*Krypton.*"}</code></li>
+<li><code>process_memory_usage_bytes{gateway=~".*", instance=~".*32.*"}</code></li>
+<li><code>process_uptime_seconds{}</code> (review all instances for pattern matching)</li>
+</ul>
 <hr>
-<p style="font-size: 12px; color: #6b778c;"><em>Report generated by QSC Core Health Analysis Agent | Data: Prometheus (grafanacloud-prom) + Loki (grafanacloud-logs) | Period: 2026-06-13 22:00 UTC to 2026-06-14 22:00 UTC</em></p>
+<p style="font-size: 12px; color: #6b778c; margin-top: 30px;"><strong>Report Metadata:</strong></p>
+<p style="font-size: 12px; color: #6b778c;">Generated by: QSC Core Health Analysis Agent | Platform: Grafana Sleestack | Data Sources: grafanacloud-prom (Prometheus), grafanacloud-logs (Loki) | Analysis Engine: Grafana Assistant</p>
