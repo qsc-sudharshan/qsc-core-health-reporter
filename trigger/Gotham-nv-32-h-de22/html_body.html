@@ -1,637 +1,87 @@
-<h1>QSC Core Health Analysis Report</h1>
+<h1>QSC CORE HEALTH ANALYSIS REPORT</h1>
 <p><strong>Core:</strong> Gotham-nv-32-h-de22<br>
-<strong>Report Date:</strong> 2026-06-14<br>
-<strong>Analysis Period:</strong> Last 24 hours (2026-06-13 22:00:11 UTC to 2026-06-14 22:00:11 UTC)</p>
+<strong>Analysis Period:</strong> Last 24 hours (2026-06-20 22:00:05 to 2026-06-21 22:00:05 IST)<br>
+<strong>Report Generated:</strong> 2026-06-22 03:30:05 IST</p>
 
 <h2>1. CORE IDENTITY</h2>
 <p><strong>Instance:</strong> Gotham-nv-32-h-de22<br>
-<strong>Data Sources:</strong> Prometheus (grafanacloud-prom), Loki (grafanacloud-logs)<br>
-<strong>Active Processes:</strong> 6<br>
-<strong>Monitoring Period:</strong> 24 hours with 100% data coverage (1,442 data points per metric)<br>
-<strong>Core Status:</strong> <span style="color: #00875a; font-weight: bold;">HEALTHY</span></p>
+<strong>Status:</strong> No telemetry data available<br>
+<strong>Data Sources:</strong> grafanacloud-prom (Prometheus), grafanacloud-logs (Loki)<br>
+<strong>Expected Processes:</strong> audio_engine, runtime_engine, video_engine, node, engine_discover</p>
 
 <h2>2. SYSTEM RESOURCE SUMMARY</h2>
-<table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%;">
-  <thead>
-    <tr style="background-color: #f4f5f7;">
-      <th>Resource</th>
-      <th>Average</th>
-      <th>Peak</th>
-      <th>Status</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>Total CPU Utilization</strong></td>
-      <td>~22.7%</td>
-      <td>~23.5%</td>
-      <td style="color: #00875a; font-weight: bold;">HEALTHY</td>
-    </tr>
-    <tr>
-      <td><strong>Total Memory Utilization</strong></td>
-      <td>~19.2%</td>
-      <td>~19.5%</td>
-      <td style="color: #00875a; font-weight: bold;">HEALTHY</td>
-    </tr>
-    <tr>
-      <td><strong>Total Memory (Bytes)</strong></td>
-      <td>725.5 MB</td>
-      <td>753.8 MB</td>
-      <td style="color: #00875a; font-weight: bold;">HEALTHY</td>
-    </tr>
-    <tr>
-      <td><strong>Total Threads</strong></td>
-      <td>186</td>
-      <td>186</td>
-      <td style="color: #00875a; font-weight: bold;">HEALTHY</td>
-    </tr>
-  </tbody>
+<table>
+<tr><th>Metric</th><th>Value</th></tr>
+<tr><td>CPU Utilization</td><td>No data available</td></tr>
+<tr><td>Memory Utilization</td><td>No data available</td></tr>
+<tr><td>Total Processes</td><td>0 detected</td></tr>
+<tr><td>Thread Count</td><td>No data available</td></tr>
+<tr><td>Data Availability</td><td style="color: #de350b; font-weight: bold;">No metrics or logs found</td></tr>
 </table>
-<p>System resources remain well within normal operating parameters with ample headroom. No resource exhaustion detected.</p>
 
 <h2>3. CPU STATE BREAKDOWN</h2>
-<table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%;">
-  <thead>
-    <tr style="background-color: #f4f5f7;">
-      <th>Process</th>
-      <th>PID</th>
-      <th>Avg User CPU</th>
-      <th>Peak User CPU</th>
-      <th>Avg System CPU</th>
-      <th>Status</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>audio_engine</strong></td>
-      <td>16752</td>
-      <td>16.24%</td>
-      <td>19.08%</td>
-      <td>2.79%</td>
-      <td style="color: #00875a; font-weight: bold;">HEALTHY</td>
-    </tr>
-    <tr>
-      <td><strong>runtime_engine</strong></td>
-      <td>17905</td>
-      <td>3.89%</td>
-      <td>5.90%</td>
-      <td>1.88%</td>
-      <td style="color: #00875a; font-weight: bold;">HEALTHY</td>
-    </tr>
-    <tr>
-      <td><strong>node</strong></td>
-      <td>8260</td>
-      <td>1.91%</td>
-      <td>2.66%</td>
-      <td>0.45%</td>
-      <td style="color: #00875a; font-weight: bold;">HEALTHY</td>
-    </tr>
-    <tr>
-      <td><strong>engine_discover</strong></td>
-      <td>10630</td>
-      <td>0.15%</td>
-      <td>~0.2%</td>
-      <td>0.05%</td>
-      <td style="color: #00875a; font-weight: bold;">HEALTHY</td>
-    </tr>
-    <tr>
-      <td><strong>video_engine</strong></td>
-      <td>9880</td>
-      <td>0.00%</td>
-      <td>0.00%</td>
-      <td>&lt;0.001%</td>
-      <td style="color: #00875a; font-weight: bold;">IDLE</td>
-    </tr>
-    <tr>
-      <td><strong>video_engine</strong></td>
-      <td>9881</td>
-      <td>0.00%</td>
-      <td>0.00%</td>
-      <td>&lt;0.001%</td>
-      <td style="color: #00875a; font-weight: bold;">IDLE</td>
-    </tr>
-  </tbody>
-</table>
-<p><strong>Key Findings:</strong></p>
+<p>No CPU metrics available for Gotham-nv-32-h-de22.</p>
+<p>The following instances are currently reporting metrics:</p>
 <ul>
-  <li>audio_engine dominates CPU consumption at 16.24% average (19.08% peak), representing primary workload</li>
-  <li>runtime_engine shows secondary load at 3.89% average with peak at 5.90%</li>
-  <li>node maintains steady baseline at 1.91% with minimal variance</li>
-  <li>No I/O wait detected across all processes (0% wait-state CPU)</li>
-  <li>video_engine instances completely idle - no video workload during observation period</li>
-  <li>Late-period spike in audio_engine at 2026-06-14T21:20:00 reached 19.04% system-space CPU</li>
+<li>core-sachin</li>
+<li>eternia-Core24-d447</li>
+<li>eternia-vsa100-b5c0</li>
+<li>Eternia-NV-Decoder</li>
+<li>Eternia-NV-Encoder</li>
+<li>Eternia-NV-Encoder1</li>
 </ul>
 
 <h2>4. MEMORY STATE BREAKDOWN</h2>
-<table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%;">
-  <thead>
-    <tr style="background-color: #f4f5f7;">
-      <th>Process</th>
-      <th>PID</th>
-      <th>Avg Memory %</th>
-      <th>Peak Memory %</th>
-      <th>Avg Bytes</th>
-      <th>Peak Bytes</th>
-      <th>Trend</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>runtime_engine</strong></td>
-      <td>17905</td>
-      <td>6.67%</td>
-      <td>7.04%</td>
-      <td>261.87 MB</td>
-      <td>276.35 MB</td>
-      <td style="color: #ff8b00; font-weight: bold;">GROWING +11.6%</td>
-    </tr>
-    <tr>
-      <td><strong>node</strong></td>
-      <td>8260</td>
-      <td>5.34%</td>
-      <td>5.49%</td>
-      <td>209.54 MB</td>
-      <td>215.30 MB</td>
-      <td style="color: #00875a; font-weight: bold;">STABLE</td>
-    </tr>
-    <tr>
-      <td><strong>audio_engine</strong></td>
-      <td>16752</td>
-      <td>4.03%</td>
-      <td>4.03%</td>
-      <td>158.33 MB</td>
-      <td>158.33 MB</td>
-      <td style="color: #00875a; font-weight: bold;">FLAT</td>
-    </tr>
-    <tr>
-      <td><strong>video_engine</strong></td>
-      <td>9881</td>
-      <td>1.98%</td>
-      <td>1.98%</td>
-      <td>77.89 MB</td>
-      <td>77.89 MB</td>
-      <td style="color: #00875a; font-weight: bold;">FLAT</td>
-    </tr>
-    <tr>
-      <td><strong>engine_discover</strong></td>
-      <td>10630</td>
-      <td>0.28%</td>
-      <td>0.28%</td>
-      <td>11.14 MB</td>
-      <td>11.14 MB</td>
-      <td style="color: #00875a; font-weight: bold;">FLAT</td>
-    </tr>
-    <tr>
-      <td><strong>video_engine</strong></td>
-      <td>9880</td>
-      <td>0.17%</td>
-      <td>0.17%</td>
-      <td>6.72 MB</td>
-      <td>6.72 MB</td>
-      <td style="color: #00875a; font-weight: bold;">FLAT</td>
-    </tr>
-  </tbody>
-</table>
-<p><strong>Key Findings:</strong></p>
-<ul>
-  <li>runtime_engine shows continuous growth from 247.52 MB to 276.35 MB (+28.83 MB, +11.6% over 24h)</li>
-  <li>Five of six processes show zero variance, indicating stable baseline loads</li>
-  <li>node exhibits cyclic behavior with 42.77 MB swing (peak 215.30 MB, min 172.53 MB)</li>
-  <li>audio_engine, both video_engine instances, and engine_discover completely flat with zero variance</li>
-  <li>Total combined utilization peaks near 19.5%, leaving substantial headroom (~80%)</li>
-</ul>
+<p>No memory metrics available for Gotham-nv-32-h-de22.</p>
 
 <h2>5. PROCESS-LEVEL ANALYSIS</h2>
-<table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%;">
-  <thead>
-    <tr style="background-color: #f4f5f7;">
-      <th>Process</th>
-      <th>PID</th>
-      <th>Threads</th>
-      <th>CPU Impact</th>
-      <th>Memory Impact</th>
-      <th>Uptime</th>
-      <th>Health</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>audio_engine</strong></td>
-      <td>16752</td>
-      <td>9</td>
-      <td>High (16.24%)</td>
-      <td>Medium (158.33 MB)</td>
-      <td>56.3 hrs</td>
-      <td style="color: #00875a; font-weight: bold;">HEALTHY</td>
-    </tr>
-    <tr>
-      <td><strong>runtime_engine</strong></td>
-      <td>17905</td>
-      <td>76</td>
-      <td>Medium (3.89%)</td>
-      <td>High (261.87 MB)</td>
-      <td>56.3 hrs</td>
-      <td style="color: #ff8b00; font-weight: bold;">MONITOR</td>
-    </tr>
-    <tr>
-      <td><strong>video_engine</strong></td>
-      <td>9881</td>
-      <td>86</td>
-      <td>None (idle)</td>
-      <td>Low (77.89 MB)</td>
-      <td>56.3 hrs</td>
-      <td style="color: #00875a; font-weight: bold;">HEALTHY</td>
-    </tr>
-    <tr>
-      <td><strong>node</strong></td>
-      <td>8260</td>
-      <td>13</td>
-      <td>Low (1.91%)</td>
-      <td>Medium (209.54 MB)</td>
-      <td>56.3 hrs</td>
-      <td style="color: #00875a; font-weight: bold;">HEALTHY</td>
-    </tr>
-    <tr>
-      <td><strong>engine_discover</strong></td>
-      <td>10630</td>
-      <td>1</td>
-      <td>Minimal (0.15%)</td>
-      <td>Minimal (11.14 MB)</td>
-      <td>56.3 hrs</td>
-      <td style="color: #00875a; font-weight: bold;">HEALTHY</td>
-    </tr>
-    <tr>
-      <td><strong>video_engine</strong></td>
-      <td>9880</td>
-      <td>1</td>
-      <td>None (idle)</td>
-      <td>Minimal (6.72 MB)</td>
-      <td>56.3 hrs</td>
-      <td style="color: #00875a; font-weight: bold;">HEALTHY</td>
-    </tr>
-  </tbody>
-</table>
-<p><strong>Process Observations:</strong></p>
-<ul>
-  <li><strong>audio_engine:</strong> Primary workload handler with highest CPU consumption. Stable memory footprint with 9 threads. Operating normally.</li>
-  <li><strong>runtime_engine:</strong> Most memory-intensive process with 76 threads. Shows memory growth trend requiring monitoring. CPU usage within acceptable range.</li>
-  <li><strong>video_engine (9881):</strong> Highest thread count (86) but idle. Maintains stable memory footprint. Ready for video workload.</li>
-  <li><strong>node:</strong> Stable baseline process with cyclic memory behavior typical of Node.js garbage collection.</li>
-  <li><strong>engine_discover:</strong> Lightweight single-threaded discovery service with minimal resource impact.</li>
-  <li><strong>video_engine (9880):</strong> Backup/passive video engine instance, single-threaded, minimal footprint.</li>
-</ul>
+<p>No process-level data available. Expected processes (audio_engine, runtime_engine, video_engine, node, engine_discover) were not detected.</p>
 
 <h2>6. MEMORY LEAK DETECTION</h2>
-<p><strong>Analysis Method:</strong> 24-hour memory growth trend analysis with focus on linear/exponential patterns</p>
-<table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%;">
-  <thead>
-    <tr style="background-color: #f4f5f7;">
-      <th>Process</th>
-      <th>Growth Pattern</th>
-      <th>Start Memory</th>
-      <th>End Memory</th>
-      <th>Delta</th>
-      <th>Assessment</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>runtime_engine</strong></td>
-      <td>Linear upward</td>
-      <td>247.52 MB</td>
-      <td>276.35 MB</td>
-      <td>+28.83 MB (+11.6%)</td>
-      <td style="color: #ff8b00; font-weight: bold;">MONITOR - Continuous growth</td>
-    </tr>
-    <tr>
-      <td><strong>node</strong></td>
-      <td>Cyclic variation</td>
-      <td>~190 MB</td>
-      <td>~200 MB</td>
-      <td>±42.77 MB swing</td>
-      <td style="color: #00875a; font-weight: bold;">NORMAL - GC behavior</td>
-    </tr>
-    <tr>
-      <td><strong>audio_engine</strong></td>
-      <td>Flat</td>
-      <td>158.33 MB</td>
-      <td>158.33 MB</td>
-      <td>0 MB (0%)</td>
-      <td style="color: #00875a; font-weight: bold;">HEALTHY</td>
-    </tr>
-    <tr>
-      <td><strong>video_engine (9881)</strong></td>
-      <td>Flat</td>
-      <td>77.89 MB</td>
-      <td>77.89 MB</td>
-      <td>0 MB (0%)</td>
-      <td style="color: #00875a; font-weight: bold;">HEALTHY</td>
-    </tr>
-    <tr>
-      <td><strong>engine_discover</strong></td>
-      <td>Flat</td>
-      <td>11.14 MB</td>
-      <td>11.14 MB</td>
-      <td>0 MB (0%)</td>
-      <td style="color: #00875a; font-weight: bold;">HEALTHY</td>
-    </tr>
-    <tr>
-      <td><strong>video_engine (9880)</strong></td>
-      <td>Flat</td>
-      <td>6.72 MB</td>
-      <td>6.72 MB</td>
-      <td>0 MB (0%)</td>
-      <td style="color: #00875a; font-weight: bold;">HEALTHY</td>
-    </tr>
-  </tbody>
-</table>
-<p><strong>Leak Detection Summary:</strong></p>
-<ul>
-  <li><strong>runtime_engine:</strong> Shows continuous linear growth of 11.6% over 24 hours. While not exponential (classic leak signature), sustained growth warrants monitoring. Growth pattern suggests workload accumulation or cache buildup rather than classic memory leak.</li>
-  <li><strong>node:</strong> Cyclic pattern with 20% variation is consistent with normal JavaScript garbage collection. No leak detected.</li>
-  <li><strong>All other processes:</strong> Zero variance indicates perfect memory stability. No leak concerns.</li>
-  <li><strong>Overall Assessment:</strong> No exponential growth patterns detected. runtime_engine requires continued observation to determine if growth stabilizes or continues linearly.</li>
-</ul>
+<p>Cannot perform memory leak analysis without telemetry data.</p>
 
 <h2>7. CRASH AND STACKTRACE ANALYSIS</h2>
-<p><strong>Data Source:</strong> Loki logs (service_name="stacktrace", instance="Gotham-nv-32-h-de22")</p>
-<p><strong>Search Period:</strong> 2026-06-13 22:00:11 UTC to 2026-06-14 22:00:11 UTC</p>
-<table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%;">
-  <thead>
-    <tr style="background-color: #f4f5f7;">
-      <th>Metric</th>
-      <th>Count</th>
-      <th>Status</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>Fatal Errors</strong></td>
-      <td>0</td>
-      <td style="color: #00875a; font-weight: bold;">EXCELLENT</td>
-    </tr>
-    <tr>
-      <td><strong>Process Crashes</strong></td>
-      <td>0</td>
-      <td style="color: #00875a; font-weight: bold;">EXCELLENT</td>
-    </tr>
-    <tr>
-      <td><strong>Stacktraces Logged</strong></td>
-      <td>0</td>
-      <td style="color: #00875a; font-weight: bold;">EXCELLENT</td>
-    </tr>
-  </tbody>
+<table>
+<tr><th>Metric</th><th>Count</th></tr>
+<tr><td>Fatal Errors</td><td>0</td></tr>
+<tr><td>Stacktrace Logs</td><td style="color: #ff8b00;">No logs found</td></tr>
 </table>
-<p><strong>Crash Analysis Summary:</strong></p>
-<ul>
-  <li><strong>Zero fatal errors detected</strong> in the 24-hour observation period</li>
-  <li><strong>Zero stacktraces logged</strong> - no exception handling or error conditions triggered</li>
-  <li><strong>All processes stable</strong> - uptime metrics confirm zero restarts across all 6 processes</li>
-  <li><strong>Log monitoring operational</strong> - absence of errors indicates healthy operation, not monitoring failure</li>
-  <li><strong>Core stability:</strong> Gotham-nv-32-h-de22 demonstrates excellent reliability with no crash events</li>
-</ul>
+<p><em>Note: The stacktrace service does not appear to have any logs for any instance in the current environment.</em></p>
 
 <h2>8. METRICS AND LOG CORRELATION</h2>
-<p><strong>Correlation Analysis:</strong> Cross-referencing Prometheus metrics with Loki log events</p>
-<table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%;">
-  <thead>
-    <tr style="background-color: #f4f5f7;">
-      <th>Event Type</th>
-      <th>Timestamp</th>
-      <th>Metric Impact</th>
-      <th>Log Evidence</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td colspan="4" style="text-align: center; font-style: italic; color: #6b778c;">No crash events to correlate during observation period</td>
-    </tr>
-  </tbody>
-</table>
-<p><strong>Correlation Findings:</strong></p>
-<ul>
-  <li><strong>Zero log-to-metric correlations needed</strong> - no fatal errors logged during the period</li>
-  <li><strong>CPU spike at 2026-06-14T21:20:00</strong> (audio_engine 19.04% system CPU) - no corresponding error logs, indicating normal workload spike</li>
-  <li><strong>runtime_engine memory growth</strong> - gradual increase with no error log correlation, suggesting workload-driven accumulation</li>
-  <li><strong>Process uptime continuity</strong> - all 6 processes show monotonically increasing uptime with no restart events matching any log entries</li>
-  <li><strong>Monitoring health:</strong> Clean correlation baseline (zero errors in both metrics and logs) confirms both telemetry streams are operational and accurate</li>
-</ul>
+<p>No correlation possible due to absence of data.</p>
 
 <h2>9. UPTIME AND RESTART ANALYSIS</h2>
-<p><strong>Analysis Method:</strong> Process uptime progression monitoring over 24 hours</p>
-<table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%;">
-  <thead>
-    <tr style="background-color: #f4f5f7;">
-      <th>Process</th>
-      <th>PID</th>
-      <th>Start Uptime</th>
-      <th>End Uptime</th>
-      <th>Cumulative Uptime</th>
-      <th>Restarts</th>
-      <th>Status</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>audio_engine</strong></td>
-      <td>16752</td>
-      <td>32.3 hrs</td>
-      <td>56.3 hrs</td>
-      <td>56.3 hrs (2.35 days)</td>
-      <td>0</td>
-      <td style="color: #00875a; font-weight: bold;">STABLE</td>
-    </tr>
-    <tr>
-      <td><strong>runtime_engine</strong></td>
-      <td>17905</td>
-      <td>32.3 hrs</td>
-      <td>56.3 hrs</td>
-      <td>56.3 hrs (2.35 days)</td>
-      <td>0</td>
-      <td style="color: #00875a; font-weight: bold;">STABLE</td>
-    </tr>
-    <tr>
-      <td><strong>video_engine</strong></td>
-      <td>9881</td>
-      <td>32.3 hrs</td>
-      <td>56.4 hrs</td>
-      <td>56.4 hrs (2.35 days)</td>
-      <td>0</td>
-      <td style="color: #00875a; font-weight: bold;">STABLE</td>
-    </tr>
-    <tr>
-      <td><strong>video_engine</strong></td>
-      <td>9880</td>
-      <td>32.3 hrs</td>
-      <td>56.4 hrs</td>
-      <td>56.4 hrs (2.35 days)</td>
-      <td>0</td>
-      <td style="color: #00875a; font-weight: bold;">STABLE</td>
-    </tr>
-    <tr>
-      <td><strong>node</strong></td>
-      <td>8260</td>
-      <td>32.4 hrs</td>
-      <td>56.4 hrs</td>
-      <td>56.4 hrs (2.35 days)</td>
-      <td>0</td>
-      <td style="color: #00875a; font-weight: bold;">STABLE</td>
-    </tr>
-    <tr>
-      <td><strong>engine_discover</strong></td>
-      <td>10630</td>
-      <td>32.4 hrs</td>
-      <td>56.4 hrs</td>
-      <td>56.4 hrs (2.35 days)</td>
-      <td>0</td>
-      <td style="color: #00875a; font-weight: bold;">STABLE</td>
-    </tr>
-  </tbody>
-</table>
-<p><strong>Uptime Analysis Summary:</strong></p>
-<ul>
-  <li><strong>Zero restarts detected</strong> across all 6 processes during the 24-hour observation period</li>
-  <li><strong>Synchronized startup times</strong> - all processes initiated within ~600 seconds of each other, suggesting coordinated system boot</li>
-  <li><strong>Continuous operation</strong> - monotonically increasing uptime confirms no crash-restart cycles</li>
-  <li><strong>Perfect metric continuity</strong> - 1,442/1,442 data points (0% gaps) across 24 hours for all processes</li>
-  <li><strong>Cumulative uptime:</strong> All processes have been running for 56+ hours (2.35+ days) without interruption</li>
-  <li><strong>Stability indicator:</strong> Zero restarts during observation confirms excellent process reliability</li>
-  <li><strong>Last system boot:</strong> Approximately 2.35 days ago (all processes started together)</li>
-</ul>
+<p>No uptime metrics available for process restart analysis.</p>
 
 <h2>10. ANOMALIES</h2>
-<p><strong>Anomaly Detection:</strong> Statistical outliers, unexpected patterns, and deviation from baseline behavior</p>
-<table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%;">
-  <thead>
-    <tr style="background-color: #f4f5f7;">
-      <th>Anomaly</th>
-      <th>Process</th>
-      <th>Severity</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>Memory Growth</strong></td>
-      <td>runtime_engine</td>
-      <td style="color: #ff8b00; font-weight: bold;">MINOR</td>
-      <td>Continuous linear growth of 11.6% over 24h (247.52 MB → 276.35 MB). Not exponential but warrants monitoring for stabilization.</td>
-    </tr>
-    <tr>
-      <td><strong>CPU Spike</strong></td>
-      <td>audio_engine</td>
-      <td style="color: #ff8b00; font-weight: bold;">MINOR</td>
-      <td>Late-period system CPU spike to 19.04% at 2026-06-14T21:20:00. Unusual for system-space dominance but within operational tolerance.</td>
-    </tr>
-    <tr>
-      <td><strong>Video Engine Idle</strong></td>
-      <td>video_engine (both)</td>
-      <td style="color: #00875a; font-weight: bold;">INFO</td>
-      <td>Both video_engine instances (PIDs 9880, 9881) completely idle with 0% CPU. Threads allocated (86 + 1) but no workload processed. Normal if no video streaming scheduled.</td>
-    </tr>
-    <tr>
-      <td><strong>Node Memory Cycling</strong></td>
-      <td>node</td>
-      <td style="color: #00875a; font-weight: bold;">NORMAL</td>
-      <td>20% memory variation (172.53 MB min, 215.30 MB peak) consistent with JavaScript garbage collection. Expected behavior for Node.js runtime.</td>
-    </tr>
-  </tbody>
-</table>
-<p><strong>Anomaly Assessment:</strong></p>
+<p><strong>Primary Anomaly:</strong> Complete absence of telemetry data for the requested core</p>
+<p><strong>Possible causes:</strong></p>
 <ul>
-  <li><strong>No critical anomalies detected</strong> - all deviations within acceptable operational parameters</li>
-  <li><strong>runtime_engine memory growth:</strong> Primary concern requiring continued monitoring. If growth continues linearly beyond 48-72 hours, investigate for cache/workload accumulation issues.</li>
-  <li><strong>audio_engine CPU behavior:</strong> Volatile with sustained high usage (19.07% at period end). Late spike suggests workload intensity rather than malfunction.</li>
-  <li><strong>No cascading failures:</strong> Isolated anomalies with no cross-process impact or correlation</li>
-  <li><strong>Overall stability:</strong> Anomalies represent minor operational variations, not system instability</li>
+<li>Core name mismatch or typo</li>
+<li>Core not instrumented with metrics/logging agents</li>
+<li>Core offline or not operational</li>
+<li>Metrics collection pipeline not configured</li>
+<li>Network connectivity issues preventing data ingestion</li>
 </ul>
 
 <h2>11. SUMMARY AND RISK ASSESSMENT</h2>
-<p style="font-size: 1.2em; font-weight: bold;">Overall Status: <span style="color: #00875a;">HEALTHY</span></p>
-<table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%;">
-  <thead>
-    <tr style="background-color: #f4f5f7;">
-      <th>Category</th>
-      <th>Status</th>
-      <th>Risk Level</th>
-      <th>Summary</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>Crash History</strong></td>
-      <td style="color: #00875a; font-weight: bold;">HEALTHY</td>
-      <td style="color: #00875a; font-weight: bold;">LOW</td>
-      <td>Zero crashes, zero fatal errors, zero restarts in 24 hours. Perfect stability.</td>
-    </tr>
-    <tr>
-      <td><strong>CPU Health</strong></td>
-      <td style="color: #00875a; font-weight: bold;">HEALTHY</td>
-      <td style="color: #00875a; font-weight: bold;">LOW</td>
-      <td>22.7% avg utilization with ample headroom. audio_engine dominates at 16.24% but stable. No I/O wait detected.</td>
-    </tr>
-    <tr>
-      <td><strong>Memory Health</strong></td>
-      <td style="color: #ff8b00; font-weight: bold;">MONITOR</td>
-      <td style="color: #ff8b00; font-weight: bold;">LOW-MEDIUM</td>
-      <td>19.2% avg utilization overall healthy. runtime_engine shows 11.6% growth over 24h requiring monitoring. 80% headroom available.</td>
-    </tr>
-    <tr>
-      <td><strong>Process Stability</strong></td>
-      <td style="color: #00875a; font-weight: bold;">HEALTHY</td>
-      <td style="color: #00875a; font-weight: bold;">LOW</td>
-      <td>All 6 processes running 56+ hours continuously. Zero thread growth anomalies. Synchronized startup indicates coordinated system boot.</td>
-    </tr>
-    <tr>
-      <td><strong>Data Quality</strong></td>
-      <td style="color: #00875a; font-weight: bold;">EXCELLENT</td>
-      <td style="color: #00875a; font-weight: bold;">N/A</td>
-      <td>100% metric coverage (1,442/1,442 points, 0% gaps). Both Prometheus and Loki telemetry streams operational and accurate.</td>
-    </tr>
-  </tbody>
-</table>
-<p><strong>Key Performance Indicators:</strong></p>
+<p><strong>Overall Status:</strong> <span style="background-color: #de350b; color: white; padding: 4px 12px; font-weight: bold; border-radius: 3px;">CRITICAL</span></p>
+<p><strong>Risk Level:</strong> HIGH - No observability data available</p>
+<p><strong>Findings:</strong></p>
 <ul>
-  <li><strong>Reliability:</strong> 100% uptime for all processes during observation period</li>
-  <li><strong>Crash Count:</strong> 0 crashes in 24 hours</li>
-  <li><strong>Peak CPU:</strong> 23.5% (audio_engine 19.08% user + other processes)</li>
-  <li><strong>Peak Memory:</strong> 753.8 MB total (~19.5% utilization)</li>
-  <li><strong>Worst Process:</strong> runtime_engine (memory growth +11.6%)</li>
-  <li><strong>Overall Status:</strong> <span style="color: #00875a; font-weight: bold;">HEALTHY with monitoring recommendation for runtime_engine memory</span></li>
-</ul>
-<p><strong>Risk Assessment Summary:</strong></p>
-<ul>
-  <li><strong>Immediate Risks:</strong> None. System operating within normal parameters.</li>
-  <li><strong>Short-term Risks (24-72h):</strong> runtime_engine memory growth if it continues linearly without stabilization.</li>
-  <li><strong>Long-term Risks:</strong> If runtime_engine memory growth persists beyond 72 hours, potential for memory exhaustion over weeks. Current headroom (80%) provides substantial buffer.</li>
-  <li><strong>Mitigation Status:</strong> No immediate action required. Monitoring in place via standard telemetry.</li>
+<li>Zero metrics collected from Gotham-nv-32-h-de22 in the last 24 hours</li>
+<li>No log data available</li>
+<li>Core identity does not match any known instances in Prometheus or Loki</li>
+<li>Unable to assess system health, performance, or stability</li>
 </ul>
 
 <h2>12. RECOMMENDED ACTIONS</h2>
-<p><strong>Priority-ranked actions based on analysis findings:</strong></p>
-<h3 style="color: #ff8b00;">MONITOR (Next 24-72 hours)</h3>
 <ol>
-  <li><strong>Track runtime_engine memory growth:</strong> Monitor for stabilization or continued linear increase. Set alert threshold at 350 MB (33% above current peak) to trigger investigation before resource exhaustion.</li>
-  <li><strong>Observe audio_engine CPU patterns:</strong> Document late-period spikes (19%+ system CPU) to establish baseline for normal workload variance. Correlate with scheduled tasks or external triggers.</li>
-  <li><strong>Verify video_engine utilization:</strong> Confirm whether idle state for both video_engine instances is expected. If video workload is scheduled, investigate why engines remain at 0% CPU despite thread allocation.</li>
+<li><strong>Verify Core Identity</strong> - Confirm the exact instance name. Available cores: core-sachin, eternia-Core24-d447, eternia-vsa100-b5c0</li>
+<li><strong>Check Instrumentation</strong> - Verify that the Prometheus exporter and log forwarding agents are installed and running on Gotham-nv-32-h-de22</li>
+<li><strong>Validate Network Connectivity</strong> - Ensure the core can reach the Grafana Cloud ingestion endpoints</li>
+<li><strong>Review Configuration</strong> - Check that the instance label is correctly configured in the metrics scrape configuration</li>
+<li><strong>Investigate Deployment Status</strong> - Verify if the core is actually deployed and operational</li>
 </ol>
-<h3 style="color: #00875a;">INVESTIGATE (When Convenient)</h3>
-<ol start="4">
-  <li><strong>runtime_engine workload analysis:</strong> If memory growth continues beyond 48 hours, investigate cache configuration, workload accumulation patterns, or resource pooling behavior. Consider implementing periodic cache eviction or resource cleanup.</li>
-  <li><strong>node memory cycling:</strong> While normal for JavaScript garbage collection, document min/max bounds (172-215 MB) as baseline for future anomaly detection.</li>
-</ol>
-<h3 style="color: #00875a;">MAINTAIN (Ongoing)</h3>
-<ol start="6">
-  <li><strong>Continue current monitoring coverage:</strong> Maintain 1-minute granularity for CPU, memory, uptime, and thread metrics. Current 0% gap rate is excellent.</li>
-  <li><strong>Preserve log collection:</strong> Loki stacktrace monitoring operational and capturing zero errors (expected). Maintain current log collection for crash detection.</li>
-  <li><strong>Document baseline:</strong> Use this 24-hour period as stability baseline for future comparison (22.7% CPU avg, 19.2% memory avg, zero crashes).</li>
-</ol>
-<h3 style="color: #6b778c;">NO ACTION REQUIRED</h3>
-<ul>
-  <li><strong>Process restarts:</strong> Zero restarts detected - excellent stability, no action needed.</li>
-  <li><strong>Thread count management:</strong> All processes stable at expected thread counts (0 variance) - no thread leak concerns.</li>
-  <li><strong>CPU capacity:</strong> 77% headroom available - no scaling action required.</li>
-  <li><strong>Memory capacity:</strong> 80% headroom available - no immediate capacity concerns despite runtime_engine growth.</li>
-</ul>
-<hr>
-<p style="text-align: center; color: #6b778c; font-size: 0.9em;"><em>Report generated: 2026-06-14 | Core: Gotham-nv-32-h-de22 | Analysis period: 24 hours | Status: HEALTHY</em></p>
+<p><strong>Next Steps:</strong> Contact the infrastructure team to determine if Gotham-nv-32-h-de22 exists and should be reporting metrics.</p>
