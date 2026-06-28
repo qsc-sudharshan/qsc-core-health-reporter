@@ -1,264 +1,198 @@
-<h1>QSC Core Health Analysis Report</h1>
-<p><strong>Core:</strong> Core-635c</p>
-<p><strong>Analysis Period:</strong> 2026-06-20 22:00 UTC to 2026-06-21 22:00 UTC (24 hours)</p>
-<p><strong>Report Generated:</strong> 2026-06-21 22:00 UTC</p>
-<hr>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Core Health Report — Core-635c — 2026-06-29</title>
+<style>
+  body { font-family: Arial, sans-serif; margin: 24px; color: #172B4D; background: #FAFBFC; }
+  h1 { color: #0052CC; border-bottom: 2px solid #0052CC; padding-bottom: 8px; }
+  h2 { color: #172B4D; margin-top: 24px; border-left: 4px solid #0052CC; padding-left: 8px; }
+  .healthy { color: #00875a; font-weight: bold; }
+  .warning { color: #ff8b00; font-weight: bold; }
+  .critical { color: #de350b; font-weight: bold; }
+  .badge-healthy { background: #00875a; color: white; padding: 2px 10px; border-radius: 4px; font-weight: bold; }
+  .badge-warning { background: #ff8b00; color: white; padding: 2px 10px; border-radius: 4px; font-weight: bold; }
+  .badge-critical { background: #de350b; color: white; padding: 2px 10px; border-radius: 4px; font-weight: bold; }
+  table { border-collapse: collapse; width: 100%; margin: 12px 0; }
+  th { background: #0052CC; color: white; padding: 8px 12px; text-align: left; }
+  td { padding: 8px 12px; border-bottom: 1px solid #DFE1E6; }
+  tr:nth-child(even) { background: #F4F5F7; }
+  .no-data { color: #6B778C; font-style: italic; }
+  .section-box { background: white; border: 1px solid #DFE1E6; border-radius: 4px; padding: 16px; margin-bottom: 16px; }
+  ul { margin: 8px 0; padding-left: 20px; }
+  li { margin: 6px 0; }
+  .meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .meta-item { background: #F4F5F7; padding: 10px; border-radius: 4px; }
+  .meta-label { font-size: 11px; color: #6B778C; text-transform: uppercase; letter-spacing: 0.5px; }
+  .meta-value { font-size: 14px; font-weight: bold; color: #172B4D; margin-top: 4px; }
+  ol li { margin: 8px 0; }
+</style>
+</head>
+<body>
 
-<h2>1. CORE IDENTITY</h2>
-<ul>
-<li><strong>Instance Name:</strong> Core-635c</li>
-<li><strong>Platform:</strong> QSC Sleestack</li>
-<li><strong>Expected Processes:</strong> audio_engine, runtime_engine, video_engine, node, engine_discover</li>
-<li><strong>Monitoring Status:</strong> <span style="color: #de350b; font-weight: bold;">OFFLINE - NO TELEMETRY</span></li>
-</ul>
+<h1>QSC Core Health Report — Core-635c</h1>
+<p><strong>Report Generated:</strong> 2026-06-29 03:30 IST &nbsp;|&nbsp; <strong>Analysis Window:</strong> 2026-06-28 22:00 UTC → 2026-06-29 22:00 UTC (24 hours) &nbsp;|&nbsp; <strong>Platform:</strong> QSC Sleestack Observability</p>
 
-<h2>2. SYSTEM RESOURCE SUMMARY</h2>
-<p style="color: #de350b; font-weight: bold;">⚠️ CRITICAL: No metrics data received from Core-635c in the last 24 hours</p>
-<table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%;">
-<thead>
-<tr style="background-color: #f4f5f7;">
-<th>Resource</th>
-<th>Status</th>
-<th>Details</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>CPU Metrics</td>
-<td style="color: #de350b;">NO DATA</td>
-<td>process_cpu_utilization_ratio returned no results</td>
-</tr>
-<tr>
-<td>Memory Metrics</td>
-<td style="color: #de350b;">NO DATA</td>
-<td>process_memory_utilization_ratio and process_memory_usage_bytes returned no results</td>
-</tr>
-<tr>
-<td>Uptime Metrics</td>
-<td style="color: #de350b;">NO DATA</td>
-<td>process_uptime_seconds returned no results</td>
-</tr>
-<tr>
-<td>Thread Metrics</td>
-<td style="color: #de350b;">NO DATA</td>
-<td>process_threads returned no results</td>
-</tr>
-</tbody>
-</table>
-
-<h2>3. CPU STATE BREAKDOWN</h2>
-<p><strong>Status:</strong> <span style="color: #de350b;">DATA UNAVAILABLE</span></p>
-<p>No CPU utilization metrics were found for instance Core-635c during the analysis period.</p>
-<ul>
-<li>Expected metric: <code>process_cpu_utilization_ratio{instance="Core-635c"}</code></li>
-<li>Query result: No data returned</li>
-<li>Analysis: Core is either offline, not instrumented, or using a different instance label</li>
-</ul>
-
-<h2>4. MEMORY STATE BREAKDOWN</h2>
-<p><strong>Status:</strong> <span style="color: #de350b;">DATA UNAVAILABLE</span></p>
-<p>No memory metrics were found for instance Core-635c during the analysis period.</p>
-<ul>
-<li>Expected metrics: <code>process_memory_utilization_ratio</code>, <code>process_memory_usage_bytes</code></li>
-<li>Query result: No data returned</li>
-<li>Impact: Cannot assess memory pressure, usage trends, or leak indicators</li>
-</ul>
-
-<h2>5. PROCESS-LEVEL ANALYSIS</h2>
-<p><strong>Status:</strong> <span style="color: #de350b;">NO PROCESS DATA</span></p>
-<p>Unable to analyze individual process performance due to missing telemetry.</p>
-<table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%;">
-<thead>
-<tr style="background-color: #f4f5f7;">
-<th>Process</th>
-<th>CPU Status</th>
-<th>Memory Status</th>
-<th>Uptime Status</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>audio_engine</td>
-<td style="color: #de350b;">NO DATA</td>
-<td style="color: #de350b;">NO DATA</td>
-<td style="color: #de350b;">NO DATA</td>
-</tr>
-<tr>
-<td>runtime_engine</td>
-<td style="color: #de350b;">NO DATA</td>
-<td style="color: #de350b;">NO DATA</td>
-<td style="color: #de350b;">NO DATA</td>
-</tr>
-<tr>
-<td>video_engine</td>
-<td style="color: #de350b;">NO DATA</td>
-<td style="color: #de350b;">NO DATA</td>
-<td style="color: #de350b;">NO DATA</td>
-</tr>
-<tr>
-<td>node</td>
-<td style="color: #de350b;">NO DATA</td>
-<td style="color: #de350b;">NO DATA</td>
-<td style="color: #de350b;">NO DATA</td>
-</tr>
-<tr>
-<td>engine_discover</td>
-<td style="color: #de350b;">NO DATA</td>
-<td style="color: #de350b;">NO DATA</td>
-<td style="color: #de350b;">NO DATA</td>
-</tr>
-</tbody>
-</table>
-
-<h2>6. MEMORY LEAK DETECTION</h2>
-<p><strong>Status:</strong> <span style="color: #de350b;">ANALYSIS IMPOSSIBLE</span></p>
-<p>Memory leak analysis requires continuous memory usage data over the 24-hour period. No data available for Core-635c.</p>
-<ul>
-<li>Cannot detect gradual memory growth patterns</li>
-<li>Cannot identify processes with unbounded memory allocation</li>
-<li>Cannot calculate memory growth rate</li>
-</ul>
-
-<h2>7. CRASH AND STACKTRACE ANALYSIS</h2>
-<p><strong>Status:</strong> <span style="color: #de350b;">NO LOGS FOUND</span></p>
-<p>Query: <code>{service_name="stacktrace", instance="Core-635c"}</code></p>
-<p>Result: No fatal error logs found in the 24-hour period.</p>
-<ul>
-<li><strong>Total Crashes:</strong> 0 (or logs not being forwarded)</li>
-<li><strong>Affected Processes:</strong> Unknown</li>
-<li><strong>Error Patterns:</strong> None detected</li>
-</ul>
-<p><strong>Interpretation:</strong> Either no crashes occurred, or the core is not sending logs to the Loki datasource.</p>
-
-<h2>8. METRICS AND LOG CORRELATION</h2>
-<p><strong>Status:</strong> <span style="color: #de350b;">CORRELATION IMPOSSIBLE</span></p>
-<p>Both metrics and logs are unavailable, preventing correlation analysis between:</p>
-<ul>
-<li>Resource spikes and error events</li>
-<li>Process restarts and crash logs</li>
-<li>Memory pressure and OOM events</li>
-<li>CPU saturation and timeout errors</li>
-</ul>
-
-<h2>9. UPTIME AND RESTART ANALYSIS</h2>
-<p><strong>Status:</strong> <span style="color: #de350b;">NO UPTIME DATA</span></p>
-<p>Process uptime tracking requires <code>process_uptime_seconds</code> metric, which returned no data.</p>
-<ul>
-<li><strong>Detected Restarts:</strong> Cannot determine</li>
-<li><strong>Continuous Uptime:</strong> Cannot measure</li>
-<li><strong>Restart Frequency:</strong> Cannot calculate</li>
-<li><strong>Process Stability:</strong> Cannot assess</li>
-</ul>
-
-<h2>10. ANOMALIES</h2>
-<p><strong>Primary Anomaly:</strong> <span style="color: #de350b; font-weight: bold;">COMPLETE TELEMETRY LOSS</span></p>
-<table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%;">
-<thead>
-<tr style="background-color: #f4f5f7;">
-<th>Anomaly</th>
-<th>Severity</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Zero Metrics</td>
-<td style="color: #de350b; font-weight: bold;">CRITICAL</td>
-<td>No Prometheus metrics received from Core-635c for any process</td>
-</tr>
-<tr>
-<td>Zero Logs</td>
-<td style="color: #de350b; font-weight: bold;">CRITICAL</td>
-<td>No Loki logs received from Core-635c stacktrace service</td>
-</tr>
-<tr>
-<td>Instance Not Found</td>
-<td style="color: #de350b; font-weight: bold;">CRITICAL</td>
-<td>Core-635c not in active instance list (found: core-sachin, eternia-Core24-d447, eternia-vsa100-b5c0)</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Available Cores:</strong> core-sachin, eternia-Core24-d447, eternia-vsa100-b5c0</p>
-
-<h2>11. SUMMARY AND RISK ASSESSMENT</h2>
-<div style="background-color: #ffebe6; border-left: 4px solid #de350b; padding: 16px; margin: 16px 0;">
-<h3 style="color: #de350b; margin-top: 0;">⚠️ CRITICAL STATUS</h3>
-<p><strong>Overall Health:</strong> <span style="color: #de350b; font-weight: bold; font-size: 1.2em;">CRITICAL</span></p>
-<p><strong>Risk Level:</strong> HIGH</p>
+<h2>1. Core Identity</h2>
+<div class="section-box">
+  <div class="meta-grid">
+    <div class="meta-item"><div class="meta-label">Core Name</div><div class="meta-value">Core-635c</div></div>
+    <div class="meta-item"><div class="meta-label">Reporting Status</div><div class="meta-value"><span class="badge-critical">OFFLINE / NOT REPORTING</span></div></div>
+    <div class="meta-item"><div class="meta-label">Platform</div><div class="meta-value">QSC Sleestack</div></div>
+    <div class="meta-item"><div class="meta-label">Data Sources Checked</div><div class="meta-value">Prometheus (grafanacloud-prom), Loki (grafanacloud-logs)</div></div>
+    <div class="meta-item"><div class="meta-label">Known Processes</div><div class="meta-value">audio_engine, runtime_engine, video_engine, node, engine_discover</div></div>
+    <div class="meta-item"><div class="meta-label">Last Known Telemetry</div><div class="meta-value"><span class="critical">Not found in last 24h</span></div></div>
+  </div>
+  <p style="margin-top:12px;">Core-635c is not present in the active fleet telemetry for the analysis window. The <code>instance</code> label value <code>Core-635c</code> returned no results across all process metrics and log streams. Active fleet at time of report: COS-Core-24f, Core-9014, Gotham-nv-32-h-de22, core-sachin, eternia-Core24-d447, nv-32-h-c555-Krypton, nvm-302e-0f6d.</p>
 </div>
 
-<p><strong>Key Findings:</strong></p>
-<ul>
-<li>✗ No telemetry data received from Core-635c in last 24 hours</li>
-<li>✗ Core not present in active monitoring infrastructure</li>
-<li>✗ All critical processes (audio_engine, runtime_engine, video_engine) status unknown</li>
-<li>✗ Cannot determine if core is operational, degraded, or offline</li>
-<li>✗ No crash detection possible due to missing logs</li>
-</ul>
-
-<p><strong>Possible Root Causes:</strong></p>
-<ol>
-<li><strong>Core Offline:</strong> Device powered off or network disconnected</li>
-<li><strong>Monitoring Agent Failure:</strong> Prometheus exporter or Loki forwarder not running</li>
-<li><strong>Label Mismatch:</strong> Core reporting under different instance name</li>
-<li><strong>Network Issues:</strong> Telemetry pipeline broken between core and Grafana Cloud</li>
-<li><strong>Configuration Error:</strong> Core not configured to send metrics/logs to correct endpoints</li>
-</ol>
-
-<h2>12. RECOMMENDED ACTIONS</h2>
-<div style="background-color: #fff3cd; border-left: 4px solid #ff8b00; padding: 16px; margin: 16px 0;">
-<h3 style="color: #ff8b00; margin-top: 0;">⚡ IMMEDIATE ACTIONS REQUIRED</h3>
+<h2>2. System Resource Summary</h2>
+<div class="section-box">
+  <table>
+    <tr><th>Metric</th><th>Average (24h)</th><th>Peak (24h)</th><th>Status</th></tr>
+    <tr><td>CPU Utilization</td><td class="no-data">No Data</td><td class="no-data">No Data</td><td><span class="badge-critical">CRITICAL</span></td></tr>
+    <tr><td>Memory Utilization</td><td class="no-data">No Data</td><td class="no-data">No Data</td><td><span class="badge-critical">CRITICAL</span></td></tr>
+    <tr><td>Memory Usage (Bytes)</td><td class="no-data">No Data</td><td class="no-data">No Data</td><td><span class="badge-critical">CRITICAL</span></td></tr>
+    <tr><td>Process Uptime</td><td class="no-data">No Data</td><td class="no-data">No Data</td><td><span class="badge-critical">CRITICAL</span></td></tr>
+    <tr><td>Thread Count</td><td class="no-data">No Data</td><td class="no-data">No Data</td><td><span class="badge-critical">CRITICAL</span></td></tr>
+    <tr><td>Stacktrace / Crash Logs</td><td class="no-data">No Data</td><td class="no-data">No Data</td><td><span class="badge-critical">CRITICAL</span></td></tr>
+  </table>
+  <p><strong>Summary:</strong> No telemetry received from Core-635c during the 24-hour analysis window. The device may be powered off, network-isolated, or experiencing a complete metrics agent failure.</p>
 </div>
 
-<p><strong>Priority 1 - Immediate (Next 15 minutes):</strong></p>
-<ol>
-<li><strong>Verify Core Status:</strong> Check if Core-635c is powered on and network-connected</li>
-<li><strong>Check Physical Access:</strong> Verify device responds to ping/SSH</li>
-<li><strong>Review Recent Changes:</strong> Check if core was recently decommissioned, renamed, or relocated</li>
-</ol>
+<h2>3. CPU State Breakdown</h2>
+<div class="section-box">
+  <p class="no-data">No CPU metrics available for Core-635c in the last 24 hours.</p>
+  <p>Queried: <code>process_cpu_utilization_ratio{instance="Core-635c"}</code>. Expected state labels: <code>user</code>, <code>system</code>, <code>wait</code>.</p>
+  <table>
+    <tr><th>Process</th><th>CPU User (avg)</th><th>CPU System (avg)</th><th>CPU Wait (avg)</th><th>CPU Peak</th><th>Status</th></tr>
+    <tr><td>audio_engine</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td><span class="badge-critical">NO DATA</span></td></tr>
+    <tr><td>runtime_engine</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td><span class="badge-critical">NO DATA</span></td></tr>
+    <tr><td>video_engine</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td><span class="badge-critical">NO DATA</span></td></tr>
+    <tr><td>node</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td><span class="badge-critical">NO DATA</span></td></tr>
+    <tr><td>engine_discover</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td><span class="badge-critical">NO DATA</span></td></tr>
+  </table>
+</div>
 
-<p><strong>Priority 2 - Urgent (Next 1 hour):</strong></p>
-<ol>
-<li><strong>Inspect Monitoring Agents:</strong>
-   <ul>
-   <li>Verify Prometheus node exporter is running</li>
-   <li>Verify Loki Promtail or log forwarder is running</li>
-   <li>Check agent logs for connection errors</li>
-   </ul>
-</li>
-<li><strong>Validate Configuration:</strong>
-   <ul>
-   <li>Confirm instance label is set to "Core-635c"</li>
-   <li>Verify Grafana Cloud endpoints are correct</li>
-   <li>Check authentication tokens/credentials</li>
-   </ul>
-</li>
-<li><strong>Network Diagnostics:</strong>
-   <ul>
-   <li>Test connectivity to Grafana Cloud endpoints</li>
-   <li>Check firewall rules and network ACLs</li>
-   <li>Verify DNS resolution</li>
-   </ul>
-</li>
-</ol>
+<h2>4. Memory State Breakdown</h2>
+<div class="section-box">
+  <p class="no-data">No memory metrics available for Core-635c in the last 24 hours.</p>
+  <p>Queried: <code>process_memory_utilization_ratio{instance="Core-635c"}</code> and <code>process_memory_usage_bytes{instance="Core-635c"}</code>. Both returned empty results.</p>
+  <table>
+    <tr><th>Process</th><th>Mem Util (avg)</th><th>Mem Util (peak)</th><th>Mem Bytes (avg)</th><th>Mem Bytes (peak)</th><th>Status</th></tr>
+    <tr><td>audio_engine</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td><span class="badge-critical">NO DATA</span></td></tr>
+    <tr><td>runtime_engine</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td><span class="badge-critical">NO DATA</span></td></tr>
+    <tr><td>video_engine</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td><span class="badge-critical">NO DATA</span></td></tr>
+    <tr><td>node</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td><span class="badge-critical">NO DATA</span></td></tr>
+    <tr><td>engine_discover</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td><span class="badge-critical">NO DATA</span></td></tr>
+  </table>
+</div>
 
-<p><strong>Priority 3 - Follow-up (Next 4 hours):</strong></p>
-<ol>
-<li><strong>Historical Analysis:</strong> Query when Core-635c was last seen in telemetry</li>
-<li><strong>Cross-Reference:</strong> Check if core exists in asset management/inventory systems</li>
-<li><strong>Label Audit:</strong> Search for similar instance names (Core-635, 635c, etc.)</li>
-<li><strong>Alert Configuration:</strong> Create dead man's switch alert for future telemetry loss</li>
-</ol>
+<h2>5. Process-Level Analysis</h2>
+<div class="section-box">
+  <p class="no-data">No process-level telemetry found for Core-635c.</p>
+  <p>Expected processes audio_engine, runtime_engine, video_engine, node, engine_discover produced no time-series data via process_cpu_utilization_ratio, process_memory_utilization_ratio, process_memory_usage_bytes, or process_threads for instance="Core-635c".</p>
+  <table>
+    <tr><th>Process</th><th>Threads (avg)</th><th>Threads (peak)</th><th>Uptime (s)</th><th>Restarts Detected</th><th>Status</th></tr>
+    <tr><td>audio_engine</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td><span class="badge-critical">NO DATA</span></td></tr>
+    <tr><td>runtime_engine</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td><span class="badge-critical">NO DATA</span></td></tr>
+    <tr><td>video_engine</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td><span class="badge-critical">NO DATA</span></td></tr>
+    <tr><td>node</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td><span class="badge-critical">NO DATA</span></td></tr>
+    <tr><td>engine_discover</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td><span class="badge-critical">NO DATA</span></td></tr>
+  </table>
+</div>
 
-<p><strong>Priority 4 - Documentation:</strong></p>
-<ol>
-<li>Document findings and resolution steps</li>
-<li>Update core inventory if decommissioned</li>
-<li>Review monitoring coverage for all cores</li>
-<li>Implement automated health checks for telemetry presence</li>
-</ol>
+<h2>6. Memory Leak Detection</h2>
+<div class="section-box">
+  <p class="no-data">Memory leak analysis cannot be performed — no memory usage time-series data received from Core-635c.</p>
+  <p>Detection methodology: sustained monotonic increase in process_memory_usage_bytes over 24 hours without a corresponding restart. Requires at least one data point to evaluate.</p>
+  <ul>
+    <li>audio_engine — <span class="no-data">Insufficient data</span></li>
+    <li>runtime_engine — <span class="no-data">Insufficient data</span></li>
+    <li>video_engine — <span class="no-data">Insufficient data</span></li>
+    <li>node — <span class="no-data">Insufficient data</span></li>
+    <li>engine_discover — <span class="no-data">Insufficient data</span></li>
+  </ul>
+  <p><strong>Leak Risk:</strong> <span class="badge-critical">UNDETERMINED (DEVICE OFFLINE)</span></p>
+</div>
 
-<hr>
-<p style="color: #6b778c; font-size: 0.9em;"><em>Report generated by QSC Core Health Analysis Agent</em></p>
-<p style="color: #6b778c; font-size: 0.9em;"><em>Data sources: Prometheus (grafanacloud-prom), Loki (grafanacloud-logs)</em></p>
-<p style="color: #6b778c; font-size: 0.9em;"><em>Next recommended analysis: After telemetry restoration, run full 24-hour health check</em></p>
+<h2>7. Crash and Stacktrace Analysis</h2>
+<div class="section-box">
+  <p class="no-data">No crash or stacktrace logs found for Core-635c in the last 24 hours.</p>
+  <p>Query executed: <code>{service_name="stacktrace", instance="Core-635c"}</code> against Loki (grafanacloud-logs). The broader query <code>{service_name="stacktrace"}</code> also returned no active log streams fleet-wide, indicating the stacktrace log pipeline is inactive or not shipping logs with the expected label set.</p>
+  <table>
+    <tr><th>Timestamp</th><th>Process</th><th>Error Type</th><th>Signal</th><th>Stack Summary</th></tr>
+    <tr><td colspan="5" style="text-align:center;" class="no-data">No crash events recorded</td></tr>
+  </table>
+  <p><strong>Total Crashes (24h):</strong> <span class="no-data">0 confirmed — device offline, data may be missing</span></p>
+</div>
+
+<h2>8. Metrics and Log Correlation</h2>
+<div class="section-box">
+  <p class="no-data">No correlation possible — both metric and log streams are absent for Core-635c.</p>
+  <p>Correlation approach: align crash timestamps from Loki with CPU/memory spikes from Prometheus to identify pre-crash resource pressure patterns. Requires at least one signal to be active.</p>
+  <table>
+    <tr><th>Event Time</th><th>Log Event</th><th>CPU at Event</th><th>Memory at Event</th><th>Correlation</th></tr>
+    <tr><td colspan="5" style="text-align:center;" class="no-data">No correlated events — device offline</td></tr>
+  </table>
+</div>
+
+<h2>9. Uptime and Restart Analysis</h2>
+<div class="section-box">
+  <p class="no-data">No uptime data available for Core-635c.</p>
+  <p>Metric queried: <code>process_uptime_seconds{instance="Core-635c"}</code>. Restart detection: identify monotonic drops in uptime value over the 24-hour window. Active fleet instances with uptime data: COS-Core-24f, Gotham-nv-32-h-de22, core-sachin, eternia-Core24-d447, nv-32-h-c555-Krypton.</p>
+  <table>
+    <tr><th>Process</th><th>Current Uptime</th><th>Restarts Detected</th><th>Last Restart Time</th><th>Status</th></tr>
+    <tr><td>audio_engine</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td><span class="badge-critical">UNKNOWN</span></td></tr>
+    <tr><td>runtime_engine</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td><span class="badge-critical">UNKNOWN</span></td></tr>
+    <tr><td>video_engine</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td><span class="badge-critical">UNKNOWN</span></td></tr>
+    <tr><td>node</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td><span class="badge-critical">UNKNOWN</span></td></tr>
+    <tr><td>engine_discover</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td><span class="badge-critical">UNKNOWN</span></td></tr>
+  </table>
+</div>
+
+<h2>10. Anomalies</h2>
+<div class="section-box">
+  <ul>
+    <li><span class="critical"><strong>ANOMALY-001 [CRITICAL]:</strong></span> Core-635c is absent from all Prometheus metric streams for the full 24-hour analysis window. The device is not being scraped or is unreachable by the Prometheus agent.</li>
+    <li><span class="critical"><strong>ANOMALY-002 [CRITICAL]:</strong></span> Core-635c is absent from Loki log ingestion. No stacktrace logs, no agent logs, and no stream labels with instance="Core-635c" were found.</li>
+    <li><span class="warning"><strong>ANOMALY-003 [WARNING]:</strong></span> The Loki service_name="stacktrace" stream has no active log streams fleet-wide in this window. This may indicate a broader log pipeline issue.</li>
+    <li><span class="warning"><strong>ANOMALY-004 [WARNING]:</strong></span> Core-635c is absent from the active fleet instance list (7 active cores identified), suggesting it may have been decommissioned, renamed, or lost network connectivity more than 24 hours ago.</li>
+  </ul>
+</div>
+
+<h2>11. Summary and Risk Assessment</h2>
+<div class="section-box" style="border-left: 4px solid #de350b;">
+  <p style="font-size:20px;"><strong>Overall Status: <span class="badge-critical">CRITICAL</span></strong></p>
+  <table>
+    <tr><th>Category</th><th>Status</th><th>Notes</th></tr>
+    <tr><td>Device Reachability</td><td><span class="badge-critical">CRITICAL</span></td><td>No metrics or logs received for 24+ hours</td></tr>
+    <tr><td>CPU Health</td><td><span class="badge-critical">UNDETERMINED</span></td><td>No data available</td></tr>
+    <tr><td>Memory Health</td><td><span class="badge-critical">UNDETERMINED</span></td><td>No data available</td></tr>
+    <tr><td>Process Health</td><td><span class="badge-critical">UNDETERMINED</span></td><td>No process telemetry</td></tr>
+    <tr><td>Crash / Stability Risk</td><td><span class="badge-critical">UNDETERMINED</span></td><td>Cannot confirm crash-free operation</td></tr>
+    <tr><td>Memory Leak Risk</td><td><span class="badge-critical">UNDETERMINED</span></td><td>Insufficient data to evaluate</td></tr>
+    <tr><td>Log Pipeline</td><td><span class="badge-critical">CRITICAL</span></td><td>No log streams active for this device</td></tr>
+  </table>
+  <p><strong>Risk Summary:</strong> Core-635c has been completely silent for the entire 24-hour analysis window. This is a CRITICAL finding. The device cannot be assessed for health, stability, or safety of operation. Immediate manual investigation is required to determine whether the device is powered off, network-isolated, or experiencing a catastrophic agent failure.</p>
+</div>
+
+<h2>12. Recommended Actions</h2>
+<div class="section-box">
+  <ol>
+    <li><strong>[IMMEDIATE — P1]</strong> Verify physical and network status of Core-635c. Check power state, LAN connectivity, and whether the device responds to ping from the monitoring network segment.</li>
+    <li><strong>[IMMEDIATE — P1]</strong> SSH into Core-635c (if reachable) and verify the Prometheus metrics agent or QSC telemetry exporter is running: <code>systemctl status &lt;agent&gt;</code>.</li>
+    <li><strong>[HIGH — P2]</strong> Check the Prometheus scrape targets UI (<code>/targets</code>) to confirm whether Core-635c appears as a target and inspect any DOWN state error message.</li>
+    <li><strong>[HIGH — P2]</strong> Verify the Grafana Alloy or Loki agent configuration on Core-635c. Confirm the <code>service_name</code> and <code>instance</code> labels are correctly set for log shipping.</li>
+    <li><strong>[MEDIUM — P3]</strong> Review QSC device management console or DHCP/DNS logs to confirm Core-635c IP address has not changed, causing scrape target mismatches.</li>
+    <li><strong>[MEDIUM — P3]</strong> Cross-reference Core-635c last known telemetry timestamp in Grafana Explore to determine the exact time it stopped reporting and scope the outage window.</li>
+    <li><strong>[LOW — P4]</strong> Once restored, compare its build_name and build_number against the active fleet to ensure firmware compatibility.</li>
+    <li><strong>[LOW — P4]</strong> Add a Grafana alert rule using <code>absent(process_cpu_utilization_ratio{instance="Core-635c"})</code> to proactively detect future reporting gaps for this device.</li>
+  </ol>
+</div>
+
+<hr style="margin-top: 32px; border: 1px solid #DFE1E6;">
+<p style="color:#6B778C; font-size:12px;">Report generated by QSC Sleestack Core Health Analysis Agent — Grafana Cloud — 2026-06-29 03:30 IST — Data window: 2026-06-28 22:00 UTC → 2026-06-29 22:00 UTC</p>
+
+</body>
+</html>
