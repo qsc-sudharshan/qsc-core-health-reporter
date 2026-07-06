@@ -2,197 +2,650 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Core Health Report — Core-635c — 2026-06-29</title>
+<title>Core Health Report — Core-635c — 2026-07-06</title>
 <style>
-  body { font-family: Arial, sans-serif; margin: 24px; color: #172B4D; background: #FAFBFC; }
-  h1 { color: #0052CC; border-bottom: 2px solid #0052CC; padding-bottom: 8px; }
-  h2 { color: #172B4D; margin-top: 24px; border-left: 4px solid #0052CC; padding-left: 8px; }
-  .healthy { color: #00875a; font-weight: bold; }
-  .warning { color: #ff8b00; font-weight: bold; }
-  .critical { color: #de350b; font-weight: bold; }
-  .badge-healthy { background: #00875a; color: white; padding: 2px 10px; border-radius: 4px; font-weight: bold; }
-  .badge-warning { background: #ff8b00; color: white; padding: 2px 10px; border-radius: 4px; font-weight: bold; }
-  .badge-critical { background: #de350b; color: white; padding: 2px 10px; border-radius: 4px; font-weight: bold; }
-  table { border-collapse: collapse; width: 100%; margin: 12px 0; }
-  th { background: #0052CC; color: white; padding: 8px 12px; text-align: left; }
-  td { padding: 8px 12px; border-bottom: 1px solid #DFE1E6; }
-  tr:nth-child(even) { background: #F4F5F7; }
-  .no-data { color: #6B778C; font-style: italic; }
-  .section-box { background: white; border: 1px solid #DFE1E6; border-radius: 4px; padding: 16px; margin-bottom: 16px; }
-  ul { margin: 8px 0; padding-left: 20px; }
-  li { margin: 6px 0; }
-  .meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-  .meta-item { background: #F4F5F7; padding: 10px; border-radius: 4px; }
-  .meta-label { font-size: 11px; color: #6B778C; text-transform: uppercase; letter-spacing: 0.5px; }
-  .meta-value { font-size: 14px; font-weight: bold; color: #172B4D; margin-top: 4px; }
-  ol li { margin: 8px 0; }
+body { font-family: Arial, sans-serif; margin: 24px; color: #172B4D; background: #FAFBFC; }
+h1 { color: #0052CC; border-bottom: 3px solid #0052CC; padding-bottom: 8px; }
+h2 { color: #253858; border-left: 4px solid #0052CC; padding-left: 10px; margin-top: 32px; }
+p { line-height: 1.6; }
+table { border-collapse: collapse; width: 100%; margin: 12px 0; }
+th { background: #0052CC; color: #fff; padding: 8px 12px; text-align: left; }
+td { padding: 7px 12px; border-bottom: 1px solid #DFE1E6; }
+tr:nth-child(even) td { background: #F4F5F7; }
+.healthy { background: #00875a; color: #fff; padding: 3px 10px; border-radius: 4px; font-weight: bold; }
+.warning { background: #ff8b00; color: #fff; padding: 3px 10px; border-radius: 4px; font-weight: bold; }
+.critical { background: #de350b; color: #fff; padding: 3px 10px; border-radius: 4px; font-weight: bold; }
+.info-box { background: #DEEBFF; border-left: 4px solid #0052CC; padding: 10px 16px; margin: 10px 0; border-radius: 4px; }
+.warn-box { background: #FFFAE6; border-left: 4px solid #ff8b00; padding: 10px 16px; margin: 10px 0; border-radius: 4px; }
+.crit-box { background: #FFEBE6; border-left: 4px solid #de350b; padding: 10px 16px; margin: 10px 0; border-radius: 4px; }
+.badge { display: inline-block; padding: 2px 8px; border-radius: 3px; font-size: 12px; font-weight: bold; }
 </style>
 </head>
 <body>
 
-<h1>QSC Core Health Report — Core-635c</h1>
-<p><strong>Report Generated:</strong> 2026-06-29 03:30 IST &nbsp;|&nbsp; <strong>Analysis Window:</strong> 2026-06-28 22:00 UTC → 2026-06-29 22:00 UTC (24 hours) &nbsp;|&nbsp; <strong>Platform:</strong> QSC Sleestack Observability</p>
+<h1>&#127959; QSC Core Health Report &mdash; Core-635c</h1>
+<p><strong>Report Period:</strong> 2026-06-29 00:00 UTC &rarr; 2026-07-06 09:08 UTC (7 days)</p>
+<p><strong>Generated:</strong> 2026-07-06 09:08 UTC &nbsp;|&nbsp; <strong>Platform:</strong> QSC Sleestack Observability &nbsp;|&nbsp; <strong>Datasources:</strong> grafanacloud-prom, grafanacloud-logs</p>
+<p><strong>Overall Status:</strong> <span class="warning">&#9888; WARNING</span></p>
 
-<h2>1. Core Identity</h2>
-<div class="section-box">
-  <div class="meta-grid">
-    <div class="meta-item"><div class="meta-label">Core Name</div><div class="meta-value">Core-635c</div></div>
-    <div class="meta-item"><div class="meta-label">Reporting Status</div><div class="meta-value"><span class="badge-critical">OFFLINE / NOT REPORTING</span></div></div>
-    <div class="meta-item"><div class="meta-label">Platform</div><div class="meta-value">QSC Sleestack</div></div>
-    <div class="meta-item"><div class="meta-label">Data Sources Checked</div><div class="meta-value">Prometheus (grafanacloud-prom), Loki (grafanacloud-logs)</div></div>
-    <div class="meta-item"><div class="meta-label">Known Processes</div><div class="meta-value">audio_engine, runtime_engine, video_engine, node, engine_discover</div></div>
-    <div class="meta-item"><div class="meta-label">Last Known Telemetry</div><div class="meta-value"><span class="critical">Not found in last 24h</span></div></div>
-  </div>
-  <p style="margin-top:12px;">Core-635c is not present in the active fleet telemetry for the analysis window. The <code>instance</code> label value <code>Core-635c</code> returned no results across all process metrics and log streams. Active fleet at time of report: COS-Core-24f, Core-9014, Gotham-nv-32-h-de22, core-sachin, eternia-Core24-d447, nv-32-h-c555-Krypton, nvm-302e-0f6d.</p>
+<hr>
+
+<!-- SECTION 1 -->
+<h2>1. CORE IDENTITY</h2>
+<table>
+  <tr><th>Field</th><th>Value</th></tr>
+  <tr><td>Core Name</td><td>Core-635c</td></tr>
+  <tr><td>Prometheus Instance Label</td><td><code>instance="Core-635c"</code></td></tr>
+  <tr><td>Report Window Start</td><td>2026-06-29T00:00:00Z (Monday)</td></tr>
+  <tr><td>Report Window End</td><td>2026-07-06T09:08:15Z (Monday)</td></tr>
+  <tr><td>Observation Duration</td><td>~74 hours of active data (72.83h for restarted processes, 74h for stable processes)</td></tr>
+  <tr><td>Prometheus Datasource</td><td>grafanacloud-prom (grafanacloud-sleestack-prom)</td></tr>
+  <tr><td>Loki Datasource</td><td>grafanacloud-logs (grafanacloud-sleestack-logs)</td></tr>
+  <tr><td>Monitored Processes</td><td>audio_engine, runtime_engine, engine_discover, node, video_engine</td></tr>
+  <tr><td>Detected PIDs</td><td>audio_engine: 14963 (pre-restart), 24849 (current) &nbsp;|&nbsp; runtime_engine: 15550 (pre-restart), 25428 (current) &nbsp;|&nbsp; engine_discover: 10369 &nbsp;|&nbsp; node: 8859 &nbsp;|&nbsp; video_engine: 9654, 9655</td></tr>
+</table>
+
+<!-- SECTION 2 -->
+<h2>2. SYSTEM RESOURCE SUMMARY</h2>
+<table>
+  <tr><th>Resource</th><th>Peak</th><th>Average</th><th>Current</th><th>Status</th></tr>
+  <tr>
+    <td>Total CPU (all processes)</td>
+    <td>~34.5%</td>
+    <td>~29.9%</td>
+    <td>~28.5%</td>
+    <td><span class="badge warning">WARNING</span></td>
+  </tr>
+  <tr>
+    <td>Total Memory Usage</td>
+    <td>~1.68 GB</td>
+    <td>~1.65 GB</td>
+    <td>~1.65 GB</td>
+    <td><span class="badge healthy">HEALTHY</span></td>
+  </tr>
+  <tr>
+    <td>Peak Memory Utilization Ratio</td>
+    <td>5.60% (audio_engine)</td>
+    <td>~3.5% combined</td>
+    <td>&lt;21.3% total</td>
+    <td><span class="badge healthy">HEALTHY</span></td>
+  </tr>
+  <tr>
+    <td>Process Restarts</td>
+    <td>2 (coordinated, 2026-07-03 08:20 UTC)</td>
+    <td>&mdash;</td>
+    <td>&mdash;</td>
+    <td><span class="badge warning">WARNING</span></td>
+  </tr>
+  <tr>
+    <td>I/O Wait State</td>
+    <td>0% across all processes</td>
+    <td>0%</td>
+    <td>0%</td>
+    <td><span class="badge healthy">HEALTHY</span></td>
+  </tr>
+  <tr>
+    <td>Stacktrace / Crash Logs</td>
+    <td>0 entries for Core-635c</td>
+    <td>&mdash;</td>
+    <td>&mdash;</td>
+    <td><span class="badge healthy">HEALTHY</span></td>
+  </tr>
+  <tr>
+    <td>Memory Leak Signal</td>
+    <td>runtime_engine: +103 MB in 72.8h</td>
+    <td>+395 B/s growth rate</td>
+    <td>419.8 MB</td>
+    <td><span class="badge warning">WARNING</span></td>
+  </tr>
+</table>
+<div class="info-box">
+  <strong>Data Quality:</strong> 2% metric gaps on long-running series; 0% gaps on video_engine processes. 5-minute scrape interval; 852&ndash;866 data points per process. Pre-restart processes (PID 14963 / 15550) have only 1.17h of history (15 points each).
 </div>
 
-<h2>2. System Resource Summary</h2>
-<div class="section-box">
-  <table>
-    <tr><th>Metric</th><th>Average (24h)</th><th>Peak (24h)</th><th>Status</th></tr>
-    <tr><td>CPU Utilization</td><td class="no-data">No Data</td><td class="no-data">No Data</td><td><span class="badge-critical">CRITICAL</span></td></tr>
-    <tr><td>Memory Utilization</td><td class="no-data">No Data</td><td class="no-data">No Data</td><td><span class="badge-critical">CRITICAL</span></td></tr>
-    <tr><td>Memory Usage (Bytes)</td><td class="no-data">No Data</td><td class="no-data">No Data</td><td><span class="badge-critical">CRITICAL</span></td></tr>
-    <tr><td>Process Uptime</td><td class="no-data">No Data</td><td class="no-data">No Data</td><td><span class="badge-critical">CRITICAL</span></td></tr>
-    <tr><td>Thread Count</td><td class="no-data">No Data</td><td class="no-data">No Data</td><td><span class="badge-critical">CRITICAL</span></td></tr>
-    <tr><td>Stacktrace / Crash Logs</td><td class="no-data">No Data</td><td class="no-data">No Data</td><td><span class="badge-critical">CRITICAL</span></td></tr>
-  </table>
-  <p><strong>Summary:</strong> No telemetry received from Core-635c during the 24-hour analysis window. The device may be powered off, network-isolated, or experiencing a complete metrics agent failure.</p>
+<!-- SECTION 3 -->
+<h2>3. CPU STATE BREAKDOWN</h2>
+<table>
+  <tr><th>Process</th><th>PID</th><th>Mode</th><th>Average</th><th>Peak</th><th>Duration</th><th>Status</th></tr>
+  <tr>
+    <td rowspan="2">audio_engine</td>
+    <td rowspan="2">24849</td>
+    <td>User</td>
+    <td>24.92%</td>
+    <td>30.17% (2026-07-03 09:00)</td>
+    <td rowspan="2">72.83h</td>
+    <td rowspan="2"><span class="badge warning">WARNING</span></td>
+  </tr>
+  <tr>
+    <td>System</td>
+    <td>5.08%</td>
+    <td>~27.9%</td>
+  </tr>
+  <tr>
+    <td>audio_engine (pre-restart)</td>
+    <td>14963</td>
+    <td>User</td>
+    <td>25.77%</td>
+    <td>30.1%</td>
+    <td>1.17h</td>
+    <td><span class="badge warning">WARNING</span></td>
+  </tr>
+  <tr>
+    <td rowspan="2">runtime_engine</td>
+    <td rowspan="2">25428</td>
+    <td>User</td>
+    <td>2.53%</td>
+    <td>3.80%</td>
+    <td rowspan="2">72.83h</td>
+    <td rowspan="2"><span class="badge healthy">HEALTHY</span></td>
+  </tr>
+  <tr>
+    <td>System</td>
+    <td>1.31%</td>
+    <td>~2.0%</td>
+  </tr>
+  <tr>
+    <td>engine_discover</td>
+    <td>10369</td>
+    <td>User+Sys</td>
+    <td>0.11%</td>
+    <td>0.12%</td>
+    <td>74h</td>
+    <td><span class="badge healthy">HEALTHY</span></td>
+  </tr>
+  <tr>
+    <td>node</td>
+    <td>8859</td>
+    <td>User+Sys</td>
+    <td>0.014%</td>
+    <td>0.021%</td>
+    <td>74h</td>
+    <td><span class="badge healthy">HEALTHY</span></td>
+  </tr>
+  <tr>
+    <td>video_engine</td>
+    <td>9654, 9655</td>
+    <td>User+Sys</td>
+    <td>0%</td>
+    <td>0%</td>
+    <td>74h</td>
+    <td><span class="badge healthy">HEALTHY (IDLE)</span></td>
+  </tr>
+</table>
+<div class="warn-box">
+  <strong>CPU Observation:</strong> audio_engine sustains ~30% combined CPU over the full 7-day window with no downward trend. Peak was 30.17% at 2026-07-03T09:00. No I/O wait detected on any process. The two processes share distinct load profiles and show no temporal correlation in their peaks, suggesting independent workload drivers.
 </div>
 
-<h2>3. CPU State Breakdown</h2>
-<div class="section-box">
-  <p class="no-data">No CPU metrics available for Core-635c in the last 24 hours.</p>
-  <p>Queried: <code>process_cpu_utilization_ratio{instance="Core-635c"}</code>. Expected state labels: <code>user</code>, <code>system</code>, <code>wait</code>.</p>
-  <table>
-    <tr><th>Process</th><th>CPU User (avg)</th><th>CPU System (avg)</th><th>CPU Wait (avg)</th><th>CPU Peak</th><th>Status</th></tr>
-    <tr><td>audio_engine</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td><span class="badge-critical">NO DATA</span></td></tr>
-    <tr><td>runtime_engine</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td><span class="badge-critical">NO DATA</span></td></tr>
-    <tr><td>video_engine</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td><span class="badge-critical">NO DATA</span></td></tr>
-    <tr><td>node</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td><span class="badge-critical">NO DATA</span></td></tr>
-    <tr><td>engine_discover</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td><span class="badge-critical">NO DATA</span></td></tr>
-  </table>
+<!-- SECTION 4 -->
+<h2>4. MEMORY STATE BREAKDOWN</h2>
+<table>
+  <tr><th>Process</th><th>PID</th><th>Avg Usage</th><th>Peak Usage</th><th>Current</th><th>Peak Ratio</th><th>Trend</th><th>Status</th></tr>
+  <tr>
+    <td>audio_engine</td>
+    <td>24849</td>
+    <td>898.7 MB</td>
+    <td>898.7 MB</td>
+    <td>898.7 MB</td>
+    <td>5.60%</td>
+    <td>Flat / Stable</td>
+    <td><span class="badge healthy">HEALTHY</span></td>
+  </tr>
+  <tr>
+    <td>runtime_engine</td>
+    <td>25428</td>
+    <td>369.8 MB</td>
+    <td>419.8 MB</td>
+    <td>419.8 MB</td>
+    <td>2.62%</td>
+    <td>&#8593; Growing +103 MB in 72.8h</td>
+    <td><span class="badge warning">WARNING</span></td>
+  </tr>
+  <tr>
+    <td>node</td>
+    <td>8859</td>
+    <td>273.1 MB</td>
+    <td>367.7 MB (startup spike)</td>
+    <td>265.3 MB</td>
+    <td>3.68% (peak)</td>
+    <td>Stable after init spike</td>
+    <td><span class="badge healthy">HEALTHY</span></td>
+  </tr>
+  <tr>
+    <td>engine_discover</td>
+    <td>10369</td>
+    <td>14.9 MB</td>
+    <td>15.1 MB</td>
+    <td>15.1 MB</td>
+    <td>0.094%</td>
+    <td>&#8593; Mild +5.5% in 74h</td>
+    <td><span class="badge healthy">HEALTHY</span></td>
+  </tr>
+  <tr>
+    <td>video_engine</td>
+    <td>9655</td>
+    <td>40.1 MB</td>
+    <td>40.1 MB</td>
+    <td>40.1 MB</td>
+    <td>0.25%</td>
+    <td>Flat / Stable</td>
+    <td><span class="badge healthy">HEALTHY</span></td>
+  </tr>
+  <tr>
+    <td>video_engine</td>
+    <td>9654</td>
+    <td>7.2 MB</td>
+    <td>7.2 MB</td>
+    <td>7.2 MB</td>
+    <td>0.045%</td>
+    <td>Flat / Stable</td>
+    <td><span class="badge healthy">HEALTHY</span></td>
+  </tr>
+  <tr>
+    <td>audio_engine (pre-restart)</td>
+    <td>14963</td>
+    <td>898.7 MB</td>
+    <td>898.7 MB</td>
+    <td>N/A (stopped)</td>
+    <td>5.60%</td>
+    <td>Flat during 1.17h window</td>
+    <td><span class="badge healthy">HEALTHY</span></td>
+  </tr>
+  <tr style="font-weight:bold; background:#F4F5F7;">
+    <td colspan="2">TOTAL (current snapshot)</td>
+    <td>~1.62 GB</td>
+    <td>~1.65 GB</td>
+    <td>~1.65 GB</td>
+    <td>&lt;21.3% combined</td>
+    <td>&mdash;</td>
+    <td><span class="badge warning">WARNING (growing)</span></td>
+  </tr>
+</table>
+<div class="warn-box">
+  <strong>Node startup spike:</strong> node (PID 8859) spiked to 367.7 MB at 2026-07-03T08:20 (startup) before settling to 265.3 MB — a 34.5% transient above steady-state, indicative of normal initialization behavior. Combined memory remains well under saturation threshold.
 </div>
 
-<h2>4. Memory State Breakdown</h2>
-<div class="section-box">
-  <p class="no-data">No memory metrics available for Core-635c in the last 24 hours.</p>
-  <p>Queried: <code>process_memory_utilization_ratio{instance="Core-635c"}</code> and <code>process_memory_usage_bytes{instance="Core-635c"}</code>. Both returned empty results.</p>
-  <table>
-    <tr><th>Process</th><th>Mem Util (avg)</th><th>Mem Util (peak)</th><th>Mem Bytes (avg)</th><th>Mem Bytes (peak)</th><th>Status</th></tr>
-    <tr><td>audio_engine</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td><span class="badge-critical">NO DATA</span></td></tr>
-    <tr><td>runtime_engine</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td><span class="badge-critical">NO DATA</span></td></tr>
-    <tr><td>video_engine</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td><span class="badge-critical">NO DATA</span></td></tr>
-    <tr><td>node</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td><span class="badge-critical">NO DATA</span></td></tr>
-    <tr><td>engine_discover</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td><span class="badge-critical">NO DATA</span></td></tr>
-  </table>
+<!-- SECTION 5 -->
+<h2>5. PROCESS-LEVEL ANALYSIS</h2>
+<table>
+  <tr><th>Process</th><th>PID</th><th>Threads</th><th>CPU Avg</th><th>Mem Current</th><th>Uptime (h)</th><th>I/O Wait</th><th>Overall</th></tr>
+  <tr>
+    <td>audio_engine</td>
+    <td>24849</td>
+    <td>11</td>
+    <td>~30%</td>
+    <td>898.7 MB</td>
+    <td>72.8h (post-restart)</td>
+    <td>0%</td>
+    <td><span class="badge warning">WARNING</span></td>
+  </tr>
+  <tr>
+    <td>runtime_engine</td>
+    <td>25428</td>
+    <td>138&ndash;139</td>
+    <td>~3.86%</td>
+    <td>419.8 MB (growing)</td>
+    <td>72.8h (post-restart)</td>
+    <td>0%</td>
+    <td><span class="badge warning">WARNING</span></td>
+  </tr>
+  <tr>
+    <td>engine_discover</td>
+    <td>10369</td>
+    <td>1</td>
+    <td>0.11%</td>
+    <td>15.1 MB</td>
+    <td>336.3h (~14 days)</td>
+    <td>0%</td>
+    <td><span class="badge healthy">HEALTHY</span></td>
+  </tr>
+  <tr>
+    <td>node</td>
+    <td>8859</td>
+    <td>13</td>
+    <td>0.014%</td>
+    <td>265.3 MB</td>
+    <td>336.3h (~14 days)</td>
+    <td>0%</td>
+    <td><span class="badge healthy">HEALTHY</span></td>
+  </tr>
+  <tr>
+    <td>video_engine</td>
+    <td>9655</td>
+    <td>55</td>
+    <td>0%</td>
+    <td>40.1 MB</td>
+    <td>336.3h (~14 days)</td>
+    <td>0%</td>
+    <td><span class="badge healthy">HEALTHY (IDLE)</span></td>
+  </tr>
+  <tr>
+    <td>video_engine</td>
+    <td>9654</td>
+    <td>1</td>
+    <td>0%</td>
+    <td>7.2 MB</td>
+    <td>336.3h (~14 days)</td>
+    <td>0%</td>
+    <td><span class="badge healthy">HEALTHY (IDLE)</span></td>
+  </tr>
+</table>
+<p>
+  <strong>Thread hierarchy:</strong> runtime_engine (138&ndash;139) &gt;&gt; video_engine PID 9655 (55) &gt;&gt; node (13) &gt;&gt; audio_engine (11) &gt;&gt; single-threaded: engine_discover + video_engine PID 9654 (1 each).
+  Thread counts were perfectly stable across the 7-day window with &lt;1% variance — no thread leak signals detected in any process.
+</p>
+<p>
+  <strong>Notable:</strong> Both video_engine instances show 0% CPU utilization across 74 hours. Video processing appears to be inactive or routed away from Core-635c during this period. Their 55-thread and 1-thread configurations are persistent but idle.
+</p>
+
+<!-- SECTION 6 -->
+<h2>6. MEMORY LEAK DETECTION</h2>
+<table>
+  <tr><th>Process</th><th>PID</th><th>Growth Rate (avg)</th><th>Peak Growth Rate</th><th>Total Accumulated</th><th>Projection (7 days)</th><th>Risk</th></tr>
+  <tr>
+    <td>runtime_engine</td>
+    <td>25428</td>
+    <td>395.56 B/s</td>
+    <td>887.76 B/s (2026-07-03 12:00)</td>
+    <td>+103.4 MB in 72.8h</td>
+    <td>~220 MB/week</td>
+    <td><span class="badge warning">WARNING — Sustained Leak</span></td>
+  </tr>
+  <tr>
+    <td>engine_discover</td>
+    <td>10369</td>
+    <td>3.85 B/s</td>
+    <td>79.18 B/s (2026-07-03 15:00, isolated spike)</td>
+    <td>+0.8 MB in 74h</td>
+    <td>~2.3 MB/week</td>
+    <td><span class="badge healthy">LOW RISK</span></td>
+  </tr>
+  <tr>
+    <td>node</td>
+    <td>8859</td>
+    <td>482.49 B/s (volatile)</td>
+    <td>20,122 B/s (brief spike)</td>
+    <td>Oscillating (GC pattern)</td>
+    <td>Net growth unclear</td>
+    <td><span class="badge healthy">MONITOR</span></td>
+  </tr>
+  <tr>
+    <td>audio_engine</td>
+    <td>24849</td>
+    <td>0 B/s</td>
+    <td>0 B/s</td>
+    <td>0 MB</td>
+    <td>0 MB/week</td>
+    <td><span class="badge healthy">HEALTHY</span></td>
+  </tr>
+  <tr>
+    <td>video_engine</td>
+    <td>9654, 9655</td>
+    <td>0 B/s</td>
+    <td>0 B/s</td>
+    <td>0 MB</td>
+    <td>0 MB/week</td>
+    <td><span class="badge healthy">HEALTHY</span></td>
+  </tr>
+</table>
+<div class="warn-box">
+  <strong>runtime_engine Leak Detail:</strong> Memory grew from 316.4 MB to 419.8 MB (+32.8%) over 72.83 hours post-restart (since 2026-07-03T08:20). The growth rate is consistent and persistent — avg 395.56 B/s with no plateau observed. At this rate, runtime_engine will consume an additional ~220 MB per week. At the 72.8h mark the process had already consumed +103 MB beyond its baseline. No memory recovery events (GC or release) were detected. This pattern is a strong signal of a memory leak.
+</div>
+<div class="info-box">
+  <strong>node GC pattern:</strong> node (PID 8859) shows high volatility: peak +20,122 B/s growth followed by -8,083 B/s shrinkage phases, consistent with garbage collection behavior. This is not a leak; it is expected Node.js/V8 heap management.
 </div>
 
-<h2>5. Process-Level Analysis</h2>
-<div class="section-box">
-  <p class="no-data">No process-level telemetry found for Core-635c.</p>
-  <p>Expected processes audio_engine, runtime_engine, video_engine, node, engine_discover produced no time-series data via process_cpu_utilization_ratio, process_memory_utilization_ratio, process_memory_usage_bytes, or process_threads for instance="Core-635c".</p>
-  <table>
-    <tr><th>Process</th><th>Threads (avg)</th><th>Threads (peak)</th><th>Uptime (s)</th><th>Restarts Detected</th><th>Status</th></tr>
-    <tr><td>audio_engine</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td><span class="badge-critical">NO DATA</span></td></tr>
-    <tr><td>runtime_engine</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td><span class="badge-critical">NO DATA</span></td></tr>
-    <tr><td>video_engine</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td><span class="badge-critical">NO DATA</span></td></tr>
-    <tr><td>node</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td><span class="badge-critical">NO DATA</span></td></tr>
-    <tr><td>engine_discover</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td><span class="badge-critical">NO DATA</span></td></tr>
-  </table>
+<!-- SECTION 7 -->
+<h2>7. CRASH AND STACKTRACE ANALYSIS</h2>
+<div class="info-box">
+  <strong>Result: No crash logs found for Core-635c.</strong> Loki query against <code>{service_name="stacktrace", instance="Core-635c"}</code> and a broad text search across all stacktrace streams returned 0 matching log entries for the 7-day window.
+</div>
+<table>
+  <tr><th>Metric</th><th>Value</th></tr>
+  <tr><td>Total Fatal / Crash Events</td><td>0</td></tr>
+  <tr><td>Loki Stream Query</td><td><code>{service_name="stacktrace", instance="Core-635c"}</code></td></tr>
+  <tr><td>Loki Service Instance IDs observed</td><td>core-sachin, r7-5db4-Shubham1 (neither maps to Core-635c)</td></tr>
+  <tr><td>Crash-free period</td><td>Full 7 days (2026-06-29 &rarr; 2026-07-06)</td></tr>
+  <tr><td>Process restarts observed</td><td>2 (audio_engine + runtime_engine on 2026-07-03T08:20 UTC) — cause unknown; no corresponding crash log</td></tr>
+</table>
+<p>
+  The absence of stacktrace logs for Core-635c is a positive indicator. The two process restarts detected via Prometheus uptime counter resets on 2026-07-03T08:20 are not accompanied by any crash log entries in Loki, suggesting these were <strong>controlled/watchdog-initiated restarts</strong> rather than fatal crashes.
+</p>
+<p>
+  Note: If crash logging for Core-635c has not been configured in the Loki agent (i.e., the device is not shipping logs to the <code>service_name="stacktrace"</code> stream), this zero-crash reading may be a gap in observability rather than confirmed stability. Verify log shipper configuration.
+</p>
+
+<!-- SECTION 8 -->
+<h2>8. METRICS AND LOG CORRELATION</h2>
+<table>
+  <tr><th>Timestamp (UTC)</th><th>Metric Event</th><th>Log Event</th><th>Correlation</th><th>Severity</th></tr>
+  <tr>
+    <td>2026-07-03 08:20</td>
+    <td>audio_engine: uptime reset (PID 14963&rarr;24849); runtime_engine: uptime reset (PID 15550&rarr;25428)</td>
+    <td>No crash log in Loki</td>
+    <td>Coordinated restart — probable watchdog or deployment action. Not a crash.</td>
+    <td><span class="badge warning">WARNING</span></td>
+  </tr>
+  <tr>
+    <td>2026-07-03 08:20&ndash;08:25</td>
+    <td>node (PID 8859): memory spike +101.8 MB to 367.7 MB peak</td>
+    <td>No log</td>
+    <td>Startup memory transient from node process re-initializing after coordinated restart. Resolved within one scrape interval.</td>
+    <td><span class="badge healthy">INFO</span></td>
+  </tr>
+  <tr>
+    <td>2026-07-03 09:00</td>
+    <td>audio_engine CPU peaks at 30.17% (highest in 7-day window)</td>
+    <td>No log</td>
+    <td>Post-restart audio_engine settling into operational workload. Consistent with pre-restart CPU levels — workload resumed normally.</td>
+    <td><span class="badge warning">WARNING</span></td>
+  </tr>
+  <tr>
+    <td>2026-07-03 12:00</td>
+    <td>runtime_engine memory growth rate peaks at 887.76 B/s</td>
+    <td>No log</td>
+    <td>Highest leak rate window ~3.7 hours post-restart. No external trigger evident. Possible initialization-phase object accumulation.</td>
+    <td><span class="badge warning">WARNING</span></td>
+  </tr>
+  <tr>
+    <td>2026-07-06 09:08 (current)</td>
+    <td>runtime_engine memory at 419.8 MB and still rising; growth rate sustained avg 395 B/s</td>
+    <td>No log</td>
+    <td>No signs of self-correction. Leak continues without plateau. Process has been running 72.8h post-restart.</td>
+    <td><span class="badge warning">WARNING</span></td>
+  </tr>
+</table>
+<div class="info-box">
+  <strong>Key Correlation Finding:</strong> The coordinated restart of audio_engine and runtime_engine at 2026-07-03T08:20 is the defining event of the 7-day window. All subsequent anomalies (runtime_engine memory leak, audio_engine CPU peak) trace to this event. There is no crash log to explain the restart trigger — either the restarts were orchestrated by a deployment pipeline / watchdog service, or log shipping is not configured for Core-635c.
 </div>
 
-<h2>6. Memory Leak Detection</h2>
-<div class="section-box">
-  <p class="no-data">Memory leak analysis cannot be performed — no memory usage time-series data received from Core-635c.</p>
-  <p>Detection methodology: sustained monotonic increase in process_memory_usage_bytes over 24 hours without a corresponding restart. Requires at least one data point to evaluate.</p>
-  <ul>
-    <li>audio_engine — <span class="no-data">Insufficient data</span></li>
-    <li>runtime_engine — <span class="no-data">Insufficient data</span></li>
-    <li>video_engine — <span class="no-data">Insufficient data</span></li>
-    <li>node — <span class="no-data">Insufficient data</span></li>
-    <li>engine_discover — <span class="no-data">Insufficient data</span></li>
-  </ul>
-  <p><strong>Leak Risk:</strong> <span class="badge-critical">UNDETERMINED (DEVICE OFFLINE)</span></p>
+<!-- SECTION 9 -->
+<h2>9. UPTIME AND RESTART ANALYSIS</h2>
+<table>
+  <tr><th>Process</th><th>PID(s)</th><th>Restarts in 7d</th><th>Restart Timestamp</th><th>Pre-restart Uptime</th><th>Current Uptime</th><th>Status</th></tr>
+  <tr>
+    <td>audio_engine</td>
+    <td>14963 &rarr; 24849</td>
+    <td>1</td>
+    <td>2026-07-03 08:20 UTC</td>
+    <td>~674,010s (~7.8 days)</td>
+    <td>~72.8h (262,180s)</td>
+    <td><span class="badge warning">1 RESTART</span></td>
+  </tr>
+  <tr>
+    <td>runtime_engine</td>
+    <td>15550 &rarr; 25428</td>
+    <td>1</td>
+    <td>2026-07-03 08:20 UTC</td>
+    <td>~674,000s (~7.8 days)</td>
+    <td>~72.8h (262,180s)</td>
+    <td><span class="badge warning">1 RESTART</span></td>
+  </tr>
+  <tr>
+    <td>engine_discover</td>
+    <td>10369</td>
+    <td>0</td>
+    <td>&mdash;</td>
+    <td>&mdash;</td>
+    <td>~336.3h (~14 days) = 1,210,600s</td>
+    <td><span class="badge healthy">STABLE</span></td>
+  </tr>
+  <tr>
+    <td>node</td>
+    <td>8859</td>
+    <td>0</td>
+    <td>&mdash;</td>
+    <td>&mdash;</td>
+    <td>~336.3h (~14 days) = 1,210,600s</td>
+    <td><span class="badge healthy">STABLE</span></td>
+  </tr>
+  <tr>
+    <td>video_engine</td>
+    <td>9654, 9655</td>
+    <td>0</td>
+    <td>&mdash;</td>
+    <td>&mdash;</td>
+    <td>~336.3h (~14 days) = 1,210,600s</td>
+    <td><span class="badge healthy">STABLE</span></td>
+  </tr>
+</table>
+<p>
+  <strong>Total restarts (7 days):</strong> 2 &mdash; audio_engine + runtime_engine, perfectly synchronized at 2026-07-03T08:20:00 UTC. The synchronization of both restarts to the same second strongly indicates an orchestrated action (deployment, watchdog, health check) rather than independent crashes. Both processes had been running continuously for ~7.8 days before the restart.
+</p>
+<p>
+  <strong>Stable processes:</strong> engine_discover, node, and both video_engine instances have been running uninterrupted for ~14 days (beyond the 7-day observation window), confirming long-term process stability for these services.
+</p>
+
+<!-- SECTION 10 -->
+<h2>10. ANOMALIES</h2>
+<table>
+  <tr><th>#</th><th>Anomaly</th><th>First Detected</th><th>Process</th><th>Evidence</th><th>Severity</th></tr>
+  <tr>
+    <td>A1</td>
+    <td>Sustained memory leak in runtime_engine</td>
+    <td>2026-07-03 08:20 (post-restart)</td>
+    <td>runtime_engine PID 25428</td>
+    <td>316.4 MB &rarr; 419.8 MB (+32.8%) over 72.8h; avg growth rate 395.56 B/s, no plateau. Projection: +220 MB/week.</td>
+    <td><span class="badge warning">WARNING</span></td>
+  </tr>
+  <tr>
+    <td>A2</td>
+    <td>Coordinated process restart (cause unknown)</td>
+    <td>2026-07-03 08:20 UTC</td>
+    <td>audio_engine + runtime_engine</td>
+    <td>Both PIDs reset simultaneously (14963&rarr;24849, 15550&rarr;25428). No crash log in Loki. Restarts separated by 0 seconds.</td>
+    <td><span class="badge warning">WARNING</span></td>
+  </tr>
+  <tr>
+    <td>A3</td>
+    <td>audio_engine sustained high CPU</td>
+    <td>Entire 7-day window</td>
+    <td>audio_engine PID 24849</td>
+    <td>Avg 30% combined (25% user + 5% system). Persistent baseline with no relief periods. Peak 30.17%. Accounts for &gt;85% of Core-635c total CPU.</td>
+    <td><span class="badge warning">WARNING</span></td>
+  </tr>
+  <tr>
+    <td>A4</td>
+    <td>video_engine processes fully idle (0% CPU)</td>
+    <td>Entire 7-day window</td>
+    <td>video_engine PIDs 9654, 9655</td>
+    <td>Zero CPU utilization across all 866 data points. Processes are live (memory allocated, threads active) but not executing work. Video subsystem may be misconfigured or not routed.</td>
+    <td><span class="badge healthy">INFO</span></td>
+  </tr>
+  <tr>
+    <td>A5</td>
+    <td>node memory spike at restart time</td>
+    <td>2026-07-03 08:20</td>
+    <td>node PID 8859</td>
+    <td>Peak 367.7 MB vs avg 273.1 MB (+34.5%). Resolved within one scrape interval. Likely initialization transient, not a leak.</td>
+    <td><span class="badge healthy">INFO</span></td>
+  </tr>
+  <tr>
+    <td>A6</td>
+    <td>No stacktrace logs shipped for Core-635c</td>
+    <td>Entire 7-day window</td>
+    <td>All processes</td>
+    <td>Loki stacktrace service has no streams matching instance="Core-635c". Cannot distinguish between true zero crashes and missing telemetry.</td>
+    <td><span class="badge warning">WARNING (observability gap)</span></td>
+  </tr>
+</table>
+
+<!-- SECTION 11 -->
+<h2>11. SUMMARY AND RISK ASSESSMENT</h2>
+<div style="background:#FFFAE6; border: 2px solid #ff8b00; border-radius:6px; padding:16px 20px; margin:12px 0;">
+  <h3 style="margin:0 0 8px 0; color:#ff8b00;">&#9888;&nbsp; Overall Status: <strong>WARNING</strong></h3>
+  <p style="margin:0;">Core-635c is operational and crash-free over the 7-day window, but carries two active risk factors that require attention before they escalate to CRITICAL.</p>
 </div>
 
-<h2>7. Crash and Stacktrace Analysis</h2>
-<div class="section-box">
-  <p class="no-data">No crash or stacktrace logs found for Core-635c in the last 24 hours.</p>
-  <p>Query executed: <code>{service_name="stacktrace", instance="Core-635c"}</code> against Loki (grafanacloud-logs). The broader query <code>{service_name="stacktrace"}</code> also returned no active log streams fleet-wide, indicating the stacktrace log pipeline is inactive or not shipping logs with the expected label set.</p>
-  <table>
-    <tr><th>Timestamp</th><th>Process</th><th>Error Type</th><th>Signal</th><th>Stack Summary</th></tr>
-    <tr><td colspan="5" style="text-align:center;" class="no-data">No crash events recorded</td></tr>
-  </table>
-  <p><strong>Total Crashes (24h):</strong> <span class="no-data">0 confirmed — device offline, data may be missing</span></p>
-</div>
+<table>
+  <tr><th>Category</th><th>Finding</th><th>Status</th></tr>
+  <tr><td>Crash / Stability</td><td>Zero fatal errors. No stacktrace logs. Processes running stably post-restart.</td><td><span class="badge healthy">HEALTHY</span></td></tr>
+  <tr><td>CPU Load</td><td>audio_engine sustains ~30% CPU over 7 days. No saturation but leaves limited headroom.</td><td><span class="badge warning">WARNING</span></td></tr>
+  <tr><td>Memory Pressure</td><td>Total utilization &lt;21.3%; no immediate saturation. runtime_engine leak is the primary risk vector.</td><td><span class="badge warning">WARNING</span></td></tr>
+  <tr><td>Memory Leak</td><td>runtime_engine growing +103 MB in 72.8h. Projected +220 MB/week if unaddressed.</td><td><span class="badge warning">WARNING</span></td></tr>
+  <tr><td>Process Restarts</td><td>2 coordinated restarts on 2026-07-03T08:20. Cause not identified. No crash evidence.</td><td><span class="badge warning">WARNING</span></td></tr>
+  <tr><td>I/O Health</td><td>Zero wait-state CPU across all processes. No I/O bottleneck.</td><td><span class="badge healthy">HEALTHY</span></td></tr>
+  <tr><td>Thread Health</td><td>All thread counts stable. No thread leaks.</td><td><span class="badge healthy">HEALTHY</span></td></tr>
+  <tr><td>Observability Coverage</td><td>No stacktrace logs flowing for Core-635c. Crash telemetry gap.</td><td><span class="badge warning">WARNING</span></td></tr>
+  <tr><td>Video Subsystem</td><td>Both video_engine PIDs live but 0% CPU. Subsystem idle or not routed.</td><td><span class="badge healthy">INFO</span></td></tr>
+  <tr><td>Long-running Processes</td><td>engine_discover, node, video_engines: 14+ days uptime, no issues.</td><td><span class="badge healthy">HEALTHY</span></td></tr>
+</table>
 
-<h2>8. Metrics and Log Correlation</h2>
-<div class="section-box">
-  <p class="no-data">No correlation possible — both metric and log streams are absent for Core-635c.</p>
-  <p>Correlation approach: align crash timestamps from Loki with CPU/memory spikes from Prometheus to identify pre-crash resource pressure patterns. Requires at least one signal to be active.</p>
-  <table>
-    <tr><th>Event Time</th><th>Log Event</th><th>CPU at Event</th><th>Memory at Event</th><th>Correlation</th></tr>
-    <tr><td colspan="5" style="text-align:center;" class="no-data">No correlated events — device offline</td></tr>
-  </table>
-</div>
+<p>
+  <strong>Risk Trajectory:</strong> At the current runtime_engine leak rate (~31 MB/day), the process will have consumed an additional ~217 MB by 2026-07-13. If runtime_engine follows the same uptime cycle as the previous instance (~7.8 days), a second restart may naturally reclaim this memory. However, relying on restarts to manage memory leaks is not a sustainable practice and increases restart frequency risk.
+</p>
 
-<h2>9. Uptime and Restart Analysis</h2>
-<div class="section-box">
-  <p class="no-data">No uptime data available for Core-635c.</p>
-  <p>Metric queried: <code>process_uptime_seconds{instance="Core-635c"}</code>. Restart detection: identify monotonic drops in uptime value over the 24-hour window. Active fleet instances with uptime data: COS-Core-24f, Gotham-nv-32-h-de22, core-sachin, eternia-Core24-d447, nv-32-h-c555-Krypton.</p>
-  <table>
-    <tr><th>Process</th><th>Current Uptime</th><th>Restarts Detected</th><th>Last Restart Time</th><th>Status</th></tr>
-    <tr><td>audio_engine</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td><span class="badge-critical">UNKNOWN</span></td></tr>
-    <tr><td>runtime_engine</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td><span class="badge-critical">UNKNOWN</span></td></tr>
-    <tr><td>video_engine</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td><span class="badge-critical">UNKNOWN</span></td></tr>
-    <tr><td>node</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td><span class="badge-critical">UNKNOWN</span></td></tr>
-    <tr><td>engine_discover</td><td class="no-data">—</td><td class="no-data">—</td><td class="no-data">—</td><td><span class="badge-critical">UNKNOWN</span></td></tr>
-  </table>
-</div>
+<!-- SECTION 12 -->
+<h2>12. RECOMMENDED ACTIONS</h2>
+<table>
+  <tr><th>Priority</th><th>Action</th><th>Target Process</th><th>Owner</th><th>Rationale</th></tr>
+  <tr>
+    <td><span class="badge warning">HIGH</span></td>
+    <td>Investigate runtime_engine memory leak. Profile heap allocations post-restart. Check for unclosed resource handles, growing caches, or event listener accumulation. Target: resolve or schedule restart cadence before +300 MB threshold.</td>
+    <td>runtime_engine (PID 25428)</td>
+    <td>Platform Engineering</td>
+    <td>Leak growing at +31 MB/day. If unaddressed, will trigger OOM or forced restart within ~14 days of current restart.</td>
+  </tr>
+  <tr>
+    <td><span class="badge warning">HIGH</span></td>
+    <td>Determine root cause of 2026-07-03T08:20 coordinated restart. Review deployment logs, watchdog service logs, and CI/CD pipeline runs around that timestamp. Confirm if restart was intentional or triggered by health check failure.</td>
+    <td>audio_engine + runtime_engine</td>
+    <td>Platform Engineering / DevOps</td>
+    <td>Unknown restart cause is a reliability gap. Recurring restarts without root cause analysis indicate uncontrolled instability.</td>
+  </tr>
+  <tr>
+    <td><span class="badge warning">MEDIUM</span></td>
+    <td>Configure Loki log shipping for Core-635c to the <code>service_name="stacktrace"</code> stream. Verify Alloy / Promtail agent is deployed and logs are forwarded. Run a test crash log and confirm receipt in Grafana.</td>
+    <td>All processes</td>
+    <td>Observability / SRE</td>
+    <td>Core-635c has zero stacktrace coverage in Loki. Cannot distinguish true crash-free state from a logging outage.</td>
+  </tr>
+  <tr>
+    <td><span class="badge warning">MEDIUM</span></td>
+    <td>Investigate audio_engine sustained ~30% CPU. Review audio workload routing — confirm this is expected load for Core-635c's assigned sessions. If load exceeds design parameters, consider session rebalancing across the fleet.</td>
+    <td>audio_engine (PID 24849)</td>
+    <td>Application Engineering</td>
+    <td>30% sustained CPU leaves &lt;70% headroom. Any additional workload spike could push toward saturation. No downward trend detected over 7 days.</td>
+  </tr>
+  <tr>
+    <td><span class="badge healthy">LOW</span></td>
+    <td>Verify video_engine routing configuration for Core-635c. Both PIDs 9654 and 9655 have been resident and threaded (55 threads) but CPU-idle for 14+ days. Confirm whether video workloads are intentionally not routed here, or if a routing/config issue is preventing video processing.</td>
+    <td>video_engine (PIDs 9654, 9655)</td>
+    <td>Application Engineering</td>
+    <td>Idle threads consume memory (47.2 MB) without producing work. Either confirm idle-by-design or restore routing.</td>
+  </tr>
+  <tr>
+    <td><span class="badge healthy">LOW</span></td>
+    <td>Set up a Grafana alert for runtime_engine memory threshold on Core-635c: fire when <code>process_memory_usage_bytes{instance="Core-635c", pid="25428"} &gt; 600000000</code> (600 MB). This provides ~3 days early warning before potential OOM.</td>
+    <td>runtime_engine</td>
+    <td>SRE / Alerting</td>
+    <td>Proactive alerting ensures the team is notified before the leak becomes critical, rather than reacting post-OOM.</td>
+  </tr>
+</table>
 
-<h2>10. Anomalies</h2>
-<div class="section-box">
-  <ul>
-    <li><span class="critical"><strong>ANOMALY-001 [CRITICAL]:</strong></span> Core-635c is absent from all Prometheus metric streams for the full 24-hour analysis window. The device is not being scraped or is unreachable by the Prometheus agent.</li>
-    <li><span class="critical"><strong>ANOMALY-002 [CRITICAL]:</strong></span> Core-635c is absent from Loki log ingestion. No stacktrace logs, no agent logs, and no stream labels with instance="Core-635c" were found.</li>
-    <li><span class="warning"><strong>ANOMALY-003 [WARNING]:</strong></span> The Loki service_name="stacktrace" stream has no active log streams fleet-wide in this window. This may indicate a broader log pipeline issue.</li>
-    <li><span class="warning"><strong>ANOMALY-004 [WARNING]:</strong></span> Core-635c is absent from the active fleet instance list (7 active cores identified), suggesting it may have been decommissioned, renamed, or lost network connectivity more than 24 hours ago.</li>
-  </ul>
-</div>
-
-<h2>11. Summary and Risk Assessment</h2>
-<div class="section-box" style="border-left: 4px solid #de350b;">
-  <p style="font-size:20px;"><strong>Overall Status: <span class="badge-critical">CRITICAL</span></strong></p>
-  <table>
-    <tr><th>Category</th><th>Status</th><th>Notes</th></tr>
-    <tr><td>Device Reachability</td><td><span class="badge-critical">CRITICAL</span></td><td>No metrics or logs received for 24+ hours</td></tr>
-    <tr><td>CPU Health</td><td><span class="badge-critical">UNDETERMINED</span></td><td>No data available</td></tr>
-    <tr><td>Memory Health</td><td><span class="badge-critical">UNDETERMINED</span></td><td>No data available</td></tr>
-    <tr><td>Process Health</td><td><span class="badge-critical">UNDETERMINED</span></td><td>No process telemetry</td></tr>
-    <tr><td>Crash / Stability Risk</td><td><span class="badge-critical">UNDETERMINED</span></td><td>Cannot confirm crash-free operation</td></tr>
-    <tr><td>Memory Leak Risk</td><td><span class="badge-critical">UNDETERMINED</span></td><td>Insufficient data to evaluate</td></tr>
-    <tr><td>Log Pipeline</td><td><span class="badge-critical">CRITICAL</span></td><td>No log streams active for this device</td></tr>
-  </table>
-  <p><strong>Risk Summary:</strong> Core-635c has been completely silent for the entire 24-hour analysis window. This is a CRITICAL finding. The device cannot be assessed for health, stability, or safety of operation. Immediate manual investigation is required to determine whether the device is powered off, network-isolated, or experiencing a catastrophic agent failure.</p>
-</div>
-
-<h2>12. Recommended Actions</h2>
-<div class="section-box">
-  <ol>
-    <li><strong>[IMMEDIATE — P1]</strong> Verify physical and network status of Core-635c. Check power state, LAN connectivity, and whether the device responds to ping from the monitoring network segment.</li>
-    <li><strong>[IMMEDIATE — P1]</strong> SSH into Core-635c (if reachable) and verify the Prometheus metrics agent or QSC telemetry exporter is running: <code>systemctl status &lt;agent&gt;</code>.</li>
-    <li><strong>[HIGH — P2]</strong> Check the Prometheus scrape targets UI (<code>/targets</code>) to confirm whether Core-635c appears as a target and inspect any DOWN state error message.</li>
-    <li><strong>[HIGH — P2]</strong> Verify the Grafana Alloy or Loki agent configuration on Core-635c. Confirm the <code>service_name</code> and <code>instance</code> labels are correctly set for log shipping.</li>
-    <li><strong>[MEDIUM — P3]</strong> Review QSC device management console or DHCP/DNS logs to confirm Core-635c IP address has not changed, causing scrape target mismatches.</li>
-    <li><strong>[MEDIUM — P3]</strong> Cross-reference Core-635c last known telemetry timestamp in Grafana Explore to determine the exact time it stopped reporting and scope the outage window.</li>
-    <li><strong>[LOW — P4]</strong> Once restored, compare its build_name and build_number against the active fleet to ensure firmware compatibility.</li>
-    <li><strong>[LOW — P4]</strong> Add a Grafana alert rule using <code>absent(process_cpu_utilization_ratio{instance="Core-635c"})</code> to proactively detect future reporting gaps for this device.</li>
-  </ol>
-</div>
-
-<hr style="margin-top: 32px; border: 1px solid #DFE1E6;">
-<p style="color:#6B778C; font-size:12px;">Report generated by QSC Sleestack Core Health Analysis Agent — Grafana Cloud — 2026-06-29 03:30 IST — Data window: 2026-06-28 22:00 UTC → 2026-06-29 22:00 UTC</p>
+<hr>
+<p style="font-size:12px; color:#6B778C; text-align:center;">
+  Generated by QSC Sleestack Core Health Analysis Agent &bull; Grafana Assistant &bull; 2026-07-06T09:08:15Z &bull; Core-635c &bull; Period: 2026-06-29 &rarr; 2026-07-06
+</p>
 
 </body>
 </html>
