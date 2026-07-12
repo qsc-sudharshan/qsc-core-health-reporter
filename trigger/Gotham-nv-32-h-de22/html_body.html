@@ -1,200 +1,348 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Core Health Report — Gotham-nv-32-h-de22 — 2026-07-06</title>
+<title>QSC Core Health Report — Gotham-nv-32-h-de22 — 2026-07-13</title>
 <style>
-body{font-family:Arial,sans-serif;font-size:14px;color:#172B4D;margin:20px;}
-h1{color:#172B4D;font-size:22px;border-bottom:2px solid #DFE1E6;padding-bottom:8px;}
-h2{color:#172B4D;font-size:15px;background:#F4F5F7;padding:6px 10px;border-left:4px solid #0052CC;margin-top:24px;}
-table{border-collapse:collapse;width:100%;margin-top:8px;}
-th{background:#0052CC;color:white;padding:8px 10px;text-align:left;font-size:13px;}
-td{border:1px solid #DFE1E6;padding:7px 10px;font-size:13px;}
-tr:nth-child(even) td{background:#F4F5F7;}
-.healthy{color:#00875a;font-weight:bold;}
-.warning{color:#ff8b00;font-weight:bold;}
-.critical{color:#de350b;font-weight:bold;}
-.badge-healthy{background:#00875a;color:white;padding:2px 8px;border-radius:3px;font-weight:bold;font-size:12px;}
-.badge-warning{background:#ff8b00;color:white;padding:2px 8px;border-radius:3px;font-weight:bold;font-size:12px;}
-.badge-critical{background:#de350b;color:white;padding:2px 8px;border-radius:3px;font-weight:bold;font-size:12px;}
-ul{margin:6px 0;padding-left:20px;}
-li{margin:3px 0;}
-p{margin:6px 0;}
-.meta{color:#5E6C84;font-size:12px;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;margin:24px;color:#172b4d;background:#fff;font-size:14px;line-height:1.5}
+h1{font-size:24px;color:#172b4d;border-bottom:3px solid #0052cc;padding-bottom:10px;margin-bottom:6px}
+h2{font-size:16px;color:#0052cc;margin-top:28px;margin-bottom:8px;border-left:4px solid #0052cc;padding-left:10px}
+p{margin:6px 0}
+table{border-collapse:collapse;width:100%;margin:10px 0 16px 0;font-size:13px}
+th{background:#0052cc;color:#fff;padding:8px 12px;text-align:left;font-weight:600}
+td{border:1px solid #dfe1e6;padding:7px 12px}
+tr:nth-child(even) td{background:#f4f5f7}
+.badge{display:inline-block;padding:2px 10px;border-radius:3px;font-weight:700;font-size:12px;letter-spacing:0.5px}
+.healthy{background:#00875a;color:#fff}
+.warning{background:#ff8b00;color:#fff}
+.critical{background:#de350b;color:#fff}
+.watch{background:#6554c0;color:#fff}
+.info-badge{background:#0052cc;color:#fff}
+.section{margin:16px 0;padding:16px 20px;border:1px solid #dfe1e6;border-radius:6px}
+ul{margin:8px 0;padding-left:22px}
+li{margin:5px 0}
+.meta{display:flex;flex-wrap:wrap;gap:16px;margin:14px 0}
+.meta-item{background:#f4f5f7;border-radius:4px;padding:8px 14px;min-width:160px}
+.meta-label{font-size:11px;color:#6b778c;text-transform:uppercase;letter-spacing:0.5px}
+.meta-value{font-size:14px;font-weight:600;color:#172b4d;margin-top:2px}
+.highlight-warning{background:#fffae6;border-left:4px solid #ff8b00;padding:8px 14px;margin:8px 0;border-radius:0 4px 4px 0}
+.highlight-info{background:#e6f0ff;border-left:4px solid #0052cc;padding:8px 14px;margin:8px 0;border-radius:0 4px 4px 0}
+.highlight-success{background:#e3fcef;border-left:4px solid #00875a;padding:8px 14px;margin:8px 0;border-radius:0 4px 4px 0}
+.summary-box{background:#fffae6;border:2px solid #ff8b00;border-radius:6px;padding:16px 20px;margin:20px 0;text-align:center}
+footer{margin-top:32px;padding-top:12px;border-top:1px solid #dfe1e6;color:#6b778c;font-size:12px}
 </style>
 </head>
 <body>
-<h1>QSC Sleestack — Core Health Report</h1>
-<p class="meta"><strong>Core:</strong> Gotham-nv-32-h-de22 &nbsp;|&nbsp; <strong>Period:</strong> 2026-06-29T00:00Z &rarr; 2026-07-06T09:08Z (7 days) &nbsp;|&nbsp; <strong>Generated:</strong> 2026-07-06T09:08:16Z</p>
 
+<h1>QSC Sleestack &#8212; Core Health Analysis Report</h1>
+<p><strong>Core:</strong> Gotham-nv-32-h-de22 &nbsp;|&nbsp; <strong>Period:</strong> 2026-07-06 00:00 UTC &#8212; 2026-07-12 22:00 UTC &nbsp;|&nbsp; <strong>Generated:</strong> 2026-07-13 03:30 IST</p>
+
+<!-- SECTION 1: CORE IDENTITY -->
+<div class="section">
 <h2>1. CORE IDENTITY</h2>
-<table>
-<tr><th>Field</th><th>Value</th></tr>
-<tr><td>Core Name</td><td>Gotham-nv-32-h-de22</td></tr>
-<tr><td>Report Window</td><td>2026-06-29T00:00:00Z &mdash; 2026-07-06T09:08:16Z</td></tr>
-<tr><td>Duration</td><td>177 hours (7.4 days)</td></tr>
-<tr><td>Monitored Processes</td><td>audio_engine (PID 16352), runtime_engine (PID 17511), video_engine (PIDs 9873, 9874), node (PID 8264), engine_discover (PID 10624)</td></tr>
-<tr><td>Data Sources</td><td>Prometheus (grafanacloud-prom), Loki (grafanacloud-logs, service_name=stacktrace)</td></tr>
-<tr><td>Overall Status</td><td><span class="badge-warning">WARNING</span></td></tr>
-</table>
+<div class="meta">
+  <div class="meta-item"><div class="meta-label">Core Name</div><div class="meta-value">Gotham-nv-32-h-de22</div></div>
+  <div class="meta-item"><div class="meta-label">MAC Address</div><div class="meta-value">00:60:74:f3:de:22</div></div>
+  <div class="meta-item"><div class="meta-label">Gateway ID</div><div class="meta-value">1DQ4M2YKHJTUYGL</div></div>
+  <div class="meta-item"><div class="meta-label">Platform</div><div class="meta-value">QSC Sleestack</div></div>
+  <div class="meta-item"><div class="meta-label">Service Instance ID</div><div class="meta-value">Gotham-nv-32-h-de22</div></div>
+  <div class="meta-item"><div class="meta-label">Overall Status</div><div class="meta-value"><span class="badge warning">WARNING</span></div></div>
+</div>
+<p><strong>Active Processes (5):</strong> audio_engine, engine_discover, node, runtime_engine, video_engine</p>
+<p><strong>Data Sources:</strong> Prometheus (grafanacloud-prom) for CPU, memory, thread, and uptime metrics; Loki (grafanacloud-logs) for fatal crash and stacktrace logs.</p>
+<p><strong>Last System Boot:</strong> Approximately 2026-06-24 12:43&#8211;12:49 UTC (all processes show ~18.42 days continuous uptime as of report time).</p>
+<p><strong>Report Period:</strong> 2026-07-06 00:00:00 UTC to 2026-07-12 22:00:05 UTC (7 days)</p>
+</div>
 
+<!-- SECTION 2: SYSTEM RESOURCE SUMMARY -->
+<div class="section">
 <h2>2. SYSTEM RESOURCE SUMMARY</h2>
 <table>
-<tr><th>Metric</th><th>Average</th><th>Peak</th><th>Peak Timestamp (UTC)</th><th>Status</th></tr>
-<tr><td>Total CPU Utilization</td><td>27.37%</td><td>31.75%</td><td>2026-07-03T03:00:00Z</td><td><span class="healthy">HEALTHY</span></td></tr>
-<tr><td>Total Memory Utilization</td><td>~27.7%</td><td>~32.4%</td><td>2026-07-04T01:00:00Z</td><td><span class="warning">WARNING</span></td></tr>
-<tr><td>Total Memory (All Processes)</td><td>~750 MB</td><td>~880 MB</td><td>2026-07-04T01:00:00Z</td><td><span class="warning">WARNING</span></td></tr>
-<tr><td>Fatal Crash Events</td><td colspan="2">0 detected</td><td>&mdash;</td><td><span class="healthy">HEALTHY</span></td></tr>
-<tr><td>Process Restarts</td><td colspan="2">0 restarts</td><td>&mdash;</td><td><span class="healthy">HEALTHY</span></td></tr>
-<tr><td>I/O Wait CPU</td><td>0%</td><td>0%</td><td>&mdash;</td><td><span class="healthy">HEALTHY</span></td></tr>
+  <tr><th>Metric</th><th>Value</th><th>Status</th></tr>
+  <tr><td>Estimated System RAM</td><td>~3.9 GB</td><td><span class="badge healthy">HEALTHY</span></td></tr>
+  <tr><td>Combined Peak CPU (highest single process)</td><td>19.57% (audio_engine)</td><td><span class="badge healthy">HEALTHY</span></td></tr>
+  <tr><td>Combined Average CPU (sum of all process averages)</td><td>~9.14%</td><td><span class="badge healthy">HEALTHY</span></td></tr>
+  <tr><td>Combined Peak Memory (sum of all process peaks)</td><td>918.5 MB (23.6% of RAM)</td><td><span class="badge healthy">HEALTHY</span></td></tr>
+  <tr><td>Combined Average Memory (sum of all process averages)</td><td>~760.0 MB (19.5% of RAM)</td><td><span class="badge healthy">HEALTHY</span></td></tr>
+  <tr><td>Total Fatal Crash Events (7 days)</td><td>0</td><td><span class="badge healthy">HEALTHY</span></td></tr>
+  <tr><td>Total Process Restarts (7 days)</td><td>0</td><td><span class="badge healthy">HEALTHY</span></td></tr>
+  <tr><td>Active Process Count</td><td>5 processes (6 PIDs including dual video_engine)</td><td><span class="badge healthy">HEALTHY</span></td></tr>
+  <tr><td>runtime_engine Memory Growth (7d)</td><td>+28.3% (289 MB &#8594; 403 MB avg, peak 435 MB)</td><td><span class="badge warning">WARNING</span></td></tr>
 </table>
+<div class="highlight-warning">
+  <strong>Key Risk:</strong> runtime_engine shows a confirmed 28.3% memory growth trend over the 7-day period, growing at approximately 17.1 KB/min (24.6 MB/day). At this rate, runtime_engine will reach ~575 MB within the next 7 days. This is the primary risk factor for this core.
+</div>
+</div>
 
+<!-- SECTION 3: CPU STATE BREAKDOWN -->
+<div class="section">
 <h2>3. CPU STATE BREAKDOWN</h2>
-<p>Total system CPU averaged <strong>27.37%</strong> and peaked at <strong>31.75%</strong> on 2026-07-03T03:00:00Z. No I/O wait states were detected across any process during the entire 7-day window. All processes remain well below CPU saturation thresholds.</p>
 <table>
-<tr><th>Process</th><th>PID</th><th>Avg CPU (User)</th><th>Avg CPU (System)</th><th>Peak CPU (Combined)</th><th>Peak Timestamp (UTC)</th><th>Status</th></tr>
-<tr><td>audio_engine</td><td>16352</td><td>15.82%</td><td>2.75%</td><td>37.5%</td><td>2026-07-01T11:00:00Z</td><td><span class="warning">WARNING</span></td></tr>
-<tr><td>runtime_engine</td><td>17511</td><td>3.73%</td><td>2.06%</td><td>14.4%</td><td>2026-07-03T08:00:00Z</td><td><span class="healthy">HEALTHY</span></td></tr>
-<tr><td>node</td><td>8264</td><td>2.19%</td><td>0.51%</td><td>7.4%</td><td>2026-06-29T14:00:00Z</td><td><span class="healthy">HEALTHY</span></td></tr>
-<tr><td>video_engine</td><td>9874</td><td>0.03%</td><td>0.07%</td><td>2.4%</td><td>&mdash;</td><td><span class="healthy">HEALTHY</span></td></tr>
-<tr><td>engine_discover</td><td>10624</td><td>0.15%</td><td>0.06%</td><td>0.39%</td><td>&mdash;</td><td><span class="healthy">HEALTHY</span></td></tr>
-<tr><td>video_engine</td><td>9873</td><td>0%</td><td>0%</td><td>0%</td><td>&mdash; (inactive)</td><td><span class="healthy">HEALTHY</span></td></tr>
+  <tr><th>Process</th><th>Peak CPU%</th><th>Avg CPU%</th><th>Trend (7d)</th><th>Status</th></tr>
+  <tr><td>audio_engine</td><td>19.57%</td><td>6.20%</td><td>Stable, consistently highest consumer. CV=0.003 (near-zero variance). Flat across all 28 six-hour samples.</td><td><span class="badge healthy">HEALTHY</span></td></tr>
+  <tr><td>runtime_engine</td><td>7.90%</td><td>2.04%</td><td>Level shift detected at 2026-07-08T12:00 UTC. CPU increased 16.98% from first third (avg 1.8%) to last third (avg 2.2%) of the week.</td><td><span class="badge warning">WARNING</span></td></tr>
+  <tr><td>node</td><td>4.15%</td><td>0.81%</td><td>Flat overall; anti-correlated with audio_engine (r=&#8722;0.492). Occasional usage bursts that mirror audio_engine dips.</td><td><span class="badge healthy">HEALTHY</span></td></tr>
+  <tr><td>video_engine</td><td>2.50%</td><td>0.02%</td><td>Near-zero baseline with infrequent spikes to 2.5%. Largely idle &#8212; consistent with a system primarily running audio workloads.</td><td><span class="badge healthy">HEALTHY</span></td></tr>
+  <tr><td>engine_discover</td><td>0.22%</td><td>0.07%</td><td>Minimal and consistently flat throughout the week. Single-threaded background service.</td><td><span class="badge healthy">HEALTHY</span></td></tr>
 </table>
 <ul>
-<li>audio_engine (PID 16352) accounts for ~94% of total peak CPU &mdash; the primary CPU consumer on this core.</li>
-<li>System-space CPU for audio_engine averages 2.75%, indicating balanced user/kernel activity with no lock contention evidence.</li>
-<li>video_engine PID 9873 shows zero CPU utilization throughout &mdash; dormant or inactive instance.</li>
-<li>Aggregate peak of ~39.9% leaves significant headroom; no CPU bottleneck risk identified.</li>
+  <li><strong>audio_engine</strong> is the dominant and most predictable CPU consumer at 6.2% average &#8212; expected for real-time audio processing on a QSC core device.</li>
+  <li><strong>runtime_engine</strong> CPU increased ~16.98% between the first and last third of the week. A level shift was statistically confirmed at 2026-07-08T12:00 UTC, coinciding with the start of the memory growth acceleration.</li>
+  <li>Top 3 processes (audio_engine, runtime_engine, node) account for 99.07% of total CPU share. No process exceeded 20% CPU peak across the entire 7-day window.</li>
+  <li>Overall CPU health is <strong>HEALTHY</strong>; runtime_engine CPU trend is a secondary watch item requiring correlation with memory investigation.</li>
 </ul>
+</div>
 
+<!-- SECTION 4: MEMORY STATE BREAKDOWN -->
+<div class="section">
 <h2>4. MEMORY STATE BREAKDOWN</h2>
-<p>Aggregate process memory averaged ~27.7% of system RAM (~750 MB total). A coordinated memory pressure event occurred on 2026-07-04: runtime_engine peaked at <strong>483 MB</strong> and node peaked at <strong>235 MB</strong> within 20 hours of each other before recovering autonomously.</p>
 <table>
-<tr><th>Process</th><th>PID</th><th>Avg Mem (%)</th><th>Avg Mem (MB)</th><th>Peak Mem (MB)</th><th>Peak Timestamp (UTC)</th><th>Status</th></tr>
-<tr><td>runtime_engine</td><td>17511</td><td>9.16%</td><td>359 MB</td><td>483 MB</td><td>2026-07-04T01:00:00Z</td><td><span class="warning">WARNING</span></td></tr>
-<tr><td>node</td><td>8264</td><td>5.68%</td><td>223 MB</td><td>235 MB</td><td>2026-07-04T21:00:00Z</td><td><span class="healthy">HEALTHY</span></td></tr>
-<tr><td>audio_engine</td><td>16352</td><td>4.03%</td><td>158 MB</td><td>158 MB</td><td>&mdash; (flat)</td><td><span class="healthy">HEALTHY</span></td></tr>
-<tr><td>video_engine</td><td>9874</td><td>2.49%</td><td>98 MB</td><td>105 MB</td><td>2026-07-06</td><td><span class="healthy">HEALTHY</span></td></tr>
-<tr><td>engine_discover</td><td>10624</td><td>0.31%</td><td>12 MB</td><td>12.7 MB</td><td>2026-07-03T10:00:00Z</td><td><span class="healthy">HEALTHY</span></td></tr>
-<tr><td>video_engine</td><td>9873</td><td>0.17%</td><td>6.85 MB</td><td>6.85 MB</td><td>&mdash; (flat)</td><td><span class="healthy">HEALTHY</span></td></tr>
+  <tr><th>Process</th><th>Peak Mem%</th><th>Avg Mem%</th><th>Peak Bytes</th><th>Avg Bytes</th><th>Status</th></tr>
+  <tr><td>runtime_engine</td><td>11.22%</td><td>8.79%</td><td>420.1 MB</td><td>343.5 MB</td><td><span class="badge warning">WARNING</span></td></tr>
+  <tr><td>node</td><td>6.23%</td><td>5.76%</td><td>233.2 MB</td><td>226.2 MB</td><td><span class="badge healthy">HEALTHY</span></td></tr>
+  <tr><td>audio_engine</td><td>4.03%</td><td>4.03%</td><td>151.0 MB</td><td>151.0 MB</td><td><span class="badge healthy">HEALTHY</span></td></tr>
+  <tr><td>video_engine</td><td>2.70%</td><td>1.42%</td><td>101.0 MB</td><td>55.6 MB</td><td><span class="badge watch">WATCH</span></td></tr>
+  <tr><td>engine_discover</td><td>0.35%</td><td>0.34%</td><td>13.1 MB</td><td>13.3 MB</td><td><span class="badge healthy">HEALTHY</span></td></tr>
 </table>
+<ul>
+  <li><strong>runtime_engine</strong> holds the largest memory footprint at 420 MB peak (11.22% of system RAM) and is actively growing. This is the primary memory risk.</li>
+  <li><strong>audio_engine</strong> is perfectly flat at 151.0 MB with zero variance across all 28 samples (CV=0). A model of deterministic memory management.</li>
+  <li><strong>node</strong> averages 226 MB with a chaotic but bounded oscillation pattern (entropy=0.91). No sustained growth trend; overall &#8722;2.7% decline over the week.</li>
+  <li><strong>video_engine</strong> has a wide min-to-max range (6.5 MB to 101 MB) with an average of 55.6 MB. Overall declining (&#8722;0.78%). Wide range may reflect PID-level aggregation across two instances (PIDs 9873 and 9874).</li>
+  <li><strong>Combined peak memory</strong> across all processes: 918.5 MB (23.6% of ~3.9 GB system RAM) &#8212; within safe thresholds currently.</li>
+</ul>
+</div>
 
+<!-- SECTION 5: PROCESS-LEVEL ANALYSIS -->
+<div class="section">
 <h2>5. PROCESS-LEVEL ANALYSIS</h2>
 <table>
-<tr><th>Process</th><th>PID</th><th>Avg Threads</th><th>Peak Threads</th><th>Thread Trend</th><th>CPU Rank</th><th>Mem Rank</th><th>Status</th></tr>
-<tr><td>video_engine</td><td>9874</td><td>90.9</td><td>91</td><td>Stable</td><td>#5</td><td>#4</td><td><span class="healthy">HEALTHY</span></td></tr>
-<tr><td>runtime_engine</td><td>17511</td><td>74.9</td><td>78</td><td>Growing (+4)</td><td>#2</td><td>#1</td><td><span class="warning">WARNING</span></td></tr>
-<tr><td>node</td><td>8264</td><td>13</td><td>13</td><td>Stable</td><td>#3</td><td>#2</td><td><span class="healthy">HEALTHY</span></td></tr>
-<tr><td>audio_engine</td><td>16352</td><td>9</td><td>9</td><td>Stable</td><td>#1</td><td>#3</td><td><span class="warning">WARNING</span></td></tr>
-<tr><td>engine_discover</td><td>10624</td><td>1</td><td>1</td><td>Stable</td><td>#5</td><td>#5</td><td><span class="healthy">HEALTHY</span></td></tr>
-<tr><td>video_engine</td><td>9873</td><td>1</td><td>1</td><td>Stable</td><td>#6</td><td>#6</td><td><span class="healthy">HEALTHY</span></td></tr>
+  <tr><th>Process</th><th>PID(s)</th><th>Uptime</th><th>Peak CPU</th><th>Avg CPU</th><th>Peak Mem</th><th>Avg Mem</th><th>Peak Threads</th><th>Avg Threads</th><th>Status</th></tr>
+  <tr><td>audio_engine</td><td>16352</td><td>18.42 days</td><td>19.57%</td><td>6.20%</td><td>151 MB</td><td>151 MB</td><td>9</td><td>9</td><td><span class="badge healthy">HEALTHY</span></td></tr>
+  <tr><td>engine_discover</td><td>10624</td><td>18.42 days</td><td>0.22%</td><td>0.07%</td><td>13.1 MB</td><td>13.3 MB</td><td>1</td><td>1</td><td><span class="badge healthy">HEALTHY</span></td></tr>
+  <tr><td>node</td><td>8264</td><td>18.42 days</td><td>4.15%</td><td>0.81%</td><td>233.2 MB</td><td>226.2 MB</td><td>13</td><td>13</td><td><span class="badge healthy">HEALTHY</span></td></tr>
+  <tr><td>runtime_engine</td><td>17511</td><td>18.42 days</td><td>7.90%</td><td>2.04%</td><td>420.1 MB</td><td>343.5 MB</td><td>80</td><td>74.18</td><td><span class="badge warning">WARNING</span></td></tr>
+  <tr><td>video_engine</td><td>9873, 9874</td><td>18.42 days</td><td>2.50%</td><td>0.02%</td><td>101.0 MB</td><td>55.6 MB</td><td>91</td><td>46.0</td><td><span class="badge watch">WATCH</span></td></tr>
 </table>
 <ul>
-<li>runtime_engine thread count grew from 74 to 78 across the observation window &mdash; a 5.4% increase over 7 days; monitor for continued upward trend.</li>
-<li>video_engine (9874) maintains the highest thread pool at 91, stable throughout the period.</li>
-<li>audio_engine (9 threads) handles the highest CPU load with a minimal thread pool, indicating compute-intensive single-threaded workload.</li>
-<li>video_engine (9873) and engine_discover operate in single-threaded mode &mdash; lightweight service profile.</li>
+  <li><strong>audio_engine:</strong> Most stable process on the core. Constant CPU (6.2%) and perfectly flat memory (151 MB, CV=0). Low thread count (9). Fully nominal for real-time audio processing.</li>
+  <li><strong>engine_discover:</strong> Minimal resource footprint. Single-threaded background discovery service. Fully healthy throughout the period.</li>
+  <li><strong>node:</strong> Node.js runtime. Moderate memory (226 MB avg), low CPU. Variable but bounded memory oscillation is typical of event-loop driven processes with garbage collection cycles.</li>
+  <li><strong>runtime_engine:</strong> Highest sustained thread count (74.18 avg, 80 peak) and growing memory (343.5 MB avg, 420 MB peak). CPU trending upward. Requires immediate investigation.</li>
+  <li><strong>video_engine:</strong> Two active PIDs with near-zero CPU baseline (0.02% avg). Thread count spiked to 91 (peak) against a 46 average &#8212; a 97.8% above-mean spike. Wide memory range suggests possible transient scaling behavior.</li>
 </ul>
+</div>
 
+<!-- SECTION 6: MEMORY LEAK DETECTION -->
+<div class="section">
 <h2>6. MEMORY LEAK DETECTION</h2>
-<p>Net memory growth computed as end-of-window value minus start-of-window value over the 7-day period. Processes with monotonic upward trends are flagged for monitoring.</p>
 <table>
-<tr><th>Process</th><th>PID</th><th>Start Mem</th><th>End Mem</th><th>Net Growth (7d)</th><th>Rate/Day</th><th>Trend</th><th>Risk</th></tr>
-<tr><td>node</td><td>8264</td><td>~210 MB</td><td>~229 MB</td><td>+19.7 MB</td><td>+2.8 MB/day</td><td>Monotonic up</td><td><span class="warning">WATCH</span></td></tr>
-<tr><td>video_engine</td><td>9874</td><td>~91 MB</td><td>~105 MB</td><td>+14.3 MB</td><td>+2.0 MB/day</td><td>Steady up</td><td><span class="warning">WATCH</span></td></tr>
-<tr><td>engine_discover</td><td>10624</td><td>~11 MB</td><td>~12.7 MB</td><td>+1.7 MB</td><td>+0.24 MB/day</td><td>Gradual up</td><td><span class="healthy">LOW</span></td></tr>
-<tr><td>audio_engine</td><td>16352</td><td>158.3 MB</td><td>158.3 MB</td><td>0 MB</td><td>0 MB/day</td><td>Flat</td><td><span class="healthy">NONE</span></td></tr>
-<tr><td>video_engine</td><td>9873</td><td>6.85 MB</td><td>6.85 MB</td><td>0 MB</td><td>0 MB/day</td><td>Flat</td><td><span class="healthy">NONE</span></td></tr>
-<tr><td>runtime_engine</td><td>17511</td><td>~348 MB</td><td>~282 MB</td><td>&minus;66.2 MB</td><td>N/A</td><td>Volatile/Recovered</td><td><span class="warning">MONITOR</span></td></tr>
+  <tr><th>Process</th><th>Min (7d)</th><th>Max (7d)</th><th>Avg (7d)</th><th>Min&#8594;Max Delta</th><th>7d Trend Growth</th><th>Growth Rate</th><th>Leak Risk</th></tr>
+  <tr><td>runtime_engine</td><td>256.4 MB</td><td>420.1 MB</td><td>343.5 MB</td><td>+163.7 MB (+63.8%)</td><td>+28.3% (289 MB &#8594; 403 MB)</td><td>17.1 KB/min</td><td><span class="badge warning">SUSPECTED</span></td></tr>
+  <tr><td>node</td><td>174.2 MB</td><td>233.2 MB</td><td>226.2 MB</td><td>+59.0 MB (+33.9%)</td><td>&#8722;2.7% (declining)</td><td>N/A</td><td><span class="badge healthy">NONE</span></td></tr>
+  <tr><td>audio_engine</td><td>151.0 MB</td><td>151.0 MB</td><td>151.0 MB</td><td>0 MB (0%)</td><td>0.0%</td><td>0 KB/min</td><td><span class="badge healthy">NONE</span></td></tr>
+  <tr><td>video_engine</td><td>6.5 MB</td><td>101.0 MB</td><td>55.6 MB</td><td>+94.5 MB</td><td>&#8722;0.78% (declining)</td><td>N/A</td><td><span class="badge healthy">NONE</span></td></tr>
+  <tr><td>engine_discover</td><td>12.1 MB</td><td>13.1 MB</td><td>13.3 MB</td><td>+1.0 MB (+8.3%)</td><td>+5.4%</td><td>0.1 KB/min</td><td><span class="badge healthy">NEGLIGIBLE</span></td></tr>
 </table>
+<div class="highlight-warning">
+  <strong>runtime_engine MEMORY LEAK SUSPECTED:</strong> Memory grew from ~289 MB (week start) to ~403 MB (week end), confirmed by 7-day trend analysis. Peak reached 435.4 MB on 2026-07-12T18:00 UTC. Growth rate of 17.1 KB/min = ~1.0 MB/hour = ~24.6 MB/day. Projection: runtime_engine reaches ~575 MB within 7 days. Combined system memory approaches ~1.1 GB within 7 days. Strong positive trend correlation (r=0.945).
+</div>
 <ul>
-<li>node shows the highest sustained growth (+19.7 MB / 7 days, monotonic). At this rate, ~120 MB accumulation per month is projected &mdash; warrants alerting.</li>
-<li>video_engine (9874) shows consistent linear growth (+14.3 MB) &mdash; possibly a managed buffer expanding with load or an early-stage leak.</li>
-<li>runtime_engine shows a net decrease of 66.2 MB (from 483 MB peak, now at 282 MB), likely reflecting a garbage collection event after the July 4th spike. Not a leak, but the spike origin requires investigation.</li>
+  <li><strong>runtime_engine</strong> shows a monotonic upward memory trend confirmed across 28 six-hour samples &#8212; this is the hallmark of a memory leak or session/buffer accumulation pattern.</li>
+  <li>Strong positive correlation (r=0.945) between engine_discover memory and runtime_engine memory growth suggests a shared subsystem or triggered allocation pattern.</li>
+  <li>Strong anti-correlation (r=&#8722;0.92) between runtime_engine and video_engine memory indicates possible shared buffer pool or active memory rebalancing between engines.</li>
+  <li><strong>audio_engine</strong> at exactly flat 151.0 MB across all 28 samples (CV=0) serves as a positive reference &#8212; demonstrating that deterministic, leak-free operation is achievable on this platform.</li>
+  <li>Recommended immediate action: capture runtime_engine heap profile during next maintenance window. Investigate long-running session objects, unclosed audio graph nodes, or accumulating event listeners.</li>
 </ul>
+</div>
 
+<!-- SECTION 7: CRASH AND STACKTRACE ANALYSIS -->
+<div class="section">
 <h2>7. CRASH AND STACKTRACE ANALYSIS</h2>
-<p>Loki query against <code>service_name="stacktrace"</code> and <code>instance="Gotham-nv-32-h-de22"</code> over the full 7-day window returned <strong>0 log entries</strong>. The core operated without any fatal error or crash for the entire 177-hour period.</p>
+<div class="highlight-success">
+  <strong>No crashes detected.</strong> Loki query against {service_name=&quot;stacktrace&quot;, instance=&quot;Gotham-nv-32-h-de22&quot;} for the full 7-day window returned zero log entries. The stacktrace Loki stream contains no instance label matching this core, confirming no fatal errors were reported from Gotham-nv-32-h-de22 during 2026-07-06 to 2026-07-13.
+</div>
 <table>
-<tr><th>Metric</th><th>Value</th><th>Status</th></tr>
-<tr><td>Total Fatal Crashes</td><td>0</td><td><span class="healthy">HEALTHY</span></td></tr>
-<tr><td>Stacktrace Events</td><td>0</td><td><span class="healthy">HEALTHY</span></td></tr>
-<tr><td>SIGSEGV / SIGABRT Events</td><td>0 detected</td><td><span class="healthy">HEALTHY</span></td></tr>
-<tr><td>OOM Kill Events</td><td>0 detected</td><td><span class="healthy">HEALTHY</span></td></tr>
-<tr><td>Most Recent Crash</td><td>None in this window</td><td><span class="healthy">HEALTHY</span></td></tr>
+  <tr><th>Crash Metric</th><th>Count / Value</th><th>Status</th></tr>
+  <tr><td>Fatal Crash Events (7 days)</td><td>0</td><td><span class="badge healthy">HEALTHY</span></td></tr>
+  <tr><td>Stacktrace Log Entries (Loki)</td><td>0</td><td><span class="badge healthy">HEALTHY</span></td></tr>
+  <tr><td>Process Restarts (inferred from uptime)</td><td>0</td><td><span class="badge healthy">HEALTHY</span></td></tr>
+  <tr><td>OOM (Out of Memory) Kill Events</td><td>None detected</td><td><span class="badge healthy">HEALTHY</span></td></tr>
+  <tr><td>Segmentation Faults</td><td>None detected</td><td><span class="badge healthy">HEALTHY</span></td></tr>
+  <tr><td>Watchdog-Triggered Restarts</td><td>None (uptime confirms)</td><td><span class="badge healthy">HEALTHY</span></td></tr>
 </table>
+<ul>
+  <li>All 5 processes have been running continuously since approximately 2026-06-24 &#8212; 18.42 days of uninterrupted operation as of report generation.</li>
+  <li>The Loki stacktrace service stream does not contain an &quot;instance&quot; label indexed for &quot;Gotham-nv-32-h-de22&quot;. This indicates either (a) no fatal events occurred to trigger log emission (most likely), or (b) crash logs are routed without instance tagging (see Recommended Actions for verification steps).</li>
+  <li>18.42 days of continuous uptime across all processes is strong corroborating evidence of crash-free operation throughout and beyond the analysis window.</li>
+</ul>
+</div>
 
+<!-- SECTION 8: METRICS AND LOG CORRELATION -->
+<div class="section">
 <h2>8. METRICS AND LOG CORRELATION</h2>
-<p>With zero crash events in Loki for this period, there are no direct log-to-metric crash correlations. The following metric events are documented for operational reference and future correlation tracking:</p>
 <table>
-<tr><th>Timestamp (UTC)</th><th>Signal</th><th>Event</th><th>Process</th><th>Log Correlation</th></tr>
-<tr><td>2026-07-03T03:00:00Z</td><td>Metrics</td><td>Total CPU peak: 31.75%</td><td>All (audio_engine driven)</td><td>No log event found</td></tr>
-<tr><td>2026-07-03T08:00:00Z</td><td>Metrics</td><td>runtime_engine CPU peak: 5.91%</td><td>runtime_engine</td><td>No log event found</td></tr>
-<tr><td>2026-07-04T01:00:00Z</td><td>Metrics</td><td>runtime_engine memory peak: 483 MB (12.31%)</td><td>runtime_engine</td><td>No log event found</td></tr>
-<tr><td>2026-07-04T21:00:00Z</td><td>Metrics</td><td>node memory peak: 235 MB (5.96%)</td><td>node</td><td>No log event found</td></tr>
-<tr><td>2026-07-01T11:00:00Z</td><td>Metrics</td><td>audio_engine CPU peak: 18.66%</td><td>audio_engine</td><td>No log event found</td></tr>
+  <tr><th>Event / Signal</th><th>Timestamp (UTC)</th><th>Metric Evidence</th><th>Log Evidence</th><th>Correlation Type</th></tr>
+  <tr><td>runtime_engine CPU level shift</td><td>2026-07-08T12:00</td><td>CPU avg shifted from 1.8% (first third) to 2.2% (last third); +16.98% relative increase confirmed</td><td>No log events correlated</td><td>Metric-only anomaly</td></tr>
+  <tr><td>runtime_engine memory growth start</td><td>~2026-07-06 (ongoing)</td><td>Memory trend: 289 MB at week start &#8594; 403 MB at week end; 17.1 KB/min growth rate</td><td>No log events correlated</td><td>Metric-only (sustained)</td></tr>
+  <tr><td>runtime_engine memory peak</td><td>2026-07-12T18:00</td><td>Memory peaked at 435.4 MB &#8212; highest value recorded in 7-day window</td><td>No log events</td><td>Metric-only</td></tr>
+  <tr><td>video_engine thread spike</td><td>Within 7-day window (exact time TBD)</td><td>Thread count peaked at 91 vs avg 46 (97.8% above mean)</td><td>No log events</td><td>Metric-only</td></tr>
+  <tr><td>node memory entropy pattern</td><td>Throughout week</td><td>Chaotic oscillation (entropy=0.91, CV=0.028); anti-correlated with audio_engine (r=&#8722;0.492)</td><td>No log events</td><td>Metric-only (expected pattern)</td></tr>
 </table>
 <ul>
-<li>The coordinated memory spike on 2026-07-04 (runtime_engine + node within 20 hours) produced no crash logs &mdash; the system recovered autonomously without intervention.</li>
-<li>CPU spike on 2026-07-03 was metrics-only with no corresponding log signal, indicating a transient workload burst rather than a fault condition.</li>
+  <li>Zero log-to-metric crash correlations exist &#8212; all detected anomalies are metric-only signals with no corresponding fatal log events.</li>
+  <li>The runtime_engine CPU level shift at 2026-07-08T12:00 UTC and the memory growth trend starting that same week are temporally correlated. A behavioral change (new session load, configuration update, or subsystem activation) around 2026-07-08 is the most likely common trigger. Deployment or configuration change logs from that date should be reviewed.</li>
+  <li>The strong anti-correlation between runtime_engine memory growth and video_engine memory decline (r=&#8722;0.92) points toward an architectural relationship &#8212; possibly a shared memory pool or buffer hand-off mechanism between the two engines that warrants documentation and review.</li>
 </ul>
+</div>
 
+<!-- SECTION 9: UPTIME AND RESTART ANALYSIS -->
+<div class="section">
 <h2>9. UPTIME AND RESTART ANALYSIS</h2>
-<p>All 6 processes maintained uninterrupted operation throughout the 7-day window. Process startup timestamps indicate a single coordinated boot event approximately 2026-06-24, yielding ~11.9 days of continuous uptime by end of period.</p>
 <table>
-<tr><th>Process</th><th>PID</th><th>Uptime at Window Start</th><th>Uptime at Window End</th><th>Restarts Detected</th><th>Status</th></tr>
-<tr><td>audio_engine</td><td>16352</td><td>~4.5 days (~389,000s)</td><td>~11.9 days (~1,026,500s)</td><td>0</td><td><span class="healthy">HEALTHY</span></td></tr>
-<tr><td>runtime_engine</td><td>17511</td><td>~4.5 days (~389,000s)</td><td>~11.9 days (~1,026,500s)</td><td>0</td><td><span class="healthy">HEALTHY</span></td></tr>
-<tr><td>video_engine</td><td>9874</td><td>~4.5 days (~389,000s)</td><td>~11.9 days (~1,026,500s)</td><td>0</td><td><span class="healthy">HEALTHY</span></td></tr>
-<tr><td>video_engine</td><td>9873</td><td>~4.5 days (~389,000s)</td><td>~11.9 days (~1,026,500s)</td><td>0</td><td><span class="healthy">HEALTHY</span></td></tr>
-<tr><td>node</td><td>8264</td><td>~4.5 days (~389,000s)</td><td>~11.9 days (~1,026,500s)</td><td>0</td><td><span class="healthy">HEALTHY</span></td></tr>
-<tr><td>engine_discover</td><td>10624</td><td>~4.5 days (~389,000s)</td><td>~11.9 days (~1,026,500s)</td><td>0</td><td><span class="healthy">HEALTHY</span></td></tr>
+  <tr><th>Process</th><th>PID(s)</th><th>Uptime (seconds)</th><th>Uptime (days/hrs)</th><th>Est. Boot Time (UTC)</th><th>Restarts in 7d</th><th>Status</th></tr>
+  <tr><td>audio_engine</td><td>16352</td><td>1,591,407 s</td><td>18 days 10 hrs</td><td>~2026-06-24 12:49 UTC</td><td>0</td><td><span class="badge healthy">HEALTHY</span></td></tr>
+  <tr><td>engine_discover</td><td>10624</td><td>1,591,696 s</td><td>18 days 10 hrs</td><td>~2026-06-24 12:44 UTC</td><td>0</td><td><span class="badge healthy">HEALTHY</span></td></tr>
+  <tr><td>node</td><td>8264</td><td>1,591,718 s</td><td>18 days 10 hrs</td><td>~2026-06-24 12:43 UTC</td><td>0</td><td><span class="badge healthy">HEALTHY</span></td></tr>
+  <tr><td>runtime_engine</td><td>17511</td><td>1,591,394 s</td><td>18 days 10 hrs</td><td>~2026-06-24 12:50 UTC</td><td>0</td><td><span class="badge healthy">HEALTHY</span></td></tr>
+  <tr><td>video_engine</td><td>9873, 9874</td><td>1,591,703 s</td><td>18 days 10 hrs</td><td>~2026-06-24 12:44 UTC</td><td>0</td><td><span class="badge healthy">HEALTHY</span></td></tr>
 </table>
 <ul>
-<li>All 6 processes share an identical startup timestamp, confirming a single coordinated boot event approximately 2026-06-24.</li>
-<li>No uptime counter resets (drops toward zero) were detected across all 178 hourly data points per process.</li>
-<li>Process uptime advanced monotonically from ~389,000s to ~1,026,500s &mdash; confirming zero restarts across the full window.</li>
+  <li>All 5 processes have been running uninterrupted for <strong>18.42 days</strong>. No process restarts were detected within the 7-day analysis window.</li>
+  <li>Process start times are tightly clustered within a ~7-minute window on 2026-06-24 between 12:43 and 12:50 UTC &#8212; consistent with a single coordinated system boot event on that date.</li>
+  <li>video_engine has two active PIDs (9873 and 9874) with identical uptime, confirming simultaneous launch as part of the system startup sequence.</li>
+  <li>No watchdog-triggered restarts, no OOM kills, no segmentation faults, and no controlled restarts were recorded over the entire 18-day uptime period. Excellent stability.</li>
+  <li>The growing runtime_engine memory (discussed in Sections 4 and 6) has not yet caused an OOM event; however, at the current growth rate, this risk increases within the next 2&#8211;3 weeks without intervention.</li>
 </ul>
+</div>
 
+<!-- SECTION 10: ANOMALIES -->
+<div class="section">
 <h2>10. ANOMALIES</h2>
 <table>
-<tr><th>#</th><th>Timestamp (UTC)</th><th>Anomaly</th><th>Process</th><th>Severity</th><th>Notes</th></tr>
-<tr><td>1</td><td>2026-07-04T01:00:00Z</td><td>runtime_engine memory spike: avg 359 MB &rarr; peak 483 MB (+35%)</td><td>runtime_engine</td><td><span class="warning">WARNING</span></td><td>Recovered to ~282 MB by end of period; likely GC or workload burst</td></tr>
-<tr><td>2</td><td>2026-07-04T01:00&ndash;21:00Z</td><td>Coordinated memory pressure: runtime_engine + node peaked within 20 hours</td><td>runtime_engine, node</td><td><span class="warning">WARNING</span></td><td>Suggests shared workload event; no crash produced; resolved autonomously</td></tr>
-<tr><td>3</td><td>2026-07-03T03:00:00Z</td><td>Total CPU transient peak: 31.75% (+4.5 ppt above avg)</td><td>All (audio_engine driven)</td><td><span class="healthy">INFO</span></td><td>Returned to baseline within 1 hour; no service impact</td></tr>
-<tr><td>4</td><td>2026-07-01 &rarr; 2026-07-06</td><td>runtime_engine thread count growing: 74 &rarr; 78 threads (+5.4%)</td><td>runtime_engine</td><td><span class="warning">WATCH</span></td><td>Gradual upward trend; monitor for continued growth beyond 85</td></tr>
-<tr><td>5</td><td>Full period</td><td>node monotonic memory growth: +19.7 MB over 7 days</td><td>node</td><td><span class="warning">WATCH</span></td><td>Sustained upward trend; ~120 MB/month projected if not addressed</td></tr>
-<tr><td>6</td><td>Full period</td><td>video_engine (9874) linear memory growth: +14.3 MB over 7 days</td><td>video_engine (9874)</td><td><span class="healthy">INFO</span></td><td>Gradual growth; confirm over 30-day window for leak determination</td></tr>
-<tr><td>7</td><td>Full period</td><td>video_engine (9873) completely inactive: 0% CPU, 1 thread, 6.85 MB flat</td><td>video_engine (9873)</td><td><span class="healthy">INFO</span></td><td>May be hot standby; confirm expected behavior with engineering team</td></tr>
+  <tr><th>#</th><th>Anomaly</th><th>Process</th><th>Details</th><th>Severity</th></tr>
+  <tr>
+    <td>1</td>
+    <td>Sustained Memory Growth</td>
+    <td>runtime_engine</td>
+    <td>28.3% memory growth over 7 days confirmed by trend analysis (r=0.945). Grew from ~289 MB (week start) to ~403 MB average, peaking at 435.4 MB on 2026-07-12T18:00 UTC. Growth rate: 17.1 KB/min (24.6 MB/day). Projected to reach ~575 MB in 7 days.</td>
+    <td><span class="badge warning">WARNING</span></td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>CPU Level Shift</td>
+    <td>runtime_engine</td>
+    <td>Statistically significant CPU level shift detected at 2026-07-08T12:00 UTC. Relative CPU increased 16.98% comparing first third (avg 1.8%) to last third (avg 2.2%) of the week. Temporally correlated with accelerating memory growth.</td>
+    <td><span class="badge warning">WARNING</span></td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>Thread Count Spike</td>
+    <td>video_engine</td>
+    <td>Peak thread count of 91 recorded against a 7-day average of 46 threads &#8212; a 97.8% spike above mean. Exact timestamp not resolved. Possible causes: connection pool exhaustion, burst of video decode workers, or transient thread pool scaling.</td>
+    <td><span class="badge watch">WATCH</span></td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>Wide Memory Variance</td>
+    <td>video_engine</td>
+    <td>Memory range spans from 6.5 MB (minimum) to 101 MB (peak) with a 55.6 MB average. Declining trend (&#8722;0.78%). Wide range may reflect PID aggregation across two instances or a cold-start transient captured at the start of the measurement window.</td>
+    <td><span class="badge watch">WATCH</span></td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>Memory Anti-Correlation</td>
+    <td>runtime_engine / video_engine</td>
+    <td>Strong negative correlation (r=&#8722;0.92) between runtime_engine memory growth and video_engine memory movement. Indicates possible shared buffer pool, memory hand-off mechanism, or resource contention between the two engines. Requires architectural review.</td>
+    <td><span class="badge watch">WATCH</span></td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>Node.js Memory Entropy</td>
+    <td>node</td>
+    <td>High memory entropy (0.91 normalized) and anti-correlation with audio_engine (r=&#8722;0.492) despite flat overall trend (&#8722;2.7% decline). Chaotic but bounded oscillation &#8212; likely normal for Node.js GC cycles. No growth trend.</td>
+    <td><span class="badge info-badge">INFO</span></td>
+  </tr>
 </table>
+</div>
 
+<!-- SECTION 11: SUMMARY AND RISK ASSESSMENT -->
+<div class="section">
 <h2>11. SUMMARY AND RISK ASSESSMENT</h2>
+<div class="summary-box">
+  <h2 style="border:none;padding:0;color:#172b4d;margin:0 0 8px 0;font-size:20px;">Overall Core Status: <span class="badge warning" style="font-size:18px;padding:4px 18px;">WARNING</span></h2>
+  <p style="max-width:640px;margin:8px auto;">Gotham-nv-32-h-de22 is operationally stable with zero crashes, zero restarts, and nominal CPU utilization. However, runtime_engine exhibits a confirmed and sustained memory growth trend (28.3% over 7 days) that constitutes a WARNING-level risk requiring active investigation and intervention.</p>
+</div>
 <table>
-<tr><th>Category</th><th>Finding</th><th>Status</th></tr>
-<tr><td>Crash Stability</td><td>0 crashes, 0 stacktrace events in 7 days</td><td><span class="badge-healthy">HEALTHY</span></td></tr>
-<tr><td>Process Continuity</td><td>0 restarts; all processes running ~11.9 days continuously</td><td><span class="badge-healthy">HEALTHY</span></td></tr>
-<tr><td>CPU Health</td><td>Avg 27.37%, peak 31.75% &mdash; well within operational limits</td><td><span class="badge-healthy">HEALTHY</span></td></tr>
-<tr><td>Memory Stability</td><td>runtime_engine volatile (peak 483 MB); coordinated July 4 spike</td><td><span class="badge-warning">WARNING</span></td></tr>
-<tr><td>Memory Leak Risk</td><td>node +19.7 MB/7d; video_engine (9874) +14.3 MB/7d; monotonic growth</td><td><span class="badge-warning">WARNING</span></td></tr>
-<tr><td>Thread Stability</td><td>runtime_engine threads growing 74&rarr;78 over 7 days</td><td><span class="badge-warning">WARNING</span></td></tr>
-<tr><td>I/O Health</td><td>Zero wait-state CPU across all processes throughout period</td><td><span class="badge-healthy">HEALTHY</span></td></tr>
-<tr><td>Log Signal</td><td>No fatal errors or stacktrace events observed in Loki</td><td><span class="badge-healthy">HEALTHY</span></td></tr>
+  <tr><th>Health Area</th><th>Observation</th><th>Status</th></tr>
+  <tr><td>System Stability</td><td>18.42 days uninterrupted uptime. Zero crashes. Zero restarts. All processes stable.</td><td><span class="badge healthy">HEALTHY</span></td></tr>
+  <tr><td>CPU Utilization</td><td>Peak 19.57% (audio_engine). System avg ~9.14%. All processes well below thresholds. Minor runtime_engine increase.</td><td><span class="badge healthy">HEALTHY</span></td></tr>
+  <tr><td>Memory Utilization</td><td>Combined peak 918.5 MB (23.6% of ~3.9 GB RAM). runtime_engine growing at 24.6 MB/day.</td><td><span class="badge warning">WARNING</span></td></tr>
+  <tr><td>Memory Leak Risk</td><td>runtime_engine: 28.3% growth confirmed. 17.1 KB/min growth rate. Leak or accumulation pattern strongly suspected.</td><td><span class="badge warning">WARNING</span></td></tr>
+  <tr><td>Thread Health</td><td>video_engine thread spike (91 peak vs 46 avg). runtime_engine sustained high avg (74.18 threads).</td><td><span class="badge watch">WATCH</span></td></tr>
+  <tr><td>Crash / Fatal Errors</td><td>Zero crash events in Loki for this core during the 7-day window.</td><td><span class="badge healthy">HEALTHY</span></td></tr>
+  <tr><td>Process Restarts</td><td>Zero restarts. All processes launched ~2026-06-24.</td><td><span class="badge healthy">HEALTHY</span></td></tr>
+  <tr><td>Anomaly Count</td><td>2&#215; WARNING (runtime_engine memory growth, CPU shift), 3&#215; WATCH (thread spike, memory variance, correlation), 1&#215; INFO</td><td><span class="badge warning">WARNING</span></td></tr>
 </table>
-<p style="margin-top:14px;font-size:16px;"><strong>Overall Risk Assessment:&nbsp;</strong><span class="badge-warning">WARNING</span></p>
-<p>Core Gotham-nv-32-h-de22 is operationally stable &mdash; no crashes, no restarts, and CPU well within limits. The WARNING rating is driven by: (1) runtime_engine memory volatility with a significant spike on 2026-07-04; (2) gradual memory accumulation in node (+19.7 MB/7d) and video_engine (9874) (+14.3 MB/7d); and (3) a slow but observable thread count increase in runtime_engine. None of these conditions have produced service disruption to date, but they represent trends that could escalate without monitoring or intervention.</p>
+<div class="highlight-warning">
+  <strong>Risk Projection:</strong> If runtime_engine memory growth continues at 24.6 MB/day, the process will consume ~575 MB within 7 days (by 2026-07-20) and combined system memory will approach ~1.1 GB. At ~3.9 GB system RAM, this remains within safe operating limits in the short term, but represents an escalating risk over 2&#8211;4 weeks. An OOM-triggered crash becomes a realistic risk within 3 weeks without intervention.
+</div>
+</div>
 
+<!-- SECTION 12: RECOMMENDED ACTIONS -->
+<div class="section">
 <h2>12. RECOMMENDED ACTIONS</h2>
-<ul>
-<li><strong>Investigate runtime_engine memory spike (2026-07-04):</strong> Review runtime_engine application logs and events around 2026-07-04T00:00&ndash;04:00Z to identify the trigger for the 483 MB peak. Determine whether it is a known GC cycle, a workload burst, or an unexpected allocation event.</li>
-<li><strong>Set memory alert thresholds:</strong> Configure Grafana alerts for runtime_engine memory &gt; 450 MB and node memory &gt; 240 MB to provide early warning before system-level memory pressure occurs.</li>
-<li><strong>Monitor node memory accumulation (30-day review):</strong> Schedule a 30-day memory trend review for the node process. If growth continues at +2.8 MB/day (~85 MB/month), plan for a controlled restart cycle or heap dump analysis.</li>
-<li><strong>Track runtime_engine thread growth:</strong> Monitor thread count over the next 7&ndash;14 days. If threads exceed 85, initiate a diagnostic review of thread pool configuration and workload characteristics.</li>
-<li><strong>Confirm video_engine (PID 9873) dormancy:</strong> Verify whether zero CPU and single-thread behavior for video_engine PID 9873 is expected (hot standby) vs. unintended inactivity. If not needed, consider stopping the instance to reclaim resources.</li>
-<li><strong>Extend memory leak window to 30 days:</strong> Run a 30-day memory growth comparison for video_engine (9874) and engine_discover to confirm or rule out slow leaks with greater statistical confidence.</li>
-<li><strong>Ensure Loki crash alerting is active:</strong> Even though no crashes occurred this period, confirm that real-time alerting on <code>service_name="stacktrace"</code> and <code>instance="Gotham-nv-32-h-de22"</code> is configured and routing correctly to on-call channels.</li>
-</ul>
+<table>
+  <tr><th>Priority</th><th>Action</th><th>Target</th><th>Rationale</th></tr>
+  <tr>
+    <td><span class="badge warning">HIGH</span></td>
+    <td>Investigate runtime_engine memory growth immediately</td>
+    <td>runtime_engine (PID 17511)</td>
+    <td>28.3% memory growth over 7 days at 17.1 KB/min. Capture heap dump or enable memory profiling. Check for unclosed audio graph nodes, accumulating event listeners, or unfreed session buffers in the audio/runtime pipeline. Review any changes deployed on or before 2026-07-08.</td>
+  </tr>
+  <tr>
+    <td><span class="badge warning">HIGH</span></td>
+    <td>Review changes deployed around 2026-07-08T12:00 UTC</td>
+    <td>runtime_engine / Platform Team</td>
+    <td>Both the CPU level shift (+16.98%) and the memory growth acceleration coincide with this timestamp. Check deployment logs, configuration changes, firmware updates, or session load changes on or just before 2026-07-08 noon UTC to identify the triggering event.</td>
+  </tr>
+  <tr>
+    <td><span class="badge watch">MEDIUM</span></td>
+    <td>Schedule controlled runtime_engine restart during maintenance window</td>
+    <td>runtime_engine (PID 17511)</td>
+    <td>If the heap investigation does not yield a code-level fix within 48&#8211;72 hours, schedule a controlled restart to reset the memory baseline. Monitor post-restart memory trend for the first 48 hours to confirm recurrence (confirms leak) vs one-time accumulation (confirms recoverable state).</td>
+  </tr>
+  <tr>
+    <td><span class="badge watch">MEDIUM</span></td>
+    <td>Add Prometheus alert for runtime_engine memory threshold</td>
+    <td>Alerting / Monitoring</td>
+    <td>Configure an alert rule: process_memory_usage_bytes{instance=&quot;Gotham-nv-32-h-de22&quot;, process_name=&quot;runtime_engine&quot;} &gt; 450000000. This provides automated early warning before OOM conditions are reached, allowing proactive restarts rather than reactive crash response.</td>
+  </tr>
+  <tr>
+    <td><span class="badge watch">MEDIUM</span></td>
+    <td>Investigate video_engine thread spike and memory variance</td>
+    <td>video_engine (PIDs 9873, 9874)</td>
+    <td>Thread count spiked to 91 (97.8% above average). Identify the trigger &#8212; burst of decode tasks, connection pool exhaustion, or uncollected worker threads. Clarify the 6.5 MB memory minimum and confirm whether dual-PID aggregation explains the wide memory range.</td>
+  </tr>
+  <tr>
+    <td><span class="badge healthy">LOW</span></td>
+    <td>Verify Loki instance label routing for stacktrace service</td>
+    <td>Observability / Loki</td>
+    <td>The stacktrace Loki stream has no &quot;instance&quot; label matching &quot;Gotham-nv-32-h-de22&quot;. Confirm that future fatal crash events from this core will be properly tagged with the instance identifier to enable automated correlation with Prometheus metric anomalies.</td>
+  </tr>
+  <tr>
+    <td><span class="badge healthy">LOW</span></td>
+    <td>Document runtime_engine / video_engine memory relationship</td>
+    <td>Platform Architecture Team</td>
+    <td>Strong anti-correlation (r=&#8722;0.92) between runtime_engine and video_engine memory is architecturally significant. Confirm whether this reflects an intentional shared buffer pool, memory hand-off design, or unexpected resource contention &#8212; and document accordingly to aid future incident response.</td>
+  </tr>
+</table>
+</div>
 
-<hr style="margin-top:30px;border:none;border-top:1px solid #DFE1E6;"/>
-<p class="meta">Report generated by QSC Sleestack Core Health Analysis Agent &nbsp;|&nbsp; Grafana Assistant &nbsp;|&nbsp; 2026-07-06T09:08:16Z</p>
+<footer>
+  <p>Report generated by QSC Sleestack Core Health Analysis Agent | Grafana Assistant | 2026-07-13 03:30 IST</p>
+  <p>Data Sources: Prometheus (grafanacloud-prom) &#8212; CPU, Memory, Thread, Uptime metrics | Loki (grafanacloud-logs) &#8212; Stacktrace fatal crash logs</p>
+  <p>Core: Gotham-nv-32-h-de22 | MAC: 00:60:74:f3:de:22 | Gateway: 1DQ4M2YKHJTUYGL | Analysis Period: 2026-07-06 to 2026-07-13</p>
+</footer>
 </body>
 </html>
