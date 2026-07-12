@@ -1,44 +1,63 @@
 <!DOCTYPE html>
 <html>
+<head><meta charset="UTF-8"><title>Core Health Report — eternia-Core24-d447 — 2026-07-13</title>
+<style>
+  body { font-family: Arial, sans-serif; max-width: 860px; margin: 0 auto; padding: 24px; color: #333; }
+  h1 { background: #1a1a2e; color: #fff; padding: 16px; border-radius: 6px; font-size: 1.2em; }
+  h2 { color: #1a1a2e; border-bottom: 2px solid #e0e0e0; padding-bottom: 4px; font-size: 1em; margin-top: 20px; }
+  p { margin: 6px 0; font-size: 0.9em; line-height: 1.5; }
+  .healthy { color: #00875a; font-weight: bold; }
+  .warning { color: #e6a817; font-weight: bold; }
+  .critical { color: #d04a4a; font-weight: bold; }
+  .nodata { color: #888; font-style: italic; }
+  .meta { font-size: 0.78em; color: #888; margin-bottom: 16px; }
+</style>
+</head>
 <body>
-<h1>Core Health Report — eternia-Core24-d447 — 2026-07-06</h1>
+
+<h1>Core Health Report — eternia-Core24-d447 — 2026-07-13</h1>
+<p class="meta">Generated: 2026-07-13 03:30 IST &nbsp;|&nbsp; Report Period: 2026-07-06 to 2026-07-13 (7 days) &nbsp;|&nbsp; Source: Prometheus + Loki (Grafana Cloud)</p>
 
 <h2>1. Core Identity</h2>
-<p>Core: <strong>eternia-Core24-d447</strong>. Report period: 2026-06-29 to 2026-07-06 (last 7 days). Platform: Q-Sys Sleestack observability platform.</p>
+<p>Core: <strong>eternia-Core24-d447</strong>. Platform: Q-SYS Sleestack. Report period: 2026-07-06 00:00 IST to 2026-07-13 03:30 IST (last 7 days). Data sources: Prometheus (<code>grafanacloud-prom</code>), Loki (<code>grafanacloud-logs</code>).</p>
 
 <h2>2. Resource Summary</h2>
-<p>Average CPU utilization: <strong>2.54%</strong>. Average memory utilization: <strong>1.53%</strong>. Both metrics are well within healthy operating thresholds, indicating a lightly loaded system with ample headroom.</p>
+<p class="nodata">No metric data returned for <code>process_cpu_utilization_ratio</code> or <code>process_memory_utilization_ratio</code> during the report window. The core may not be actively reporting telemetry, or the instance label does not match any active series in the current retention window. Avg CPU: N/A. Avg Memory: N/A.</p>
 
 <h2>3. CPU State</h2>
-<p>CPU averaged 2.54% over the 7-day window, indicating minimal processing load. No CPU saturation or sustained high-utilization events were detected. The core is operating well below capacity.</p>
+<p class="nodata">CPU utilization data unavailable for the 7-day window. Unable to assess CPU state, peak load, or sustained high-usage events. Verify that the Q-SYS process exporter is running and shipping metrics for <code>instance="eternia-Core24-d447"</code>.</p>
 
 <h2>4. Memory State</h2>
-<p>Memory utilization averaged 1.53% — extremely low and stable. No signs of pressure or saturation. Substantial free memory remains available for process spikes.</p>
+<p class="nodata">Memory utilization data unavailable for the 7-day window. No trend analysis, pressure events, or baseline can be established. Confirm that <code>process_memory_utilization_ratio</code> is being scraped from this core.</p>
 
 <h2>5. Process Analysis</h2>
-<p>Known processes monitored: audio_engine, runtime_engine, video_engine, node, engine_discover. Aggregate CPU and memory utilization across all processes remain nominal. No individual process showed signs of resource monopolization during this period.</p>
+<p class="nodata">No per-process breakdown could be generated. Expected processes — <code>audio_engine</code>, <code>runtime_engine</code>, <code>video_engine</code>, <code>node</code>, <code>engine_discover</code> — returned no data. All process-level CPU and memory ratios are absent for this instance.</p>
 
 <h2>6. Memory Leak Detection</h2>
-<p>Memory utilization at 1.53% average over 7 days shows no upward trend or gradual accumulation pattern. No memory leak indicators detected. Memory consumption appears stable and bounded.</p>
+<p class="nodata">Memory leak detection requires a time-series trend of <code>process_memory_utilization_ratio</code>. With no data present, no monotonic growth pattern or sawtooth (GC-recovered) pattern can be assessed. Re-run report once telemetry is confirmed active.</p>
 
 <h2>7. Crash &amp; Stacktrace Analysis</h2>
-<p>Zero fatal crash events were logged in the <code>stacktrace</code> service stream for this core over the 7-day period. No fatal errors, no stack traces, and no abnormal terminations detected. Crash count: <strong>0</strong>.</p>
+<p>Loki query against <code>{service_name="stacktrace", instance="eternia-Core24-d447"}</code> filtered for <code>"fatal"</code> over the last 7 days returned <strong>0 matching log lines</strong>. No fatal crash events were detected in the log stream for this core during the report period. This may indicate a stable core or absence of log forwarding for this instance.</p>
 
 <h2>8. Metrics &amp; Log Correlation</h2>
-<p>No fatal log events to correlate with metric anomalies. CPU and memory remained low and consistent throughout the period. No correlated spikes or drops linking resource usage to error events.</p>
+<p>No correlated signal is available: both the Prometheus metric series and the Loki fatal-log stream returned empty results for <code>eternia-Core24-d447</code>. Correlation between CPU/memory spikes and crash events cannot be performed. The data gap itself is a signal worth investigating — it may point to a scrape target being down, network isolation, or a label mismatch in the telemetry pipeline.</p>
 
 <h2>9. Uptime &amp; Restart Analysis</h2>
-<p>No crash or restart events were detected from log data. Combined with stable resource metrics over 7 days, this suggests continuous uninterrupted operation. Estimated uptime: &ge;7 days without recorded interruption.</p>
+<p class="nodata">Uptime estimation (typically derived from <code>process_start_time_seconds</code> or restart-counter deltas) is unavailable due to missing metric data. No restart events, watchdog recoveries, or unexpected process exits can be confirmed or ruled out for this period.</p>
 
 <h2>10. Anomalies</h2>
-<p>No anomalies detected. CPU, memory, and log data all fall within expected healthy baselines. No unexpected spikes, drops, or error bursts were observed during the reporting period.</p>
+<p class="warning">Primary anomaly: complete absence of Prometheus telemetry for <code>eternia-Core24-d447</code> over the full 7-day window. This is itself an anomalous condition and should be triaged. No log-based anomalies detected (0 fatal log entries). No secondary anomalies to report.</p>
 
 <h2>11. Risk Assessment</h2>
-<p style="color:#00875a"><strong>Status: HEALTHY</strong></p>
-<p>CPU at 2.54%, memory at 1.53%, zero fatal crashes — all indicators point to a fully healthy core with no immediate risk.</p>
+<p class="warning">Status: <span class="warning">WARNING — NO TELEMETRY</span></p>
+<p>The core cannot be classified as HEALTHY or CRITICAL without metric data. The absence of telemetry prevents confirming system stability and is treated as a WARNING condition. Zero fatal log events is a positive signal, but insufficient to confirm health on its own.</p>
 
 <h2>12. Recommended Actions</h2>
-<p>No immediate actions required. Continue routine monitoring. Consider reviewing per-process CPU and memory breakdowns periodically to establish baseline trends. Ensure the stacktrace log stream remains active for early crash detection.</p>
+<p>1. <strong>Verify scrape target:</strong> Confirm <code>eternia-Core24-d447</code> is listed as an active Prometheus scrape target and that the last scrape succeeded (check <code>/targets</code> in Prometheus).<br>
+2. <strong>Check instance label:</strong> Validate that the <code>instance</code> label value in scraped metrics exactly matches <code>eternia-Core24-d447</code> (case-sensitive).<br>
+3. <strong>Confirm process exporter:</strong> Ensure the Q-SYS process metrics exporter is running on the core and accessible by the Prometheus scraper.<br>
+4. <strong>Verify Loki log forwarding:</strong> Confirm the Loki agent/Alloy pipeline on the core is forwarding logs with <code>service_name="stacktrace"</code> and the correct <code>instance</code> label.<br>
+5. <strong>Re-run report</strong> once telemetry is restored to establish a verified baseline for this core.</p>
 
 </body>
 </html>
