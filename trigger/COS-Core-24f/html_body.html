@@ -1,93 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Core Health Report — COS-Core-24f — 2026-07-13</title>
   <style>
-    body { font-family: Arial, sans-serif; max-width: 860px; margin: 40px auto; color: #333; line-height: 1.5; }
-    h1 { background: #1a1a2e; color: #fff; padding: 16px 20px; border-radius: 6px; font-size: 1.3em; }
-    h2 { border-left: 4px solid #0078d4; padding-left: 10px; font-size: 1.05em; margin-top: 28px; }
-    p { margin: 6px 0 12px 0; }
-    .healthy { color: #00875a; font-weight: bold; }
-    .warning { color: #e6a817; font-weight: bold; }
-    .critical { color: #d63638; font-weight: bold; }
-    .no-data { color: #888; font-style: italic; }
-    .section { background: #f9f9f9; border: 1px solid #e0e0e0; border-radius: 4px; padding: 12px 16px; margin-bottom: 10px; }
-    footer { font-size: 0.8em; color: #888; margin-top: 40px; border-top: 1px solid #eee; padding-top: 10px; }
+    body { font-family: Arial, sans-serif; font-size: 14px; color: #333; margin: 24px; }
+    h1 { font-size: 20px; border-bottom: 2px solid #0069d9; padding-bottom: 8px; }
+    h2 { font-size: 15px; color: #0069d9; margin-top: 18px; margin-bottom: 4px; }
+    p  { margin: 0 0 6px 0; }
+    .healthy  { color: #00875a; font-weight: bold; }
+    .warning  { color: #e67e00; font-weight: bold; }
+    .nodata   { color: #888; font-style: italic; }
   </style>
 </head>
 <body>
 
-<h1>Core Health Report — COS-Core-24f — 2026-07-13</h1>
+<h1>Core Health Report — COS-Core-24f — 2026-07-20</h1>
 
-<div class="section">
-  <h2>1. Core Identity</h2>
-  <p>Core: <strong>COS-Core-24f</strong>. Report period: 2026-07-05 to 2026-07-13 (last 7 days). Report generated: 2026-07-13 03:30 IST. Platform: QSC Q-Sys Sleestack Observability.</p>
-</div>
+<h2>1. Core Identity</h2>
+<p>Core: <strong>COS-Core-24f</strong>. Report period: 2026-07-13 to 2026-07-20 (last 7 days). Report generated: 2026-07-20 03:30 IST.</p>
 
-<div class="section">
-  <h2>2. Resource Summary</h2>
-  <p class="no-data">No telemetry data was returned for <code>process_cpu_utilization_ratio</code> or <code>process_memory_utilization_ratio</code> with label <code>instance="COS-Core-24f"</code> over the reporting window. The core may be offline, the exporter may be inactive, or the instance label may differ from the registered value.</p>
-</div>
+<h2>2. Resource Summary</h2>
+<p class="nodata">No active Prometheus series were returned for <code>process_cpu_utilization_ratio</code> or <code>process_memory_utilization_ratio</code> with instance="COS-Core-24f" during this period. The core may be offline, not scraping, or reporting under a different instance label.</p>
+<p>Avg CPU: N/A &nbsp;|&nbsp; Avg Memory: N/A &nbsp;|&nbsp; Peak CPU: N/A &nbsp;|&nbsp; Peak Memory: N/A</p>
 
-<div class="section">
-  <h2>3. CPU State</h2>
-  <p class="no-data">CPU utilization metrics unavailable for this period. No baseline, peak, or idle-state data could be established. Verify that the Q-Sys process exporter is running and scraping this instance.</p>
-</div>
+<h2>3. CPU State</h2>
+<p>CPU telemetry is unavailable for this reporting window. Unable to assess idle/active/overloaded state. Verify that the Prometheus scrape target for COS-Core-24f is reachable and the <code>instance</code> label matches exactly.</p>
 
-<div class="section">
-  <h2>4. Memory State</h2>
-  <p class="no-data">Memory utilization metrics unavailable for this period. Unable to assess current heap usage, working-set size, or compare against previous week. Recommend confirming <code>process_memory_utilization_ratio</code> metric is being emitted.</p>
-</div>
+<h2>4. Memory State</h2>
+<p>Memory telemetry is unavailable for this reporting window. Heap and resident set size trends cannot be evaluated. Confirm process exporters (audio_engine, runtime_engine, video_engine, node, engine_discover) are running and exporting metrics.</p>
 
-<div class="section">
-  <h2>5. Process Analysis</h2>
-  <p class="no-data">No per-process breakdown available. Known processes (audio_engine, runtime_engine, video_engine, node, engine_discover) could not be individually assessed. No data returned for any process on this instance during the 7-day window.</p>
-</div>
+<h2>5. Process Analysis</h2>
+<p>Known processes for this platform: <strong>audio_engine, runtime_engine, video_engine, node, engine_discover</strong>. No per-process CPU or memory breakdown could be retrieved. Absence of process metrics may indicate all processes exited or the exporter is down.</p>
 
-<div class="section">
-  <h2>6. Memory Leak Detection</h2>
-  <p class="no-data">Insufficient metric history to perform memory trend analysis or leak detection. A minimum of 24 hours of <code>process_memory_utilization_ratio</code> samples is required to identify upward drift patterns. No assessment possible at this time.</p>
-</div>
+<h2>6. Memory Leak Detection</h2>
+<p>Memory trend analysis requires a continuous time series. With no data returned over 7 days, a leak cannot be confirmed or ruled out. Recommend inspecting process memory at next available scrape window.</p>
 
-<div class="section">
-  <h2>7. Crash &amp; Stacktrace Analysis</h2>
-  <p>No fatal log entries were found in Loki under <code>{service_name="stacktrace", instance="COS-Core-24f"}</code> for the 7-day window. This may indicate zero crash events (positive outcome), or that log forwarding for this instance is not configured or currently inactive.</p>
-</div>
+<h2>7. Crash &amp; Stacktrace Analysis</h2>
+<p>Loki query for <code>{service_name="stacktrace", instance="COS-Core-24f"}</code> containing "fatal" returned 0 log lines over the last 7 days. This indicates either zero fatal crashes occurred, or log ingestion for this core is not flowing to Grafana Cloud Loki.</p>
 
-<div class="section">
-  <h2>8. Metrics &amp; Log Correlation</h2>
-  <p>With both Prometheus metrics and Loki logs returning no data for this instance, cross-signal correlation cannot be performed. There is no evidence of a CPU spike preceding a crash event, nor any memory-pressure log co-occurrence to assess. Telemetry pipeline health should be verified before drawing conclusions.</p>
-</div>
+<h2>8. Metrics &amp; Log Correlation</h2>
+<p>No correlation can be drawn: both metrics and logs returned empty results. This pattern most commonly indicates a connectivity or labelling issue on the core side rather than a clean-running system. Cross-reference with Q-SYS Designer or local core status page to confirm whether the device is online.</p>
 
-<div class="section">
-  <h2>9. Uptime &amp; Restart Analysis</h2>
-  <p class="no-data">No <code>process_start_time</code> or equivalent uptime metrics were available to compute restart frequency or last-seen timestamps. Unable to determine whether the core experienced any unplanned restarts during the reporting period.</p>
-</div>
+<h2>9. Uptime &amp; Restart Analysis</h2>
+<p>Process uptime metrics (e.g., <code>process_start_time_seconds</code>) were not queried due to the absence of base metric data. Restart count and uptime duration are unknown. A gap in time-series data of 7 days is itself indicative of a potential extended outage or misconfiguration.</p>
 
-<div class="section">
-  <h2>10. Anomalies</h2>
-  <p class="no-data">No anomalies detected — however this is a data-absence result, not a clean-bill-of-health result. The absence of metrics and logs is itself an anomaly: COS-Core-24f is either not reporting telemetry or the instance label is mismatched in the observability pipeline.</p>
-</div>
+<h2>10. Anomalies</h2>
+<p>Primary anomaly: <strong>complete telemetry blackout</strong> for COS-Core-24f across both Prometheus and Loki for the full 7-day window. This is atypical and warrants immediate investigation. No secondary anomalies can be identified without base data.</p>
 
-<div class="section">
-  <h2>11. Risk Assessment</h2>
-  <p class="warning">Status: WARNING — DATA GAP</p>
-  <p>Risk level is elevated not due to observed failures, but due to complete observability loss for this core. Without metrics or logs, the operational state of COS-Core-24f is unknown. A non-reporting core poses an undetected-failure risk and should be treated as a priority investigation.</p>
-</div>
+<h2>11. Risk Assessment</h2>
+<p class="warning">Status: WARNING — Telemetry Unavailable</p>
+<p>Risk is elevated not due to confirmed failures, but due to the inability to verify system health. A core that is not reporting is operationally equivalent to an unknown risk. Escalate if device availability cannot be confirmed through out-of-band means.</p>
 
-<div class="section">
-  <h2>12. Recommended Actions</h2>
-  <p>
-    1. <strong>Verify exporter health:</strong> SSH into COS-Core-24f and confirm the Q-Sys process exporter service is running and its scrape endpoint is reachable by Prometheus.<br>
-    2. <strong>Check instance label:</strong> Confirm the Prometheus scrape target label matches <code>instance="COS-Core-24f"</code> exactly (case-sensitive) in the scrape config.<br>
-    3. <strong>Validate Loki agent:</strong> Confirm the Alloy/Promtail agent on this core is forwarding logs with <code>instance="COS-Core-24f"</code> and <code>service_name="stacktrace"</code> labels.<br>
-    4. <strong>Re-run report:</strong> Once telemetry is confirmed active, re-run this report to obtain a valid 7-day baseline and risk assessment.
-  </p>
-</div>
-
-<footer>Generated by QSC Sleestack Core Health Analysis Agent &bull; 2026-07-13 03:30 IST &bull; COS-Core-24f &bull; Period: 2026-07-05 – 2026-07-12</footer>
+<h2>12. Recommended Actions</h2>
+<p>1. <strong>Verify core connectivity</strong>: Ping COS-Core-24f and confirm it responds on the network. Check Q-SYS Designer for online status.<br>
+2. <strong>Check Prometheus scrape target</strong>: In Grafana Cloud, navigate to the Prometheus targets page and confirm COS-Core-24f is listed as UP with the correct instance label.<br>
+3. <strong>Validate instance label</strong>: Confirm the exact value of the <code>instance</code> label in Prometheus — it may include a port suffix (e.g., <code>COS-Core-24f:9100</code>) or differ in casing.<br>
+4. <strong>Check Loki agent</strong>: Verify the log-forwarding agent (Alloy / Promtail) on or near COS-Core-24f is running and shipping logs with <code>service_name="stacktrace"</code> and <code>instance="COS-Core-24f"</code>.<br>
+5. <strong>Rerun report</strong>: Once telemetry is restored, regenerate this report to obtain a valid health baseline.</p>
 
 </body>
 </html>
