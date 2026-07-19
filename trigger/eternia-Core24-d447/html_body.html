@@ -1,63 +1,99 @@
 <!DOCTYPE html>
-<html>
-<head><meta charset="UTF-8"><title>Core Health Report — eternia-Core24-d447 — 2026-07-13</title>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Core Health Report — eternia-Core24-d447 — 2026-07-20</title>
 <style>
-  body { font-family: Arial, sans-serif; max-width: 860px; margin: 0 auto; padding: 24px; color: #333; }
-  h1 { background: #1a1a2e; color: #fff; padding: 16px; border-radius: 6px; font-size: 1.2em; }
-  h2 { color: #1a1a2e; border-bottom: 2px solid #e0e0e0; padding-bottom: 4px; font-size: 1em; margin-top: 20px; }
-  p { margin: 6px 0; font-size: 0.9em; line-height: 1.5; }
-  .healthy { color: #00875a; font-weight: bold; }
-  .warning { color: #e6a817; font-weight: bold; }
-  .critical { color: #d04a4a; font-weight: bold; }
-  .nodata { color: #888; font-style: italic; }
-  .meta { font-size: 0.78em; color: #888; margin-bottom: 16px; }
+  body { font-family: Arial, sans-serif; font-size: 14px; color: #172B4D; max-width: 900px; margin: 0 auto; padding: 20px; }
+  h1 { font-size: 20px; border-bottom: 2px solid #0052CC; padding-bottom: 8px; color: #0052CC; }
+  h2 { font-size: 15px; margin-top: 18px; margin-bottom: 4px; color: #253858; border-left: 4px solid #0052CC; padding-left: 8px; }
+  p { margin: 4px 0 8px 0; line-height: 1.5; }
+  .critical { color: #DE350B; font-weight: bold; }
+  .warning { color: #FF8B00; font-weight: bold; }
+  .healthy { color: #00875A; font-weight: bold; }
+  .info-box { background: #FFFAE6; border: 1px solid #FF8B00; padding: 8px 12px; border-radius: 4px; margin: 8px 0; }
+  .critical-box { background: #FFEBE6; border: 1px solid #DE350B; padding: 8px 12px; border-radius: 4px; margin: 8px 0; }
+  table { border-collapse: collapse; width: 100%; font-size: 13px; margin: 6px 0; }
+  th { background: #F4F5F7; text-align: left; padding: 5px 8px; border: 1px solid #DFE1E6; }
+  td { padding: 4px 8px; border: 1px solid #DFE1E6; }
+  ul { margin: 4px 0; padding-left: 20px; }
+  li { margin-bottom: 3px; }
 </style>
 </head>
 <body>
 
-<h1>Core Health Report — eternia-Core24-d447 — 2026-07-13</h1>
-<p class="meta">Generated: 2026-07-13 03:30 IST &nbsp;|&nbsp; Report Period: 2026-07-06 to 2026-07-13 (7 days) &nbsp;|&nbsp; Source: Prometheus + Loki (Grafana Cloud)</p>
+<h1>Core Health Report — eternia-Core24-d447 — 2026-07-20</h1>
 
 <h2>1. Core Identity</h2>
-<p>Core: <strong>eternia-Core24-d447</strong>. Platform: Q-SYS Sleestack. Report period: 2026-07-06 00:00 IST to 2026-07-13 03:30 IST (last 7 days). Data sources: Prometheus (<code>grafanacloud-prom</code>), Loki (<code>grafanacloud-logs</code>).</p>
+<p><strong>Core:</strong> eternia-Core24-d447 &nbsp;|&nbsp; <strong>Report generated:</strong> 2026-07-20 03:30 IST &nbsp;|&nbsp; <strong>Requested period:</strong> Last 7 days (2026-07-13 to 2026-07-20)<br>
+<strong>Last active data window:</strong> 2026-06-01 to 2026-07-03 &nbsp;|&nbsp; <strong>Processes monitored:</strong> audio_engine, runtime_engine, video_engine, node, engine_discover</p>
+
+<div class="critical-box"><strong>TELEMETRY GAP DETECTED:</strong> No metrics or logs have been received from this core since 2026-07-03. As of this report the gap is 16+ days. All performance analysis below reflects the last active data window (2026-06-26 to 2026-07-03).</div>
 
 <h2>2. Resource Summary</h2>
-<p class="nodata">No metric data returned for <code>process_cpu_utilization_ratio</code> or <code>process_memory_utilization_ratio</code> during the report window. The core may not be actively reporting telemetry, or the instance label does not match any active series in the current retention window. Avg CPU: N/A. Avg Memory: N/A.</p>
+<table>
+  <tr><th>Signal</th><th>7-Day Avg (last active window)</th><th>Peak</th><th>Peak Time (UTC)</th></tr>
+  <tr><td>CPU — audio_engine</td><td>37.2%</td><td>37.5%</td><td>2026-06-30 08:00</td></tr>
+  <tr><td>CPU — node</td><td>6.0%</td><td>7.4%</td><td>2026-06-30 08:00</td></tr>
+  <tr><td>CPU — runtime_engine</td><td>&lt;1%</td><td>—</td><td>—</td></tr>
+  <tr><td>CPU — user state (all procs)</td><td>6.9%</td><td>7.4%</td><td>2026-06-30 09:00</td></tr>
+  <tr><td>CPU — system state (all procs)</td><td>1.2%</td><td>1.9%</td><td>2026-07-03 09:00</td></tr>
+  <tr><td>Memory — node</td><td>6.86%</td><td>7.14%</td><td>2026-06-30 10:00</td></tr>
+  <tr><td>Memory — runtime_engine</td><td>2.79%</td><td>46.68%*</td><td>2026-06-16 00:00</td></tr>
+  <tr><td>Memory — engine_discover</td><td>0.10%</td><td>0.11%</td><td>2026-07-03</td></tr>
+</table>
+<p style="font-size:12px">*runtime_engine peak of 46.68% occurred on 2026-06-16 (outside last active 7-day window, detected in broader scan).</p>
 
-<h2>3. CPU State</h2>
-<p class="nodata">CPU utilization data unavailable for the 7-day window. Unable to assess CPU state, peak load, or sustained high-usage events. Verify that the Q-SYS process exporter is running and shipping metrics for <code>instance="eternia-Core24-d447"</code>.</p>
+<h2>3. CPU State Breakdown</h2>
+<p>User-mode CPU averaged 6.9% (peak 7.4%), system-mode averaged 1.2% (peak 1.9%), and I/O wait remained at 0.0% throughout the active window. User and system states showed a strong anti-correlation (r=−0.846), typical of workload shifting between application and kernel. No CPU pressure or saturation was observed. audio_engine dominated total per-process CPU at 37.2% average — consistent with real-time audio workload expectations.</p>
 
-<h2>4. Memory State</h2>
-<p class="nodata">Memory utilization data unavailable for the 7-day window. No trend analysis, pressure events, or baseline can be established. Confirm that <code>process_memory_utilization_ratio</code> is being scraped from this core.</p>
+<h2>4. Memory State Breakdown</h2>
+<p>The <code>node</code> process held the largest sustained memory footprint at 6.86% average (peak 7.14%). <code>runtime_engine</code> averaged 2.79% during the last active week but spiked to 46.68% on 2026-06-16 in the broader data window — a significant anomaly that warrants investigation. <code>audio_engine</code> and <code>video_engine</code> showed flat, static memory profiles. <code>engine_discover</code> showed minor gradual growth from 0.10% to 0.11%.</p>
 
-<h2>5. Process Analysis</h2>
-<p class="nodata">No per-process breakdown could be generated. Expected processes — <code>audio_engine</code>, <code>runtime_engine</code>, <code>video_engine</code>, <code>node</code>, <code>engine_discover</code> — returned no data. All process-level CPU and memory ratios are absent for this instance.</p>
+<h2>5. Process-Level Analysis</h2>
+<table>
+  <tr><th>Process</th><th>Avg CPU</th><th>Avg Memory</th><th>Stability</th><th>Notes</th></tr>
+  <tr><td>audio_engine</td><td>37.2%</td><td>~0% (flat)</td><td>Very stable (CV=0.003)</td><td>Dominant CPU consumer; expected for real-time audio</td></tr>
+  <tr><td>node</td><td>6.0%</td><td>6.86%</td><td>Volatile (CV=0.091)</td><td>Most CPU-volatile; largest memory user</td></tr>
+  <tr><td>runtime_engine</td><td>&lt;1%</td><td>2.79%</td><td>Stable (w/ mid-June spike)</td><td>Historical memory spike to 46.68% on 2026-06-16</td></tr>
+  <tr><td>video_engine</td><td>~0.2%</td><td>Flat</td><td>Stable</td><td>Negligible resource usage</td></tr>
+  <tr><td>engine_discover</td><td>~0.2%</td><td>0.10%→0.11%</td><td>Stable</td><td>Minor memory growth trend</td></tr>
+</table>
 
 <h2>6. Memory Leak Detection</h2>
-<p class="nodata">Memory leak detection requires a time-series trend of <code>process_memory_utilization_ratio</code>. With no data present, no monotonic growth pattern or sawtooth (GC-recovered) pattern can be assessed. Re-run report once telemetry is confirmed active.</p>
+<p>No memory leaks were detected during the last active 7-day window (2026-06-26 to 2026-07-03). All five processes showed flat linear memory trends (0–0.08%/h rate of change). <code>engine_discover</code> exhibited a minor 5.25% gradual growth (0.102% → 0.108%) with long-memory autocorrelation (half-life 18 lags), suggesting slow accumulation — worth monitoring. The <code>runtime_engine</code> spike on 2026-06-16 (46.68%) was not a sustained leak but an isolated event; memory returned to baseline in the last active window.</p>
 
 <h2>7. Crash &amp; Stacktrace Analysis</h2>
-<p>Loki query against <code>{service_name="stacktrace", instance="eternia-Core24-d447"}</code> filtered for <code>"fatal"</code> over the last 7 days returned <strong>0 matching log lines</strong>. No fatal crash events were detected in the log stream for this core during the report period. This may indicate a stable core or absence of log forwarding for this instance.</p>
+<p>No fatal log entries were found in Loki for <code>service_name="stacktrace", instance="eternia-Core24-d447"</code> across the entire observed data period (2026-06-01 to 2026-07-03). Zero crashes, zero fatal stacktraces. The absence of crash logs during the current 16-day telemetry gap is inconclusive — logs may not be reaching the collector if the core is unreachable.</p>
 
 <h2>8. Metrics &amp; Log Correlation</h2>
-<p>No correlated signal is available: both the Prometheus metric series and the Loki fatal-log stream returned empty results for <code>eternia-Core24-d447</code>. Correlation between CPU/memory spikes and crash events cannot be performed. The data gap itself is a signal worth investigating — it may point to a scrape target being down, network isolation, or a label mismatch in the telemetry pipeline.</p>
+<p>No correlated crash-CPU or crash-memory events were detected, as no fatal log entries exist. The <code>runtime_engine</code> memory spike on 2026-06-16 coincided with a reported level shift in process metrics (detected at 2026-06-16 00:00 UTC) but no corresponding crash log was generated — suggesting the spike was a transient load event, not a crash. Two metric discontinuity events at 2026-06-28T05:00Z and 2026-07-03T07:00Z affected audio_engine, runtime_engine, and node simultaneously, possibly indicating a core reboot or brief collector interruption.</p>
 
 <h2>9. Uptime &amp; Restart Analysis</h2>
-<p class="nodata">Uptime estimation (typically derived from <code>process_start_time_seconds</code> or restart-counter deltas) is unavailable due to missing metric data. No restart events, watchdog recoveries, or unexpected process exits can be confirmed or ruled out for this period.</p>
+<p>Two synchronised metric discontinuities were observed — 2026-06-28T05:00 UTC and 2026-07-03T07:00 UTC — affecting audio_engine, runtime_engine, video_engine, and node concurrently, consistent with brief core restarts or telemetry agent restarts. Five secondary process PIDs showed sparse, spiky restart signatures spanning 13.5% of the observation window. The core stopped reporting entirely after 2026-07-03T09:00 UTC; the cause is unknown and represents the primary operational concern.</p>
 
 <h2>10. Anomalies</h2>
-<p class="warning">Primary anomaly: complete absence of Prometheus telemetry for <code>eternia-Core24-d447</code> over the full 7-day window. This is itself an anomalous condition and should be triaged. No log-based anomalies detected (0 fatal log entries). No secondary anomalies to report.</p>
+<ul>
+  <li><span class="critical">CRITICAL — Telemetry silence (16+ days):</span> No metrics received since 2026-07-03. Core may be offline, network-isolated, or telemetry agent unresponsive.</li>
+  <li><span class="warning">WARNING — runtime_engine memory spike (2026-06-16):</span> Memory utilization reached 46.68%, a level shift with confidence=1. Returned to ~2.8% baseline, but root cause unconfirmed.</li>
+  <li><span class="warning">WARNING — Dual discontinuity events:</span> Simultaneous metric gaps at 2026-06-28T05:00Z and 2026-07-03T07:00Z suggest at least two core or agent restarts within the last active week.</li>
+  <li>INFO — engine_discover gradual memory growth: 5.25% accumulation trend with long-memory autocorrelation. Not a leak, but should be monitored over longer windows.</li>
+  <li>INFO — audio_engine sustained high CPU (37.2%): Dominant consumer; consistent with real-time audio workload. No anomaly if within operational spec.</li>
+</ul>
 
 <h2>11. Risk Assessment</h2>
-<p class="warning">Status: <span class="warning">WARNING — NO TELEMETRY</span></p>
-<p>The core cannot be classified as HEALTHY or CRITICAL without metric data. The absence of telemetry prevents confirming system stability and is treated as a WARNING condition. Zero fatal log events is a positive signal, but insufficient to confirm health on its own.</p>
+<p class="critical">Status: CRITICAL</p>
+<p>The core has been silent for 16+ days as of 2026-07-20. While the last active window showed no crashes and stable CPU/memory performance, the prolonged telemetry blackout makes it impossible to assess current health. The core must be treated as CRITICAL until telemetry is restored and a clean observation window is confirmed.</p>
 
 <h2>12. Recommended Actions</h2>
-<p>1. <strong>Verify scrape target:</strong> Confirm <code>eternia-Core24-d447</code> is listed as an active Prometheus scrape target and that the last scrape succeeded (check <code>/targets</code> in Prometheus).<br>
-2. <strong>Check instance label:</strong> Validate that the <code>instance</code> label value in scraped metrics exactly matches <code>eternia-Core24-d447</code> (case-sensitive).<br>
-3. <strong>Confirm process exporter:</strong> Ensure the Q-SYS process metrics exporter is running on the core and accessible by the Prometheus scraper.<br>
-4. <strong>Verify Loki log forwarding:</strong> Confirm the Loki agent/Alloy pipeline on the core is forwarding logs with <code>service_name="stacktrace"</code> and the correct <code>instance</code> label.<br>
-5. <strong>Re-run report</strong> once telemetry is restored to establish a verified baseline for this core.</p>
+<ol>
+  <li><strong>[IMMEDIATE] Verify core reachability:</strong> Check that eternia-Core24-d447 is powered on, network-reachable, and that Q-SYS Core OS is running normally via the Q-SYS Designer or network management tools.</li>
+  <li><strong>[IMMEDIATE] Restart telemetry/OTEL agent:</strong> SSH into the core and verify the OpenTelemetry collector or Sleestack telemetry agent is running. Restart if necessary and confirm metrics resume flowing to grafanacloud-prom.</li>
+  <li><strong>[SHORT-TERM] Investigate runtime_engine memory spike (2026-06-16):</strong> Pull historical device logs for 2026-06-16 and check for any Q-SYS design reload, asset change, or abnormal workload that could explain the jump to 46.68%.</li>
+  <li><strong>[SHORT-TERM] Review discontinuity events (2026-06-28 and 2026-07-03):</strong> Correlate with any scheduled maintenance, design deployments, or network events that may have caused the simultaneous multi-process restarts.</li>
+  <li><strong>[ONGOING] Monitor engine_discover memory trend:</strong> Once telemetry is restored, track engine_discover memory over 14+ days to determine if the 5.25% growth is ongoing or stabilised.</li>
+</ol>
 
 </body>
 </html>
