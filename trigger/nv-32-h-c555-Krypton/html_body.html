@@ -1,217 +1,82 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Core Health Report — nv-32-h-c555-Krypton — 2026-07-20</title>
-<style>
-body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #172B4D; margin: 0; padding: 24px; background: #FAFBFC; }
-h1 { font-size: 22px; color: #0052CC; border-bottom: 3px solid #0052CC; padding-bottom: 8px; margin-bottom: 4px; }
-h2 { font-size: 16px; color: #253858; margin-top: 28px; margin-bottom: 8px; border-left: 4px solid #0052CC; padding-left: 10px; }
-p { font-size: 14px; line-height: 1.6; margin: 6px 0; }
-table { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: 13px; }
-th { background: #0052CC; color: #fff; padding: 8px 12px; text-align: left; }
-td { padding: 7px 12px; border-bottom: 1px solid #DFE1E6; }
-tr:nth-child(even) td { background: #F4F5F7; }
-.badge { display: inline-block; padding: 3px 10px; border-radius: 4px; font-weight: 700; font-size: 12px; color: #fff; }
-.healthy { background-color: #00875a; }
-.warning { background-color: #ff8b00; }
-.critical { background-color: #de350b; }
-.info-box { background: #DEEBFF; border-left: 4px solid #0052CC; padding: 10px 14px; margin: 10px 0; border-radius: 0 4px 4px 0; font-size: 13px; }
-.warn-box { background: #FFFAE6; border-left: 4px solid #ff8b00; padding: 10px 14px; margin: 10px 0; border-radius: 0 4px 4px 0; font-size: 13px; }
-.section { background: #fff; border: 1px solid #DFE1E6; border-radius: 6px; padding: 16px 20px; margin-bottom: 18px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
-ul { font-size: 13px; padding-left: 20px; margin: 6px 0; }
-li { margin-bottom: 4px; }
-</style>
-</head>
-<body>
+<h1>QSC Core Health Report &mdash; nv-32-h-c555-Krypton</h1>
+<p><strong>Window:</strong> 2026-07-20 00:00 UTC to 2026-07-27 22:00 UTC (7 days, previous Monday to today Monday)</p>
+<p><strong>Overall Status:</strong> <span style="background-color:#ff8b00;color:#ffffff;padding:4px 10px;border-radius:4px;font-weight:bold;">WARNING</span></p>
 
-<h1>QSC Sleestack — Core Health Report</h1>
-<p><strong>Core:</strong> nv-32-h-c555-Krypton &nbsp;|&nbsp; <strong>Report Period:</strong> 2026-07-13 00:00 UTC → 2026-07-20 00:00 UTC (7 days) &nbsp;|&nbsp; <strong>Generated:</strong> 2026-07-20 &nbsp;|&nbsp; <strong>Overall Status:</strong> <span class="badge warning">WARNING</span></p>
-
-<div class="section">
-<h2>1. CORE IDENTITY</h2>
-<table>
-<tr><th>Attribute</th><th>Value</th></tr>
-<tr><td>Core Name</td><td>nv-32-h-c555-Krypton</td></tr>
-<tr><td>Report Period</td><td>2026-07-13 00:00 UTC — 2026-07-20 00:00 UTC</td></tr>
-<tr><td>Duration</td><td>7 days (10,080 minutes)</td></tr>
-<tr><td>Known Processes</td><td>audio_engine, runtime_engine, video_engine, node, engine_discover</td></tr>
-<tr><td>Total Series Observed</td><td>12 (CPU), 12 (Memory), 12 (Uptime), 12 (Threads)</td></tr>
-<tr><td>PIDs Active</td><td>audio_engine: 11357, 15886 | runtime_engine: 14134, 16669 | video_engine: 10370, 10371, 10372, 10373 | node: 8749, 8752 | engine_discover: 11129, 11131</td></tr>
-<tr><td>Metrics Datasource</td><td>grafanacloud-prom (Prometheus)</td></tr>
-<tr><td>Logs Datasource</td><td>grafanacloud-logs (Loki)</td></tr>
-<tr><td>Overall Status</td><td><span class="badge warning">WARNING</span></td></tr>
-</table>
-</div>
-
-<div class="section">
-<h2>2. SYSTEM RESOURCE SUMMARY</h2>
-<table>
-<tr><th>Metric</th><th>Value</th><th>Status</th></tr>
-<tr><td>Peak CPU Utilization</td><td>23.3% (audio_engine PID 11357, 2026-07-18 04:15 UTC)</td><td><span class="badge healthy">HEALTHY</span></td></tr>
-<tr><td>Peak Memory Utilization</td><td>32.5% / 1.19 GiB (runtime_engine PID 16669, 2026-07-16 13:00 UTC)</td><td><span class="badge warning">WARNING</span></td></tr>
-<tr><td>Avg Memory Utilization (runtime_engine 16669)</td><td>24.9% / 931 MiB over 7-day window</td><td><span class="badge warning">WARNING</span></td></tr>
-<tr><td>Total Process Restarts</td><td>6 (6 processes, 1 restart each)</td><td><span class="badge warning">WARNING</span></td></tr>
-<tr><td>Crash / Fatal Stacktraces</td><td>0 events detected</td><td><span class="badge healthy">HEALTHY</span></td></tr>
-<tr><td>Thread Count</td><td>Stable; minor growth in runtime_engine (+4.5%)</td><td><span class="badge healthy">HEALTHY</span></td></tr>
-<tr><td>Estimated System RAM</td><td>~4 GiB (inferred: 1.19 GiB = 32.5% total)</td><td>—</td></tr>
-<tr><td>Memory Leak Risk</td><td>runtime_engine PID 16669 growing at 117,490 bytes/min</td><td><span class="badge warning">WARNING</span></td></tr>
-</table>
-</div>
-
-<div class="section">
-<h2>3. CPU STATE BREAKDOWN</h2>
-<p>All processes remained well below the 80% alert threshold throughout the 7-day window. The <strong>audio_engine</strong> processes dominate CPU consumption across both user and system states.</p>
-<table>
-<tr><th>Process</th><th>PID</th><th>State</th><th>Peak CPU</th><th>Avg CPU</th><th>Peak Timestamp (UTC)</th><th>Status</th></tr>
-<tr><td>audio_engine</td><td>11357</td><td>user</td><td>23.3%</td><td>20.5%</td><td>2026-07-18 04:15</td><td><span class="badge healthy">HEALTHY</span></td></tr>
-<tr><td>audio_engine</td><td>15886</td><td>user</td><td>23.3%</td><td>20.1%</td><td>2026-07-16 07:00</td><td><span class="badge healthy">HEALTHY</span></td></tr>
-<tr><td>audio_engine</td><td>15886</td><td>system</td><td>22.9%</td><td>3.2%</td><td>2026-07-16 01:00</td><td><span class="badge healthy">HEALTHY</span></td></tr>
-<tr><td>video_engine / node / runtime_engine / engine_discover</td><td>various</td><td>various</td><td>&lt; 5%</td><td>&lt; 2%</td><td>—</td><td><span class="badge healthy">HEALTHY</span></td></tr>
-<tr><td>All 12 wait-state series</td><td>various</td><td>wait</td><td>0%</td><td>0%</td><td>—</td><td><span class="badge healthy">HEALTHY</span></td></tr>
-</table>
-<div class="info-box">Top 3 CPU series account for 72.1% of total load. Global maximum across all 36 series: 23.3%. No process exceeded the 80% threshold at any point during the week.</div>
-</div>
-
-<div class="section">
-<h2>4. MEMORY STATE BREAKDOWN</h2>
-<p>Memory utilization is dominated by <strong>runtime_engine PID 16669</strong>, which accounts for 45.2% of total observed memory load and shows a sustained upward trend (+34% over 7 days). Four processes maintain completely flat memory baselines.</p>
-<table>
-<tr><th>Process</th><th>PID</th><th>Peak Bytes</th><th>Avg Bytes</th><th>Peak Util %</th><th>Trend</th><th>Status</th></tr>
-<tr><td>runtime_engine</td><td>16669</td><td>1.19 GiB (1,275,916,288 B)</td><td>931.2 MiB</td><td>32.5%</td><td>▲ +34.0%</td><td><span class="badge warning">WARNING</span></td></tr>
-<tr><td>node</td><td>8752</td><td>~110 MiB</td><td>~96 MiB</td><td>5.4%</td><td>→ Stable</td><td><span class="badge healthy">HEALTHY</span></td></tr>
-<tr><td>node</td><td>8749</td><td>~108 MiB</td><td>~103 MiB</td><td>5.3%</td><td>→ Stable</td><td><span class="badge healthy">HEALTHY</span></td></tr>
-<tr><td>audio_engine</td><td>11357</td><td>174.2 MiB</td><td>174.2 MiB</td><td>~4.3%</td><td>→ Flat (CV=0)</td><td><span class="badge healthy">HEALTHY</span></td></tr>
-<tr><td>audio_engine</td><td>15886</td><td>174.2 MiB</td><td>174.2 MiB</td><td>~4.3%</td><td>→ Flat (CV=0)</td><td><span class="badge healthy">HEALTHY</span></td></tr>
-<tr><td>runtime_engine</td><td>14134</td><td>~200 MiB</td><td>~190 MiB</td><td>~5%</td><td>→ Stable</td><td><span class="badge healthy">HEALTHY</span></td></tr>
-<tr><td>video_engine</td><td>10370–10373</td><td>~6.9 MiB</td><td>~6.9 MiB</td><td>0.19%</td><td>→ Flat (CV=0)</td><td><span class="badge healthy">HEALTHY</span></td></tr>
-<tr><td>engine_discover</td><td>11129, 11131</td><td>&lt; 5 MiB</td><td>&lt; 5 MiB</td><td>&lt; 0.1%</td><td>→ Flat</td><td><span class="badge healthy">HEALTHY</span></td></tr>
-</table>
-<div class="warn-box"><strong>Change Points Detected in runtime_engine PID 16669:</strong> Four level-shift change points at 2026-07-13 16:00 UTC, 2026-07-14 03:00 UTC, 2026-07-14 20:15 UTC, and 2026-07-16 08:15 UTC — indicating distinct memory utilization plateaus rather than gradual drift.</div>
-</div>
-
-<div class="section">
-<h2>5. PROCESS-LEVEL ANALYSIS</h2>
-<table>
-<tr><th>Process</th><th>PIDs</th><th>Peak CPU</th><th>Peak Memory</th><th>Threads</th><th>Restarts</th><th>Trend</th><th>Status</th></tr>
-<tr><td>audio_engine</td><td>11357, 15886</td><td>23.3%</td><td>174.2 MiB (each, stable)</td><td>9 (each, stable)</td><td>1 each</td><td>CPU-dominant; memory flat</td><td><span class="badge healthy">HEALTHY</span></td></tr>
-<tr><td>runtime_engine</td><td>14134, 16669</td><td>&lt;5%</td><td>16669: 1.19 GiB (growing); 14134: ~200 MiB (stable)</td><td>83–85 (16669 growing)</td><td>1 each</td><td>Memory leak pattern on PID 16669</td><td><span class="badge warning">WARNING</span></td></tr>
-<tr><td>video_engine</td><td>10370–10373</td><td>&lt;2%</td><td>6.9 MiB (flat)</td><td>90 (PID 10373, flat)</td><td>10370, 10371: 1 each; 10372, 10373: 0</td><td>Lowest utilization; very stable</td><td><span class="badge healthy">HEALTHY</span></td></tr>
-<tr><td>node</td><td>8749, 8752</td><td>&lt;3%</td><td>~100–110 MiB (stable)</td><td>13 (each, flat)</td><td>8749: 1; 8752: 0</td><td>Stable across all dimensions</td><td><span class="badge healthy">HEALTHY</span></td></tr>
-<tr><td>engine_discover</td><td>11129, 11131</td><td>&lt;1%</td><td>&lt;5 MiB (flat)</td><td>1 (each)</td><td>11129: 1; 11131: 0</td><td>Minimal footprint; stable</td><td><span class="badge healthy">HEALTHY</span></td></tr>
-</table>
-</div>
-
-<div class="section">
-<h2>6. MEMORY LEAK DETECTION</h2>
-<p>Statistical analysis of <code>process_memory_usage_bytes</code> identifies one high-confidence leak candidate.</p>
-<table>
-<tr><th>Process</th><th>PID</th><th>Growth Rate</th><th>Total Growth (7d)</th><th>Autocorrelation</th><th>Change Points</th><th>Assessment</th></tr>
-<tr><td>runtime_engine</td><td>16669</td><td>117,490 bytes/min (~169 MiB/day)</td><td>+34.0% (776 MiB → 1,176 MiB)</td><td>Long-memory (half-life: 47 lags)</td><td>4 level-shifts detected</td><td><span class="badge warning">POTENTIAL LEAK</span></td></tr>
-<tr><td>runtime_engine</td><td>14134</td><td>~0 bytes/min</td><td>Flat</td><td>N/A</td><td>None</td><td><span class="badge healthy">HEALTHY</span></td></tr>
-<tr><td>All others</td><td>various</td><td>0 bytes/min</td><td>Flat (CV=0)</td><td>N/A</td><td>None</td><td><span class="badge healthy">HEALTHY</span></td></tr>
-</table>
-<div class="warn-box">
-<strong>Leak Projection for runtime_engine PID 16669:</strong><br>
-At the observed slope of 117,490 bytes/min (7.05 MiB/hr, ~169 MiB/day), runtime_engine PID 16669 will approach ~1.4 GiB within the next 7 days without intervention. Estimated system RAM is ~4 GiB; current total memory footprint across all processes is ~1.77 GiB, leaving approximately ~2.2 GiB headroom. At current growth rate, system memory pressure is expected within approximately 13 days if unaddressed.
-<br><br>Additional indicator: <strong>anti-correlation (r = −0.466)</strong> between runtime_engine PID 16669 and video_engine PID 10373 memory usage suggests competing resource pressure — as runtime_engine consumes more memory, video_engine is being squeezed.
-</div>
-</div>
-
-<div class="section">
-<h2>7. CRASH AND STACKTRACE ANALYSIS</h2>
-<p>Loki query against <code>service_name="stacktrace"</code> and <code>instance="nv-32-h-c555-Krypton"</code> for the 7-day window returned <strong>zero results</strong>.</p>
-<table>
-<tr><th>Category</th><th>Count</th><th>Details</th><th>Status</th></tr>
-<tr><td>Fatal Stacktraces</td><td>0</td><td>No fatal crash logs found in Loki</td><td><span class="badge healthy">HEALTHY</span></td></tr>
-<tr><td>Process Restarts</td><td>6</td><td>Detected via uptime resets in Prometheus (see Section 9)</td><td><span class="badge warning">REVIEW</span></td></tr>
-<tr><td>Crash-Induced Restarts</td><td>Unknown</td><td>Restarts occurred but no corresponding stacktraces — likely watchdog/supervisor managed</td><td><span class="badge warning">REVIEW</span></td></tr>
-</table>
-<div class="info-box">No application-level fatal crashes were recorded in the Loki stacktrace log stream. The 6 process restarts observed in Prometheus uptime data may be the result of intentional watchdog restarts, deployment events, or OOM kills — none of which necessarily produce application-level stacktrace logs. Further correlation with system-level logs (syslog/dmesg/journald) is recommended.</div>
-</div>
-
-<div class="section">
-<h2>8. METRICS AND LOG CORRELATION</h2>
-<table>
-<tr><th>Timestamp (UTC)</th><th>Metric Event</th><th>Log Event</th><th>Correlation</th></tr>
-<tr><td>2026-07-14 03:00–03:15</td><td>Memory level-shift (runtime_engine 16669) + Uptime resets (runtime_engine 14134, audio_engine 11357, engine_discover 11129)</td><td>No logs</td><td>Cluster restart event — possibly a scheduled restart, deployment, or watchdog cycle. Memory level-shift immediately after restart.</td></tr>
-<tr><td>2026-07-14 20:15</td><td>Memory level-shift (runtime_engine 16669 — 3rd plateau)</td><td>No logs</td><td>Memory stepped up again ~17h after restart; suggests runtime_engine memory grows in phases post-startup.</td></tr>
-<tr><td>2026-07-16 07:00–08:15</td><td>CPU peak (audio_engine 15886: 23.3%) + Memory level-shift (runtime_engine 16669) + Uptime reset (node 8749, video_engine 10370/10371)</td><td>No logs</td><td>Second restart cluster coinciding with audio_engine CPU peak and another runtime_engine memory plateau — potential load-triggered restart.</td></tr>
-<tr><td>2026-07-16 13:00</td><td>runtime_engine 16669 peak memory: 1.19 GiB (32.5%)</td><td>No logs</td><td>Memory ceiling within the week. Continued growth post-peak (ending week at 29.9%).</td></tr>
-<tr><td>2026-07-17 16:30</td><td>Uptime reset (audio_engine 11357, video_engine 10370/10371)</td><td>No logs</td><td>Third restart cluster. No corresponding CPU or memory spike — possibly scheduled or health-check triggered.</td></tr>
-<tr><td>2026-07-18 04:15</td><td>CPU peak for week (audio_engine 11357: 23.3%)</td><td>No logs</td><td>Highest CPU event of the week. No log correlation available.</td></tr>
-</table>
-</div>
-
-<div class="section">
-<h2>9. UPTIME AND RESTART ANALYSIS</h2>
-<p>Over the 7-day window, <strong>6 of 12 process series experienced exactly 1 restart each</strong>, clustered into 3 distinct events. <strong>4 processes maintained continuous uptime</strong> throughout the observation window.</p>
-<table>
-<tr><th>Process</th><th>PID</th><th>Restarts</th><th>Restart Timestamp (UTC)</th><th>Current Uptime (at week end)</th><th>Status</th></tr>
-<tr><td>node</td><td>8752</td><td>0</td><td>—</td><td>&gt;16.2 days (continuous)</td><td><span class="badge healthy">HEALTHY</span></td></tr>
-<tr><td>video_engine</td><td>10372</td><td>0</td><td>—</td><td>&gt;14.5 days</td><td><span class="badge healthy">HEALTHY</span></td></tr>
-<tr><td>video_engine</td><td>10373</td><td>0</td><td>—</td><td>&gt;14.5 days</td><td><span class="badge healthy">HEALTHY</span></td></tr>
-<tr><td>engine_discover</td><td>11131</td><td>0</td><td>—</td><td>&gt;14.5 days</td><td><span class="badge healthy">HEALTHY</span></td></tr>
-<tr><td>runtime_engine</td><td>14134</td><td>1</td><td>2026-07-14 03:15</td><td>~137 hours post-restart</td><td><span class="badge warning">WARNING</span></td></tr>
-<tr><td>audio_engine</td><td>11357</td><td>1</td><td>2026-07-17 16:30</td><td>~55 hours post-restart</td><td><span class="badge warning">WARNING</span></td></tr>
-<tr><td>engine_discover</td><td>11129</td><td>1</td><td>2026-07-14 03:15</td><td>~137 hours post-restart</td><td><span class="badge warning">WARNING</span></td></tr>
-<tr><td>video_engine</td><td>10370</td><td>1</td><td>2026-07-16 08:15</td><td>~87 hours post-restart</td><td><span class="badge warning">WARNING</span></td></tr>
-<tr><td>video_engine</td><td>10371</td><td>1</td><td>2026-07-17 16:30</td><td>~55 hours post-restart</td><td><span class="badge warning">WARNING</span></td></tr>
-<tr><td>node</td><td>8749</td><td>1</td><td>2026-07-16 08:15</td><td>~87 hours post-restart</td><td><span class="badge warning">WARNING</span></td></tr>
-</table>
-<p><strong>Restart Clusters:</strong></p>
+<h2>1. Core Identity</h2>
 <ul>
-<li><strong>Cluster 1 — 2026-07-14 03:15 UTC:</strong> runtime_engine 14134, engine_discover 11129 (2 processes)</li>
-<li><strong>Cluster 2 — 2026-07-16 08:15 UTC:</strong> video_engine 10370, node 8749 (2 processes)</li>
-<li><strong>Cluster 3 — 2026-07-17 16:30 UTC:</strong> audio_engine 11357, video_engine 10371 (2 processes)</li>
+<li>Core instance: nv-32-h-c555-Krypton</li>
+<li>Device MAC ID: 00:60:74:fe:c5:55</li>
+<li>Gateway ID: 158RKTQMCN9YGLB</li>
+<li>service_instance_id (Prometheus): nv-32-h-c555-Krypton</li>
+<li>Monitored processes (5): audio_engine, runtime_engine, video_engine, node (pid 8749), engine_discover; runtime_engine pid 14134</li>
 </ul>
-</div>
 
-<div class="section">
-<h2>10. ANOMALIES</h2>
-<table>
-<tr><th>#</th><th>Anomaly</th><th>Process / PID</th><th>Severity</th><th>Details</th></tr>
-<tr><td>1</td><td>Sustained Memory Growth</td><td>runtime_engine / 16669</td><td><span class="badge warning">WARNING</span></td><td>34% memory growth over 7 days. Slope: 117,490 bytes/min. Long-memory autocorrelation (half-life 47 lags). 4 level-shift change points confirm stepped growth pattern.</td></tr>
-<tr><td>2</td><td>Memory-Resource Competition</td><td>runtime_engine 16669 vs video_engine 10373</td><td><span class="badge warning">WARNING</span></td><td>Anti-correlation r = −0.466 detected between runtime_engine and video_engine memory usage. As runtime_engine memory expands, video_engine memory contracts — potential memory pressure on system allocator.</td></tr>
-<tr><td>3</td><td>Clustered Process Restarts</td><td>6 processes across 3 events</td><td><span class="badge warning">WARNING</span></td><td>All 6 restarts occurred in pairs (2 processes per event), suggesting correlated trigger events rather than independent random crashes. No corresponding stacktrace logs found.</td></tr>
-<tr><td>4</td><td>Thread Growth in runtime_engine</td><td>runtime_engine / 16669</td><td><span class="badge healthy">INFO</span></td><td>Thread count grew from 81 → 85 (+4.5%) over 7 days (slope: 0.001 thread/min). Low-confidence threat but consistent with heap fragmentation under memory growth conditions.</td></tr>
-<tr><td>5</td><td>audio_engine CPU Dominance</td><td>audio_engine / 11357, 15886</td><td><span class="badge healthy">INFO</span></td><td>audio_engine accounts for 72.1% of total CPU load. While within safe bounds (&lt;24%), any increase in audio workload could approach 50%+ quickly. No current alert threshold breach.</td></tr>
+<h2>2. System Resource Summary</h2>
+<table border="1" cellpadding="6" cellspacing="0">
+<tr><th>Metric</th><th>Average</th><th>Peak</th><th>Notes</th></tr>
+<tr><td>Aggregate CPU utilization</td><td>30.6%</td><td>31.6% (2026-07-24 21:00 UTC)</td><td>Stable, CV=0.013</td></tr>
+<tr><td>Aggregate memory usage</td><td>686.5 MiB</td><td>700.8 MiB (2026-07-23 19:00 UTC)</td><td>Low volatility, -0.72% net over window</td></tr>
+<tr><td>Restarts detected</td><td colspan="2">0</td><td>Continuous uptime growth</td></tr>
+<tr><td>Memory leak signature</td><td colspan="2">None</td><td>All processes flat/near-zero growth</td></tr>
 </table>
-</div>
 
-<div class="section">
-<h2>11. SUMMARY AND RISK ASSESSMENT</h2>
-<table>
-<tr><th>Domain</th><th>Status</th><th>Key Metric</th></tr>
-<tr><td>CPU Health</td><td><span class="badge healthy">HEALTHY</span></td><td>Peak 23.3% — well below 80% threshold. No spikes.</td></tr>
-<tr><td>Memory Health</td><td><span class="badge warning">WARNING</span></td><td>runtime_engine PID 16669 at 1.19 GiB peak, +34% growth, 4 change points.</td></tr>
-<tr><td>Crash / Stacktrace</td><td><span class="badge healthy">HEALTHY</span></td><td>0 fatal stacktrace events in Loki over 7 days.</td></tr>
-<tr><td>Process Restarts</td><td><span class="badge warning">WARNING</span></td><td>6 restarts across 3 clustered events. Root cause unconfirmed.</td></tr>
-<tr><td>Thread Stability</td><td><span class="badge healthy">HEALTHY</span></td><td>11/12 processes fully stable; runtime_engine PID 16669 minor growth only.</td></tr>
-<tr><td>Memory Leak Risk</td><td><span class="badge warning">WARNING</span></td><td>Projected heap exhaustion risk in ~13 days at current growth rate.</td></tr>
-<tr><td><strong>OVERALL ASSESSMENT</strong></td><td><span class="badge warning">WARNING</span></td><td>Core is operational but requires attention on runtime_engine memory and restart root causes.</td></tr>
+<h2>3. CPU State Breakdown</h2>
+<table border="1" cellpadding="6" cellspacing="0">
+<tr><th>State</th><th>Average</th><th>Peak</th><th>Notes</th></tr>
+<tr><td>user</td><td>4.1%</td><td>4.9% (2026-07-24 21:00 UTC)</td><td>80.3% of aggregate utilization</td></tr>
+<tr><td>system</td><td>1.0%</td><td>4.2% (2026-07-20 20:00 UTC)</td><td>High variability (CV=0.569), 8 level shifts 07-20 15:00 to 07-21 12:00 UTC</td></tr>
+<tr><td>wait</td><td>0%</td><td>0%</td><td>No activity throughout window</td></tr>
 </table>
-<div class="warn-box">
-<strong>Risk Narrative:</strong> Core nv-32-h-c555-Krypton is <strong>operationally stable</strong> — no crashes, CPU within bounds, most processes healthy. However, <strong>runtime_engine PID 16669 presents a growing memory risk</strong> that will compound over the coming week. The three clustered restart events during the week suggest a recurring trigger (deployment, watchdog, OOM) that should be identified and addressed. Without intervention, this core transitions to CRITICAL status within 2 weeks.
-</div>
-</div>
+<p>user and system states are strongly anti-correlated (r=-0.994).</p>
 
-<div class="section">
-<h2>12. RECOMMENDED ACTIONS</h2>
-<table>
-<tr><th>Priority</th><th>Action</th><th>Target</th><th>Rationale</th></tr>
-<tr><td><span class="badge critical">P1 — URGENT</span></td><td>Profile runtime_engine PID 16669 for heap allocations</td><td>runtime_engine / 16669</td><td>34% memory growth at 117,490 bytes/min. Enable heap profiling (e.g., valgrind/massif or built-in allocator tracing) to identify allocation sites causing stepped growth.</td></tr>
-<tr><td><span class="badge critical">P1 — URGENT</span></td><td>Investigate restart root cause for 3 cluster events</td><td>All 6 restarted processes</td><td>Check journald/syslog/dmesg on nv-32-h-c555-Krypton at 2026-07-14 03:15, 2026-07-16 08:15, 2026-07-17 16:30 UTC. Look for OOM kills (kernel logs), watchdog triggers, or deployment scripts.</td></tr>
-<tr><td><span class="badge warning">P2 — HIGH</span></td><td>Set memory alert threshold for runtime_engine</td><td>runtime_engine / 16669</td><td>Alert at 85% system memory (≈3.4 GiB) to provide lead time before OOM. Current trajectory reaches this in ~8–13 days.</td></tr>
-<tr><td><span class="badge warning">P2 — HIGH</span></td><td>Schedule controlled restart of runtime_engine PID 16669</td><td>runtime_engine / 16669</td><td>As a short-term mitigation while root cause is investigated, a scheduled weekly restart will prevent uncontrolled OOM failure. Current memory resets to baseline on restart (confirmed by PID 14134 pattern).</td></tr>
-<tr><td><span class="badge warning">P2 — HIGH</span></td><td>Enable Loki log stream for process-level error/warn logs</td><td>All processes</td><td>Stacktrace logs showed 0 events — which may mean no crashes OR that logging is not configured. Confirm log coverage for audio_engine, runtime_engine, node at WARN level minimum.</td></tr>
-<tr><td><span class="badge healthy">P3 — NORMAL</span></td><td>Monitor audio_engine CPU trend</td><td>audio_engine / 11357, 15886</td><td>Currently at 23.3% peak. If workload scales, this could reach 50%+ within the same monitoring period. Set alert at 60%.</td></tr>
-<tr><td><span class="badge healthy">P3 — NORMAL</span></td><td>Validate thread count in runtime_engine PID 16669</td><td>runtime_engine / 16669</td><td>4.5% thread growth (81→85) is low-risk but consistent with the memory growth pattern. Monitor weekly; alert if thread count exceeds 100.</td></tr>
+<h2>4. Memory State Breakdown</h2>
+<p>Total memory usage averaged 686.5 MiB (peak 700.8 MiB, min 658.3 MiB), low volatility (CV=0.02), with 8 level-shift points early in the window (07-20 01:00-22:00 UTC) followed by steady behavior.</p>
+<p><strong>Note:</strong> process_memory_utilization_ratio values of 4.44-5.21 (444%-521%) were observed for audio_engine, runtime_engine and node, exceeding the expected 0-1 range for a percentunit ratio metric. See Anomalies section.</p>
+
+<h2>5. Process-Level Analysis</h2>
+<table border="1" cellpadding="6" cellspacing="0">
+<tr><th>Process</th><th>CPU avg</th><th>CPU peak</th><th>Memory avg (bytes)</th><th>Memory ratio avg</th><th>Threads avg</th></tr>
+<tr><td>audio_engine</td><td>20.4%</td><td>23.3%</td><td>174.2 MiB (flat)</td><td>4.44 (flat)</td><td>9</td></tr>
+<tr><td>runtime_engine</td><td>2.8%</td><td>3.7%</td><td>200.9 MiB</td><td>5.12</td><td>83.3</td></tr>
+<tr><td>node</td><td>residual (top-3=99.2%)</td><td>-</td><td>190.6 MiB (-3.9%)</td><td>4.86 (peak 5.21)</td><td>13</td></tr>
+<tr><td>video_engine</td><td>minimal</td><td>-</td><td>53.7 MiB (flat)</td><td>2.55 (flat)</td><td>44</td></tr>
+<tr><td>engine_discover</td><td>minimal</td><td>-</td><td>12.7 to 13.9 MiB (+8.6%)</td><td>0.34 (+8.6%)</td><td>1</td></tr>
 </table>
-</div>
+<p>audio_engine dominates CPU (81.3% of aggregate); top 3 processes (audio_engine, runtime_engine, node) account for 99.2% of CPU. runtime_engine dominates thread count (83.3 avg, 55.4% of total threads).</p>
 
-<hr style="margin-top:30px; border: none; border-top: 1px solid #DFE1E6;">
-<p style="font-size: 11px; color: #7A869A; text-align: center;">QSC Sleestack Core Health Reporter &nbsp;|&nbsp; Generated by Grafana Assistant &nbsp;|&nbsp; 2026-07-20 &nbsp;|&nbsp; Core: nv-32-h-c555-Krypton &nbsp;|&nbsp; Period: 2026-07-13 → 2026-07-20</p>
+<h2>6. Memory Leak Detection</h2>
+<ul>
+<li>No sustained leak detected across any of the 5 processes; all show flat or near-zero hourly growth rates.</li>
+<li>engine_discover shows the largest relative change (+8.61% bytes and ratio), but slope is only ~0.08%/hour - negligible, worth monitoring.</li>
+<li>node declined -3.92% (189.3 to 181.8 MiB) - inconsistent with a leak.</li>
+<li>audio_engine and video_engine are fully flat (CV=0).</li>
+</ul>
 
-</body>
-</html>
+<h2>7. Crash and Stacktrace Analysis</h2>
+<p style="color:#de350b;font-weight:bold;">Data gap identified.</p>
+<p>No log entries were found in Loki (service_name="stacktrace") matching instance/service_instance_id "nv-32-h-c555-Krypton" for the 7-day window. Only two service_instance_id values exist tenant-wide in this stream: "Core-c173-dj" (~47.25 logs/day) and "core-sachin" (~38 logs/day, flat) - neither corresponds to this core. Zero crashes cannot be confirmed; this should be treated as unverified rather than confirmed-healthy.</p>
+
+<h2>8. Metrics and Log Correlation</h2>
+<p>No stacktrace logs were available to correlate against CPU/memory activity for this core. Metric-only correlation: user-mode and system-mode CPU are strongly anti-correlated (r=-0.994); uptime shows continuous growth throughout the window, ruling out crash-induced restarts during this period.</p>
+
+<h2>9. Uptime and Restart Analysis</h2>
+<p>All monitored processes show continuous, monotonic uptime growth from ~298k s to ~896k s over the window, perfectly correlated across processes (r=1). Zero restarts detected (no drops to near-zero uptime).</p>
+
+<h2>10. Anomalies</h2>
+<ul>
+<li>process_memory_utilization_ratio values of 4.44-5.21 (444%-521%) for audio_engine, runtime_engine and node exceed the expected 0-1 range for a ratio metric - likely a unit/instrumentation issue rather than actual over-commitment, since raw memory_usage_bytes stays healthy (~686 MiB total). Recommend validating this metric's definition/scaling.</li>
+<li>No stacktrace/crash log visibility for this core in Loki - a monitoring coverage gap rather than a confirmed absence of crashes.</li>
+<li>8 low-confidence level-shift change points in system-mode CPU (07-20 15:00 to 07-21 12:00 UTC) with no corresponding restart or log event found.</li>
+</ul>
+
+<h2>11. Summary and Risk Assessment</h2>
+<p><span style="background-color:#ff8b00;color:#ffffff;padding:4px 10px;border-radius:4px;font-weight:bold;">WARNING</span></p>
+<p>Raw resource health is good: stable CPU (~30.6% avg), stable memory footprint (~686 MiB avg), no restarts, no leak signature. WARNING status is driven by two unresolved visibility/data-quality issues: (a) no crash/stacktrace log coverage for this specific core, so crash history cannot be confirmed for the window; (b) process_memory_utilization_ratio readings exceed the plausible 0-1 range, indicating a possible metric/instrumentation problem. No CRITICAL indicators were found (no restarts, no confirmed crashes, no leak, no throttling signs).</p>
+
+<h2>12. Recommended Actions</h2>
+<ul>
+<li>Verify Loki log shipping/labeling for nv-32-h-c555-Krypton so service_name="stacktrace" logs are tagged with a matching instance/service_instance_id label; without this, crash detection for this core is blind.</li>
+<li>Validate the process_memory_utilization_ratio metric definition/scaling on this core or exporter - values above 100% suggest a possible baseline miscalibration or unit bug.</li>
+<li>Continue monitoring engine_discover memory (+8.61% over 7 days); re-check in the next report cycle before it becomes actionable.</li>
+<li>No immediate remediation required for CPU, uptime, or thread counts - all within stable, expected ranges.</li>
+</ul>
