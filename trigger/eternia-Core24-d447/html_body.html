@@ -1,15 +1,15 @@
 <html><body>
-<h1>Core Health Report — eternia-Core24-d447 — 2026-07-27</h1>
-<h2>1. Core Identity</h2><p>Core: eternia-Core24-d447. Report period: last 7 days (2026-07-19 to 2026-07-26 UTC).</p>
-<h2>2. Resource Summary</h2><p>Average CPU utilization: 3.64%. Peak CPU utilization: 35.05% (audio_engine, PID 14584). Memory utilization stable across the period with no significant growth trend across monitored processes.</p>
-<h2>3. CPU State</h2><p>CPU load is low overall (3.64% average). audio_engine dominates CPU usage (0.7341 combined ratio, ~73% of total CPU consumed by monitored processes) and produced the single peak spike of 35.05%; runtime_engine, node, engine_discover, and video_engine remain minor contributors with no sustained high-CPU periods observed.</p>
-<h2>4. Memory State</h2><p>Memory usage is stable. Highest consumers are runtime_engine (avg ~2.63-3.21, peak ~2.63-3.22) and node (avg ~1.54-2.00, peak ~1.58-2.02), followed by audio_engine (~1.49) and smaller contributions from video_engine and engine_discover (&lt;0.5). Average and peak values are nearly identical for every process, indicating no memory buildup during the window.</p>
-<h2>5. Process Analysis</h2><p>6 processes / 12 instances monitored. Ranked by CPU load: audio_engine &gt; runtime_engine &gt; node &gt; engine_discover &gt; video_engine. Ranked by memory load: runtime_engine &gt; node &gt; audio_engine &gt; video_engine &gt; engine_discover. No process shows abnormal or runaway resource consumption.</p>
-<h2>6. Memory Leak Detection</h2><p>No leak indicators detected. Average and peak memory values track closely for every process instance across the 7-day window, consistent with steady-state behavior rather than a monotonic growth pattern.</p>
-<h2>7. Crash &amp; Stacktrace Analysis</h2><p>0 fatal stacktrace log entries found for this core in the last 7 days (query: {service_name="stacktrace", instance="eternia-Core24-d447"} |= "fatal"). No crash events to report.</p>
-<h2>8. Metrics &amp; Log Correlation</h2><p>With zero fatal log events and no CPU/memory spikes correlating to instability, metrics and logs are consistent with a healthy, uninterrupted operating period. The single CPU peak (35.05%, audio_engine) did not coincide with any fatal log entries.</p>
-<h2>9. Uptime &amp; Restart Analysis</h2><p>No fatal errors or crash signatures were observed that would indicate unexpected restarts during the report period. Process instance counts remained consistent (12 instances across 6 processes) throughout the window.</p>
-<h2>10. Anomalies</h2><p>One transient CPU spike to 35.05% on audio_engine (PID 14584); isolated, non-recurring, and not correlated with any error logs. No other anomalies detected.</p>
+<h1>Core Health Report — eternia-Core24-d447 — 2026-08-03</h1>
+<h2>1. Core Identity</h2><p>Core: eternia-Core24-d447. Report period: last 7 days (2026-07-27 to 2026-08-02 UTC).</p>
+<h2>2. Resource Summary</h2><p>Avg CPU utilization: 1.95%. Avg memory utilization: 1.19%. Both well within normal operating range.</p>
+<h2>3. CPU State</h2><p>CPU load is low and stable, dominated by audio_engine (2.41% combined across 7 processes). No sustained high-CPU periods observed.</p>
+<h2>4. Memory State</h2><p>Memory usage is low across all process groups. No indication of memory pressure over the report period.</p>
+<h2>5. Process Analysis</h2><p>By CPU: audio_engine (2.41%) &gt; runtime_engine (0.27%) &gt; node (0.07%) &gt; engine_discover (0.004%) &gt; video_engine (0.002%). By memory: runtime_engine (2.70%) is highest, followed by node (1.50%) and audio_engine (1.49%); video_engine and engine_discover are lowest.</p>
+<h2>6. Memory Leak Detection</h2><p>No upward memory trend detected for any process group over the 7-day window; runtime_engine's higher average memory share appears stable rather than growing.</p>
+<h2>7. Crash &amp; Stacktrace Analysis</h2><p>0 fatal stacktrace log entries found in Loki for this core over the last 7 days.</p>
+<h2>8. Metrics &amp; Log Correlation</h2><p>No fatal log events to correlate with CPU or memory spikes; resource metrics show no anomalous spikes during the period.</p>
+<h2>9. Uptime &amp; Restart Analysis</h2><p>No crash/fatal events were logged, consistent with no unplanned restarts during the report window.</p>
+<h2>10. Anomalies</h2><p>No anomalies detected in CPU, memory, or log data for this period.</p>
 <h2>11. Risk Assessment</h2><p style="color:#00875a">Status: HEALTHY</p>
-<h2>12. Recommended Actions</h2><p>No immediate action required. Continue routine monitoring. Optionally investigate the audio_engine CPU spike (PID 14584) if recurrence is observed in future reporting periods.</p>
+<h2>12. Recommended Actions</h2><p>No immediate action required. Continue routine monitoring; keep an eye on runtime_engine memory share as it is the highest of the process groups.</p>
 </body></html>
