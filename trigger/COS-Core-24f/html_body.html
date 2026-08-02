@@ -1,15 +1,15 @@
 <html><body>
-<h1>Core Health Report — COS-Core-24f — 2026-07-26</h1>
-<h2>1. Core Identity</h2><p>Core: COS-Core-24f. Report period: last 7 days (2026-07-19 to 2026-07-26 UTC).</p>
-<h2>2. Resource Summary</h2><p>Avg CPU utilization: 1.58% (aggregate across 6 processes). Avg memory utilization: 14.33% (aggregate across 6 processes). Both well within normal operating range.</p>
-<h2>3. CPU State</h2><p>CPU load is low and stable. User state 0.373%, system state 0.075%, wait state 0% — no I/O wait detected. audio_engine (0.297%) and runtime_engine (0.184%) are the top contributors.</p>
-<h2>4. Memory State</h2><p>Aggregate memory utilization is 14.33%, led by runtime_engine (6.15%) and node (4.65%). No values approach saturation thresholds.</p>
-<h2>5. Process Analysis</h2><p>Top processes by resource use: runtime_engine (highest memory, 6.15%; PIDs 11432, 15173) and audio_engine (highest CPU, 0.297%; PIDs 10848, 14510). video_engine and engine_discover show negligible CPU/memory footprint.</p>
-<h2>6. Memory Leak Detection</h2><p>No sustained upward trend observed in the 7-day average; memory usage is distributed consistently across process PIDs. No leak signature detected in this window.</p>
-<h2>7. Crash & Stacktrace Analysis</h2><p>0 fatal errors found in stacktrace logs for COS-Core-24f over the last 7 days.</p>
-<h2>8. Metrics & Log Correlation</h2><p>No fatal log events to correlate against CPU/memory spikes; resource metrics remained flat and low throughout the period, consistent with an absence of crash events.</p>
-<h2>9. Uptime & Restart Analysis</h2><p>No restart or crash indicators found in logs during the report period, suggesting continuous uptime for the observed processes.</p>
-<h2>10. Anomalies</h2><p>No anomalies detected. All process CPU and memory values are within expected low-utilization ranges.</p>
+<h1>Core Health Report — COS-Core-24f — 2026-08-02</h1>
+<h2>1. Core Identity</h2><p>Core: COS-Core-24f. Report period: last 7 days (2026-07-26 to 2026-08-02).</p>
+<h2>2. Resource Summary</h2><p>Average CPU utilization: 1.68%. Average memory utilization: 1.04%. Both well within normal operating range.</p>
+<h2>3. CPU State</h2><p>CPU usage is low and stable, concentrated in audio_engine (8.07% avg) and runtime_engine (2.58% avg). No I/O wait overhead detected.</p>
+<h2>4. Memory State</h2><p>Memory usage is low and stable at 1.04% average across 5 processes (17 instances), led by runtime_engine (2.68%).</p>
+<h2>5. Process Analysis</h2><p>Top CPU consumers: audio_engine, runtime_engine, node. Top memory consumers: runtime_engine, node, audio_engine. video_engine and engine_discover show negligible resource use.</p>
+<h2>6. Memory Leak Detection</h2><p>No sustained upward memory trend observed over the 7-day window; utilization remains flat and low across all processes, indicating no leak signature.</p>
+<h2>7. Crash & Stacktrace Analysis</h2><p>No fatal stacktrace log entries found for COS-Core-24f in the last 7 days (0 crashes).</p>
+<h2>8. Metrics & Log Correlation</h2><p>No fatal events to correlate against CPU/memory metrics; resource usage shows no spikes coinciding with error conditions.</p>
+<h2>9. Uptime & Restart Analysis</h2><p>No crash or fatal-error evidence suggesting unplanned restarts during the report period; process counts remained consistent (17 instances across 5 process types).</p>
+<h2>10. Anomalies</h2><p>No anomalies detected in CPU, memory, or log data for this period.</p>
 <h2>11. Risk Assessment</h2><p style="color:#00875a">Status: HEALTHY</p>
-<h2>12. Recommended Actions</h2><p>No immediate action required. Continue routine monitoring; revisit if memory utilization trends upward in future reports.</p>
+<h2>12. Recommended Actions</h2><p>No immediate action required. Continue routine monitoring; revisit if audio_engine or runtime_engine CPU/memory trends increase in future reports.</p>
 </body></html>
