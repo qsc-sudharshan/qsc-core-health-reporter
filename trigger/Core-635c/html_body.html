@@ -1,1 +1,118 @@
-<h1>QSC Core Health Report &mdash; Core-635c</h1><p><b>Report window:</b> 2026-07-27 00:00 IST to 2026-08-03 03:30 IST (2026-07-26T18:30Z to 2026-08-02T22:00Z UTC), last 7 days</p><h2 style="color:#00875a">Overall Status: HEALTHY</h2><h2>1. Core Identity</h2><ul><li>Core: Core-635c</li><li>Device MAC ID: 00:60:74:e3:63:5c</li><li>Gateway: 19NK8BZR3EAE7CV</li><li>Monitored processes: audio_engine, runtime_engine, video_engine, node, engine_discover</li><li>Current process uptime: ~152&ndash;154 hours (~6.4 days), rising steadily, no gaps</li></ul><h2>2. System Resource Summary</h2><table border="1" cellpadding="6"><tr><th>Metric</th><th>Value</th></tr><tr><td>Current total CPU (sum, user mode)</td><td>~0.28%</td></tr><tr><td>7d avg total CPU (all modes)</td><td>~0.50%</td></tr><tr><td>7d peak CPU (single process)</td><td>28.18% (audio_engine, user)</td></tr><tr><td>Current total memory utilization</td><td>~10.76%</td></tr><tr><td>7d avg total memory utilization</td><td>~9.76%</td></tr><tr><td>7d peak memory utilization (single process)</td><td>5.60% (audio_engine)</td></tr></table><p>Core is lightly loaded and well within capacity.</p><h2>3. CPU State Breakdown (7 days, per process)</h2><table border="1" cellpadding="6"><tr><th>Process</th><th>Avg User %</th><th>Avg System %</th><th>Peak User %</th><th>Peak System %</th><th>Wait %</th></tr><tr><td>audio_engine</td><td>0.2494</td><td>0.0526</td><td>28.18</td><td>10.82</td><td>0</td></tr><tr><td>runtime_engine</td><td>0.0292</td><td>0.0160</td><td>3.12</td><td>1.75</td><td>0</td></tr><tr><td>node</td><td>0.0145</td><td>0.0025</td><td>2.24</td><td>4.10</td><td>0</td></tr><tr><td>engine_discover</td><td>0.0010</td><td>0.0002</td><td>0.11</td><td>0.03</td><td>0</td></tr><tr><td>video_engine</td><td>0.0001</td><td>0.0002</td><td>0.03</td><td>0.04</td><td>0</td></tr></table><h2>4. Memory State Breakdown (7 days, per-process utilization %)</h2><table border="1" cellpadding="6"><tr><th>Process</th><th>Avg %</th><th>Peak %</th><th>Current %</th></tr><tr><td>audio_engine</td><td>5.60</td><td>5.60</td><td>5.605</td></tr><tr><td>runtime_engine</td><td>2.40</td><td>3.44</td><td>3.267</td></tr><tr><td>node</td><td>1.53</td><td>1.53</td><td>1.506</td></tr><tr><td>video_engine</td><td>0.15</td><td>0.25</td><td>0.296</td></tr><tr><td>engine_discover</td><td>0.08</td><td>0.09</td><td>0.087</td></tr></table><p><i>Note: No system-wide cached/slab/free breakdown metric is available in this environment; only process-level utilization/RSS is exposed.</i></p><h2>5. Process-Level Analysis</h2><table border="1" cellpadding="6"><tr><th>Process</th><th>Instances</th><th>Peak Memory</th><th>Memory Range</th><th>Peak Threads</th><th>Current Threads</th></tr><tr><td>audio_engine</td><td>5 PIDs</td><td>898.7 MB</td><td>898.7 MB (flat)</td><td>11</td><td>11</td></tr><tr><td>runtime_engine</td><td>5 PIDs</td><td>552.0 MB</td><td>281.2&ndash;514.6 MB</td><td>141</td><td>137</td></tr><tr><td>node</td><td>4 PIDs</td><td>244.8 MB</td><td>184.8&ndash;215.0 MB</td><td>13</td><td>13</td></tr><tr><td>video_engine</td><td>6-8 PIDs</td><td>40.3 MB</td><td>6.9&ndash;40.3 MB (bimodal)</td><td>56</td><td>54</td></tr><tr><td>engine_discover</td><td>4 PIDs</td><td>13.9 MB</td><td>10.7&ndash;12.8 MB</td><td>1</td><td>1</td></tr></table><h2>6. Memory Leak Detection</h2><ul><li>audio_engine: flat at 898.7 MB across all 5 PIDs for the entire week &mdash; no leak.</li><li>runtime_engine: PID 26241 grew 294.3&rarr;523.9 MB (+229.6 MB over 7d, ~1.4 MB/hr) &mdash; below the 100MB/6h sustained-leak threshold but the largest grower observed. Other PIDs grew 14&ndash;45 MB.</li><li>node: minor growth (17&ndash;30 MB) &mdash; normal.</li><li>video_engine: bimodal 7MB/38MB pattern consistent with expected buffer-mode switching &mdash; not a leak.</li><li>engine_discover: negligible growth (&lt;2 MB) &mdash; stable.</li></ul><p><b>Verdict:</b> No confirmed leak against the 100MB/6h threshold. runtime_engine PID 26241 flagged as a watch item.</p><h2>7. Crash and Stacktrace Analysis</h2><ul><li>Query: <code>{service_name="stacktrace", instance="Core-635c"} |= "begin fatal error"</code> over 7 days &rarr; 0 matches.</li><li>Cross-checked via device_mac_id (00:60:74:e3:63:5c) text and structured-metadata match against the full stacktrace stream &rarr; 0 matches for this device.</li><li>Other cores (e.g. device_mac_id 00:60:74:fe:c1:73) show stacktrace volume in the same period, confirming the log pipeline is active.</li></ul><p><b>Result: 0 fatal errors / crashes detected for Core-635c in the last 7 days.</b> Caveat: the stacktrace stream carries no <code>instance</code> label; matching relied on MAC/service_instance_id correlation.</p><h2>8. Metrics and Log Correlation</h2><p>No crash events to correlate. No CPU or memory spikes observed (peak CPU 28.18%, peak memory 5.6% per process) that would typically precede a crash. Metrics show no precursor instability, consistent with the zero-crash finding.</p><h2>9. Uptime and Restart Analysis</h2><ul><li>resets(process_uptime_seconds[7d]) = 0 for all 5 process types &mdash; no restarts detected in-window.</li><li>Current uptime ~152&ndash;154 hours (~6.4 days), rising steadily (slope ~60s/min as expected).</li><li>Uptime is slightly less than the 7-day window, suggesting a possible restart just before the window start (~Jul 27 ~10:00 UTC), which predates the analysis window and is not captured as an in-window reset.</li></ul><h2>10. Anomalies</h2><ul><li>No CPU/memory threshold breaches.</li><li>No crashes.</li><li>No restarts within window.</li><li>Watch item: runtime_engine PID 26241 memory growth of +229.6MB over 7 days.</li></ul><h2 style="color:#00875a">11. Summary and Risk Assessment: HEALTHY</h2><table border="1" cellpadding="6"><tr><th>Criterion</th><th>Threshold</th><th>Observed</th><th>Status</th></tr><tr><td>CPU</td><td>WARNING&gt;85%, CRITICAL&gt;95%</td><td>28.18% peak</td><td style="color:#00875a">HEALTHY</td></tr><tr><td>Memory</td><td>WARNING&gt;80%, CRITICAL&gt;90%</td><td>5.6% peak (per-process)</td><td style="color:#00875a">HEALTHY</td></tr><tr><td>Crashes (24h)</td><td>WARNING&gt;=1, CRITICAL&gt;3</td><td>0 in 7d</td><td style="color:#00875a">HEALTHY</td></tr><tr><td>Restarts</td><td>n/a</td><td>0 in-window</td><td style="color:#00875a">HEALTHY</td></tr><tr><td>Memory growth</td><td>WARNING&gt;100MB/6h</td><td>~1.4MB/hr max (runtime_engine)</td><td style="color:#00875a">HEALTHY (watch)</td></tr></table><h2>12. Recommended Actions</h2><ul><li>No immediate action required &mdash; core is operating well within normal thresholds.</li><li>Add runtime_engine (PID 26241 pattern) to a memory-growth watchlist; re-check in 7&ndash;14 days to confirm growth plateaus.</li><li>Verify whether a restart occurred just prior to the window start (~Jul 27 ~10:00 UTC) via device provisioning/reboot logs.</li><li>Improve stacktrace log correlation by ensuring an <code>instance</code> label (or consistent device identifier) is attached to the stacktrace stream for Core-635c, closing a monitoring gap for future crash detection.</li><li>Continue routine 7-day health reporting cadence; no escalation needed this cycle.</li></ul>
+<h1>Core Health Report — Core-635c</h1>
+<p><strong>Report Window:</strong> 2026-08-03 00:00 IST to 2026-08-10 03:30 IST (2026-08-02T18:30:00Z to 2026-08-09T22:00:15Z UTC) — 7 days</p>
+<p><strong>Overall Status:</strong> <span style="color:#ffffff;background-color:#00875a;padding:4px 10px;border-radius:4px;font-weight:bold;">HEALTHY</span></p>
+
+<h2>1. Core Identity</h2>
+<table border="1" cellpadding="6" cellspacing="0">
+<tr><th>Field</th><th>Value</th></tr>
+<tr><td>Core ID (instance)</td><td>Core-635c</td></tr>
+<tr><td>Service Instance ID</td><td>Core-635c</td></tr>
+<tr><td>Device MAC ID</td><td>00:60:74:e3:63:5c</td></tr>
+<tr><td>Gateway</td><td>19NK8BZR3EAE7CV</td></tr>
+<tr><td>Monitored Processes</td><td>audio_engine, runtime_engine, video_engine (PIDs 9621 &amp; 9622), node, engine_discover</td></tr>
+<tr><td>Data Sources</td><td>grafanacloud-prom (Prometheus), grafanacloud-logs (Loki, service_name="stacktrace")</td></tr>
+</table>
+
+<h2>2. System Resource Summary</h2>
+<ul>
+<li>CPU: average idle 57.3%, average utilized ~42.7% (user 30.0% + system 11.7% + minor interrupt/softirq ~1.1%)</li>
+<li>Memory: average free 65.9%, average used 15.2% (range 14.3%-16.1%), cached 21.5%, buffered 3.3%</li>
+<li>Available memory: average 13.61 GiB, range 13.46-13.73 GiB (net +0.83% over the window) — stable headroom</li>
+<li>System load average (1m): average 6.0, peak 8.79 at 2026-08-07 13:30 IST, minimum 3.53 at 2026-08-03 10:20 IST</li>
+<li>Overall posture: stable, no sustained resource saturation</li>
+</ul>
+
+<h2>3. CPU State Breakdown</h2>
+<table border="1" cellpadding="6" cellspacing="0">
+<tr><th>State</th><th>Average</th><th>Peak</th></tr>
+<tr><td>idle</td><td>57.3%</td><td>63.7% (2026-08-07 13:10 IST)</td></tr>
+<tr><td>user</td><td>30.0%</td><td>35.5%</td></tr>
+<tr><td>system</td><td>11.7%</td><td>18.6% (2026-08-05 07:50 IST)</td></tr>
+<tr><td>softirq</td><td>0.6%</td><td>-</td></tr>
+<tr><td>interrupt</td><td>0.5%</td><td>-</td></tr>
+<tr><td>steal</td><td>~0%</td><td>-</td></tr>
+<tr><td>wait / nice</td><td>0%</td><td>0%</td></tr>
+</table>
+<p>idle and user states are strongly anti-correlated (r=-0.731). No drift or sustained trend detected across the 7-day window.</p>
+
+<h2>4. Memory State Breakdown</h2>
+<table border="1" cellpadding="6" cellspacing="0">
+<tr><th>State</th><th>Average</th><th>Notes</th></tr>
+<tr><td>free</td><td>65.9%</td><td>peak 66.8% at 2026-08-05 10:00 IST</td></tr>
+<tr><td>cached</td><td>21.5%</td><td>most stable state, CV=0.001</td></tr>
+<tr><td>used</td><td>15.2%</td><td>range 14.3%-16.1%, CV=0.033</td></tr>
+<tr><td>buffered</td><td>3.3%</td><td>-</td></tr>
+<tr><td>slab_reclaimable</td><td>2.2%</td><td>constant</td></tr>
+<tr><td>slab_unreclaimable</td><td>0.6%</td><td>constant</td></tr>
+</table>
+<p>used and free memory are strongly anti-correlated (r=-0.975). Flat trend overall, no sustained growth or decline.</p>
+
+<h2>5. Process-Level Analysis</h2>
+<table border="1" cellpadding="6" cellspacing="0">
+<tr><th>Process</th><th>Avg CPU%</th><th>Peak CPU%</th><th>Avg Mem Util%</th><th>Avg Mem (bytes)</th><th>Threads</th><th>Avg Open FDs</th></tr>
+<tr><td>audio_engine</td><td>30.2%</td><td>30.5%</td><td>5.605% (flat)</td><td>858.7 MiB (flat)</td><td>11</td><td>66</td></tr>
+<tr><td>runtime_engine</td><td>4.6%</td><td>4.8%</td><td>2.844% (declining -20.47%)</td><td>435.1 MiB (peak 568.2 MiB)</td><td>137</td><td>462</td></tr>
+<tr><td>node</td><td>1.3%</td><td>1.7%</td><td>1.506% (flat)</td><td>230.5 MiB (flat)</td><td>13</td><td>44-57</td></tr>
+<tr><td>video_engine (PID 9621+9622)</td><td>0.1%</td><td>-</td><td>0.25% (flat)</td><td>38.1 MiB (flat)</td><td>54</td><td>248</td></tr>
+<tr><td>engine_discover</td><td>0.1%</td><td>-</td><td>0.087% (flat)</td><td>13.4 MiB (flat)</td><td>1</td><td>-</td></tr>
+</table>
+<p>audio_engine is the dominant resource consumer: 83.4% of total process CPU and 54.5% of total process memory, but remains flat/stable, not trending upward. video_engine runs as two cooperating PIDs (9621 main + 9622 helper) with identical uptime — a normal dual-process design, not a restart artifact.</p>
+
+<h2>6. Memory Leak Detection</h2>
+<p><span style="color:#ffffff;background-color:#00875a;padding:2px 8px;border-radius:4px;">HEALTHY — No leak detected</span></p>
+<ul>
+<li>audio_engine, node, video_engine, engine_discover memory usage is perfectly flat (CV=0) across the full 7-day window</li>
+<li>runtime_engine memory declined -20.47% (568.2 MiB peak to 435.1 MiB average) — the only directional shift, and it is downward, not upward</li>
+<li>Page faults (7-day totals): node 524,009,454 minor / 0 major; runtime_engine 55,034 minor / 0 major; engine_discover 474 minor / 0 major; audio_engine and video_engine 0 / 0</li>
+<li>Zero major page faults across all processes — no swapping or memory thrashing observed</li>
+<li>Open file descriptor counts are flat for every process — no descriptor leak</li>
+</ul>
+
+<h2>7. Crash and Stacktrace Analysis</h2>
+<p><span style="color:#ffffff;background-color:#00875a;padding:2px 8px;border-radius:4px;">0 fatal stacktrace events</span></p>
+<ul>
+<li>Loki query against service_name="stacktrace", service_instance_id="Core-635c" across the full 7-day window returned 0 log lines</li>
+<li>Verified the stacktrace logging pipeline is active fleet-wide (other cores recorded fatal stacktrace entries in the same window), confirming the zero count reflects an absence of crashes on Core-635c rather than a data gap</li>
+<li>Crash count: 0. Fatal error entries: 0</li>
+</ul>
+
+<h2>8. Metrics and Log Correlation</h2>
+<ul>
+<li>No stacktrace/crash events exist to correlate against CPU or memory spikes</li>
+<li>The single load-average spike (8.79 at 2026-08-07 13:30 IST) has no corresponding log entry, process restart, or memory anomaly — consistent with a transient scheduling burst rather than a fault condition</li>
+<li>No metric anomaly (CPU, memory, FD, thread) aligns with any crash signature, because none occurred in this window</li>
+</ul>
+
+<h2>9. Uptime and Restart Analysis</h2>
+<ul>
+<li>resets(process_uptime_seconds[7d]) = 0 for every monitored process/PID — no restarts detected</li>
+<li>All processes show continuous linear uptime growth from approximately 543,433s (6.3 days) to 1,160,836s (13.4 days), meaning every process has been running uninterrupted since roughly 2026-07-27, well before this report window</li>
+<li>video_engine's two PIDs (9621, 9622) rose in perfect lockstep (r=1.0) for the entire window — co-located helper process, not a restart artifact</li>
+<li>Conclusion: 100% uptime, zero restarts across all 5 monitored processes for the full 7 days</li>
+</ul>
+
+<h2>10. Anomalies</h2>
+<ul>
+<li>Single system load-average spike to 8.79 at 2026-08-07 13:30 IST (baseline ~6.0) — transient, no CPU-state or memory correlation, self-resolved</li>
+<li>node process shows a very high minor-fault volume (524M over 7 days, ~867/sec average) — notably higher than other processes; informational only since major faults remain 0</li>
+<li>runtime_engine's -20.47% memory footprint decline is the only directional trend across the fleet — a workload/behavior change worth tracking, not a fault signature</li>
+<li>Remaining level-shift change points are low confidence (&lt;=2) on memory/load series, consistent with normal operational noise</li>
+</ul>
+
+<h2>11. Summary and Risk Assessment</h2>
+<p><span style="color:#ffffff;background-color:#00875a;padding:6px 14px;border-radius:4px;font-weight:bold;font-size:1.1em;">HEALTHY</span></p>
+<ul>
+<li>0 crashes, 0 restarts, no memory/FD/thread leaks</li>
+<li>Stable CPU, memory, and load averages with healthy free-memory headroom (13.6 GiB average)</li>
+<li>Dominant resource consumer (audio_engine) is stable and not trending upward</li>
+<li>No action-forcing conditions identified for Core-635c in this 7-day window</li>
+</ul>
+
+<h2>12. Recommended Actions</h2>
+<ul>
+<li>No immediate remediation required</li>
+<li>Track runtime_engine's memory decline trend over the next reporting period to confirm it stabilizes rather than masking an underlying issue</li>
+<li>Monitor node's minor page-fault rate if V8/GC tuning or additional workload is planned, since a rising baseline could precede latency impact</li>
+<li>Re-baseline the load-average alert threshold if bursts in the 8-9 range recur, to avoid false positives while retaining sensitivity to real saturation</li>
+<li>Continue the routine 7-day report cadence; no crash/stacktrace follow-up needed this cycle</li>
+</ul>
