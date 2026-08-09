@@ -1,15 +1,15 @@
 <html><body>
-<h1>Core Health Report — COS-Core-24f — 2026-08-02</h1>
-<h2>1. Core Identity</h2><p>Core: COS-Core-24f. Report period: last 7 days (2026-07-26 to 2026-08-02).</p>
-<h2>2. Resource Summary</h2><p>Average CPU utilization: 1.68%. Average memory utilization: 1.04%. Both well within normal operating range.</p>
-<h2>3. CPU State</h2><p>CPU usage is low and stable, concentrated in audio_engine (8.07% avg) and runtime_engine (2.58% avg). No I/O wait overhead detected.</p>
-<h2>4. Memory State</h2><p>Memory usage is low and stable at 1.04% average across 5 processes (17 instances), led by runtime_engine (2.68%).</p>
-<h2>5. Process Analysis</h2><p>Top CPU consumers: audio_engine, runtime_engine, node. Top memory consumers: runtime_engine, node, audio_engine. video_engine and engine_discover show negligible resource use.</p>
-<h2>6. Memory Leak Detection</h2><p>No sustained upward memory trend observed over the 7-day window; utilization remains flat and low across all processes, indicating no leak signature.</p>
-<h2>7. Crash & Stacktrace Analysis</h2><p>No fatal stacktrace log entries found for COS-Core-24f in the last 7 days (0 crashes).</p>
-<h2>8. Metrics & Log Correlation</h2><p>No fatal events to correlate against CPU/memory metrics; resource usage shows no spikes coinciding with error conditions.</p>
-<h2>9. Uptime & Restart Analysis</h2><p>No crash or fatal-error evidence suggesting unplanned restarts during the report period; process counts remained consistent (17 instances across 5 process types).</p>
-<h2>10. Anomalies</h2><p>No anomalies detected in CPU, memory, or log data for this period.</p>
+<h1>Core Health Report — COS-Core-24f — 2026-08-09</h1>
+<h2>1. Core Identity</h2><p>Core: COS-Core-24f. Report period: last 7 days (2026-08-02 to 2026-08-09).</p>
+<h2>2. Resource Summary</h2><p>Average CPU utilization: ~1.79% (system 5.92% + user 12.07% combined weight across processes). Average process memory utilization: ~1.26% across sampled processes, with runtime_engine peaking near 3.02%.</p>
+<h2>3. CPU State</h2><p>CPU usage remained low and stable throughout the week. audio_engine was the top consumer (~12.3% combined system+user), followed by runtime_engine (~4.3%). No sustained high-CPU periods observed.</p>
+<h2>4. Memory State</h2><p>Memory utilization stayed low overall. runtime_engine processes (PIDs 14665, 4013) showed the highest relative memory footprint (~3.02% and ~2.56%), with audio_engine next (~1.16% per PID). No values approached saturation.</p>
+<h2>5. Process Analysis</h2><p>Top processes by CPU: audio_engine > runtime_engine > node > engine_discover > video_engine. Top processes by memory: runtime_engine > audio_engine > node > video_engine > engine_discover. No process showed abnormal resource consumption relative to its role.</p>
+<h2>6. Memory Leak Detection</h2><p>No upward memory trend was queried directly (single 7-day average used); current snapshot shows no runaway growth pattern in any process. runtime_engine is worth periodic trend monitoring given it has the highest relative memory share.</p>
+<h2>7. Crash & Stacktrace Analysis</h2><p>0 fatal errors found in Loki logs (service_name="stacktrace", instance="COS-Core-24f") over the last 7 days. No crash events detected.</p>
+<h2>8. Metrics & Log Correlation</h2><p>With no fatal log entries and consistently low CPU/memory readings, there is no evidence of resource-related instability during the report period.</p>
+<h2>9. Uptime & Restart Analysis</h2><p>No restart or crash events were found in stacktrace logs, suggesting continuous operation across the 7-day window. No dedicated uptime/restart metric was queried this cycle.</p>
+<h2>10. Anomalies</h2><p>No significant anomalies detected. All CPU and memory readings remained within low, expected ranges for this core.</p>
 <h2>11. Risk Assessment</h2><p style="color:#00875a">Status: HEALTHY</p>
-<h2>12. Recommended Actions</h2><p>No immediate action required. Continue routine monitoring; revisit if audio_engine or runtime_engine CPU/memory trends increase in future reports.</p>
+<h2>12. Recommended Actions</h2><p>No immediate action required. Continue routine weekly monitoring and keep an eye on runtime_engine memory trend over subsequent reports.</p>
 </body></html>
