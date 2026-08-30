@@ -1,15 +1,15 @@
 <html><body>
-<h1>Core Health Report — COS-Core-24f — 2026-08-24</h1>
-<h2>1. Core Identity</h2><p>Core: COS-Core-24f. Report period: last 7 days (2026-08-16 to 2026-08-23 UTC).</p>
-<h2>2. Resource Summary</h2><p>Average CPU utilization: 1.46%. Average memory utilization: ~1.27%. Both well within normal operating range.</p>
-<h2>3. CPU State</h2><p>CPU load is very low across all processes. audio_engine is the top consumer at 0.826%, followed by runtime_engine (0.090%) and node (0.013%). No sustained high-CPU periods observed.</p>
-<h2>4. Memory State</h2><p>Memory utilization is low and stable, averaging ~1.27%. runtime_engine is the largest consumer (up to 2.84%), followed by node (1.64%) and audio_engine (~1.16%). No abnormal spikes detected.</p>
-<h2>5. Process Analysis</h2><p>Top CPU consumer: audio_engine. Top memory consumer: runtime_engine. video_engine and engine_discover show negligible resource usage throughout the period.</p>
-<h2>6. Memory Leak Detection</h2><p>No sustained upward memory trend was detected; sampled values oscillate within a stable 1-3% band with no continuous growth pattern indicative of a leak.</p>
-<h2>7. Crash &amp; Stacktrace Analysis</h2><p>0 fatal stacktrace log entries were found for COS-Core-24f over the last 7 days. No crash events detected.</p>
-<h2>8. Metrics &amp; Log Correlation</h2><p>With zero fatal log events, no resource-spike-to-crash correlation was identified; CPU and memory remained low and stable throughout the window.</p>
-<h2>9. Uptime &amp; Restart Analysis</h2><p>Multiple distinct PIDs were observed for audio_engine (15164, 31920, 4690) and runtime_engine (15771, 32517, 5295) during the period, suggesting at least one process restart/respawn occurred, though no fatal logs corroborate a crash-induced restart.</p>
-<h2>10. Anomalies</h2><p>PID churn for audio_engine and runtime_engine without corresponding fatal log entries is a minor anomaly worth monitoring, though it did not impact resource health.</p>
-<h2>11. Risk Assessment</h2><p style="color:#00875a">Status: HEALTHY</p>
-<h2>12. Recommended Actions</h2><p>Monitor the observed PID churn on audio_engine/runtime_engine for recurring non-fatal restarts. No immediate remediation required given low resource utilization and zero crash events; continue routine monitoring.</p>
+<h1>Core Health Report — COS-Core-24f — 2026-08-30</h1>
+<h2>1. Core Identity</h2><p>Core: COS-Core-24f. Report period: last 7 days (2026-08-23 to 2026-08-30).</p>
+<h2>2. Resource Summary</h2><p>Average CPU utilization: 1.48%. Average per-process memory utilization ratio: ~102.5% (elevated, see Anomalies).</p>
+<h2>3. CPU State</h2><p>Overall CPU load is low. audio_engine is the top consumer (12.26% total: 4.4% system, 7.84% user), followed by runtime_engine (4.35%) and node (1.39%). No sustained high-CPU condition observed.</p>
+<h2>4. Memory State</h2><p>Several processes show memory utilization ratios above 100% of baseline: runtime_engine (269.25%), node (168.34%), audio_engine (116.05%), and video_engine PID 9702 (46.94%). This exceeds normal bounds and warrants review of the metric baseline or actual memory pressure.</p>
+<h2>5. Process Analysis</h2><p>Top CPU consumers: audio_engine, runtime_engine, node. Top memory consumers: runtime_engine, node, audio_engine. video_engine and engine_discover show minimal resource usage.</p>
+<h2>6. Memory Leak Detection</h2><p>This report uses a single 7-day average snapshot, not a multi-week trend. The elevated memory ratios (notably runtime_engine and node) cannot be confirmed as a leak from this data alone; a week-over-week trend comparison is recommended.</p>
+<h2>7. Crash &amp; Stacktrace Analysis</h2><p>0 fatal log entries found for service_name="stacktrace" on COS-Core-24f in the last 7 days. No crash events detected.</p>
+<h2>8. Metrics &amp; Log Correlation</h2><p>No fatal logs to correlate against the memory/CPU anomaly. Absence of crash events despite elevated memory ratios suggests the core has remained stable so far, but continued monitoring is warranted.</p>
+<h2>9. Uptime &amp; Restart Analysis</h2><p>No restart or crash log events were found in the period, implying no forced restarts. No direct uptime/restart-count metric was queried in this run.</p>
+<h2>10. Anomalies</h2><p>Memory utilization ratios exceeding 100% for runtime_engine, node, audio_engine, and video_engine (PID 9702) are the primary anomaly this period.</p>
+<h2>11. Risk Assessment</h2><p style="color:#ffab00">Status: WARNING — driven by anomalous memory utilization ratios above baseline; no crashes or CPU issues observed.</p>
+<h2>12. Recommended Actions</h2><p>Verify process_memory_utilization_ratio baseline/definition for runtime_engine and node; monitor for OOM or swap activity; re-run this report next week with trend comparison to confirm or rule out a memory leak; no action needed for CPU at this time.</p>
 </body></html>
