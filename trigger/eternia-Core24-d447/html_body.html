@@ -1,15 +1,15 @@
 <html><body>
-<h1>Core Health Report — eternia-Core24-d447 — 2026-09-06</h1>
-<h2>1. Core Identity</h2><p>Core: eternia-Core24-d447. Report period: last 7 days (2026-08-30 to 2026-09-06).</p>
-<h2>2. Resource Summary</h2><p>Average CPU utilization: 3.68% (aggregate across 5 processes). Average total memory utilization: ~7.15% (sum across processes). No fatal crashes recorded.</p>
-<h2>3. CPU State</h2><p>Overall CPU load is low. audio_engine dominates usage at 36.78% average (mostly user-space), while runtime_engine, node, engine_discover, and video_engine remain under 6%. No sustained saturation observed.</p>
-<h2>4. Memory State</h2><p>Memory utilization is low overall. runtime_engine is the top consumer at 3.31%, followed by node (1.75%) and audio_engine (1.49%). No memory pressure indicators.</p>
-<h2>5. Process Analysis</h2><p>Top CPU: audio_engine (36.78%). Top memory: runtime_engine (3.31%). engine_discover and video_engine processes show minimal resource usage (&lt;1%).</p>
-<h2>6. Memory Leak Detection</h2><p>Only a 7-day averaged snapshot was queried; no continuous trend series was analyzed. Current memory levels are low and stable with no indication of unbounded growth. Recommend a range-based trend query for definitive leak confirmation.</p>
-<h2>7. Crash &amp; Stacktrace Analysis</h2><p>0 fatal errors found in stacktrace logs (service_name="stacktrace") for eternia-Core24-d447 over the past 7 days.</p>
-<h2>8. Metrics &amp; Log Correlation</h2><p>No fatal log events to correlate against CPU/memory metrics. Resource usage remained low and steady throughout the period, consistent with the absence of crash events.</p>
-<h2>9. Uptime &amp; Restart Analysis</h2><p>No crash/fatal events were detected, suggesting no forced restarts during the report window. Uptime appears continuous.</p>
-<h2>10. Anomalies</h2><p>audio_engine's average CPU usage (36.78%) is notably higher than all other processes (&lt;6% each). No memory anomalies detected.</p>
+<h1>Core Health Report — eternia-Core24-d447 — 2026-09-14</h1>
+<h2>1. Core Identity</h2><p>Core: eternia-Core24-d447. Report period: last 7 days (2026-09-06 to 2026-09-13 UTC).</p>
+<h2>2. Resource Summary</h2><p>Average CPU utilization ~3.6% across 6 monitored processes; average memory utilization ~1.2% across the same processes. No resource saturation observed during the period.</p>
+<h2>3. CPU State</h2><p>CPU load is low and stable. runtime_engine is the top consumer (~5.5% total), followed by audio_engine (~4.0%) and node (~2.1%). No sustained high-CPU condition detected.</p>
+<h2>4. Memory State</h2><p>Memory utilization is low overall. runtime_engine shows the highest usage (~3.4%), followed by node (~1.8%) and audio_engine (~1.5%). No memory pressure indicated.</p>
+<h2>5. Process Analysis</h2><p>Six processes reporting: audio_engine, runtime_engine, node, engine_discover, and two video_engine instances (PIDs 10377/10378). runtime_engine is the heaviest process on both CPU and memory; video_engine and engine_discover are negligible consumers.</p>
+<h2>6. Memory Leak Detection</h2><p>Based on the 7-day average snapshot, no elevated or runaway memory usage was observed. This assessment is limited to an averaged value; continuous trend monitoring is recommended to confirm no slow upward drift over longer periods.</p>
+<h2>7. Crash & Stacktrace Analysis</h2><p>Zero fatal stacktrace log entries found in Loki for service_name="stacktrace", instance="eternia-Core24-d447" over the last 7 days. No crashes detected.</p>
+<h2>8. Metrics & Log Correlation</h2><p>Low, stable CPU/memory utilization correlates with the absence of fatal errors — no resource-driven crash pattern is evident in this window.</p>
+<h2>9. Uptime & Restart Analysis</h2><p>No fatal or crash events were logged, suggesting stable uptime with no indication of process restarts during the period. Dedicated uptime/restart metrics were not part of this collection and should be reviewed separately if restart history is required.</p>
+<h2>10. Anomalies</h2><p>No anomalies detected in CPU, memory, or crash logs for this reporting window.</p>
 <h2>11. Risk Assessment</h2><p style="color:#00875a">Status: HEALTHY</p>
-<h2>12. Recommended Actions</h2><p>Continue routine monitoring. Track audio_engine CPU trend over subsequent weeks to confirm it remains within expected bounds for its workload. No immediate remediation required.</p>
+<h2>12. Recommended Actions</h2><p>No immediate action required. Continue routine monitoring; consider adding a continuous memory-trend panel to strengthen leak detection beyond averaged snapshots.</p>
 </body></html>
