@@ -1,15 +1,15 @@
 <html><body>
-<h1>Core Health Report — COS-Core-24f — 2026-08-30</h1>
-<h2>1. Core Identity</h2><p>Core: COS-Core-24f. Report period: last 7 days (2026-08-23 to 2026-08-30).</p>
-<h2>2. Resource Summary</h2><p>Average CPU utilization: 1.48%. Average per-process memory utilization ratio: ~102.5% (elevated, see Anomalies).</p>
-<h2>3. CPU State</h2><p>Overall CPU load is low. audio_engine is the top consumer (12.26% total: 4.4% system, 7.84% user), followed by runtime_engine (4.35%) and node (1.39%). No sustained high-CPU condition observed.</p>
-<h2>4. Memory State</h2><p>Several processes show memory utilization ratios above 100% of baseline: runtime_engine (269.25%), node (168.34%), audio_engine (116.05%), and video_engine PID 9702 (46.94%). This exceeds normal bounds and warrants review of the metric baseline or actual memory pressure.</p>
-<h2>5. Process Analysis</h2><p>Top CPU consumers: audio_engine, runtime_engine, node. Top memory consumers: runtime_engine, node, audio_engine. video_engine and engine_discover show minimal resource usage.</p>
-<h2>6. Memory Leak Detection</h2><p>This report uses a single 7-day average snapshot, not a multi-week trend. The elevated memory ratios (notably runtime_engine and node) cannot be confirmed as a leak from this data alone; a week-over-week trend comparison is recommended.</p>
-<h2>7. Crash &amp; Stacktrace Analysis</h2><p>0 fatal log entries found for service_name="stacktrace" on COS-Core-24f in the last 7 days. No crash events detected.</p>
-<h2>8. Metrics &amp; Log Correlation</h2><p>No fatal logs to correlate against the memory/CPU anomaly. Absence of crash events despite elevated memory ratios suggests the core has remained stable so far, but continued monitoring is warranted.</p>
-<h2>9. Uptime &amp; Restart Analysis</h2><p>No restart or crash log events were found in the period, implying no forced restarts. No direct uptime/restart-count metric was queried in this run.</p>
-<h2>10. Anomalies</h2><p>Memory utilization ratios exceeding 100% for runtime_engine, node, audio_engine, and video_engine (PID 9702) are the primary anomaly this period.</p>
-<h2>11. Risk Assessment</h2><p style="color:#ffab00">Status: WARNING — driven by anomalous memory utilization ratios above baseline; no crashes or CPU issues observed.</p>
-<h2>12. Recommended Actions</h2><p>Verify process_memory_utilization_ratio baseline/definition for runtime_engine and node; monitor for OOM or swap activity; re-run this report next week with trend comparison to confirm or rule out a memory leak; no action needed for CPU at this time.</p>
+<h1>Core Health Report — COS-Core-24f — 2026-09-13</h1>
+<h2>1. Core Identity</h2><p>Core: COS-Core-24f. Report period: last 7 days (2026-09-06 to 2026-09-13).</p>
+<h2>2. Resource Summary</h2><p>Average CPU utilization: 1.96% of capacity. Average aggregate process memory utilization ratio: 1.20 (120%, non-normalized sum across processes), driven mainly by runtime_engine and node.</p>
+<h2>3. CPU State</h2><p>CPU load is low overall (1.96% avg). audio_engine is the top CPU contributor (0.1232, ~62.8% of total utilization), followed by runtime_engine (0.0446) and node (0.0258). No sustained wait/contention states observed.</p>
+<h2>4. Memory State</h2><p>runtime_engine dominates memory usage (avg 3.611, ~51.84% of total load), followed by node (1.827) and audio_engine (1.16, flat). video_engine and engine_discover remain low and stable.</p>
+<h2>5. Process Analysis</h2><p>Top processes by resource use: runtime_engine (highest memory), audio_engine (highest CPU), node (moderate CPU/memory). video_engine and engine_discover show negligible load throughout the period.</p>
+<h2>6. Memory Leak Detection</h2><p>No sustained upward memory trend detected across any process. runtime_engine showed a peak-and-decline pattern (peak 4.263 on 09-11, declining to 2.974 by 09-12, net -3.8%). audio_engine and video_engine remained completely flat (CV=0). No leak signal.</p>
+<h2>7. Crash & Stacktrace Analysis</h2><p>Zero fatal stacktrace log entries found for COS-Core-24f in the last 7 days. No crashes detected.</p>
+<h2>8. Metrics & Log Correlation</h2><p>No fatal log events to correlate against CPU/memory spikes. The runtime_engine memory level shifts (09-07, 09-08, 09-09, 09-13) did not coincide with any crash or error log entries, consistent with normal transient variability rather than instability.</p>
+<h2>9. Uptime & Restart Analysis</h2><p>No crash or fatal events observed, and no abrupt process metric resets were detected, indicating continuous uptime with no restarts identified over the report window.</p>
+<h2>10. Anomalies</h2><p>Minor transient level shifts in runtime_engine memory (four change points over 7 days) but within normal variability; no anomalies requiring action.</p>
+<h2>11. Risk Assessment</h2><p style="color:#00875a">Status: HEALTHY</p>
+<h2>12. Recommended Actions</h2><p>No immediate action required. Continue routine monitoring of runtime_engine memory level shifts; investigate only if a sustained upward trend or fatal log entries appear in future reports.</p>
 </body></html>
