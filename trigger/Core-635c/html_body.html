@@ -1,91 +1,115 @@
-<h1>Core Health Report &mdash; Core-635c</h1>
-<p><strong>Window:</strong> 2026-08-31 00:00 IST &rarr; 2026-09-07 03:30 IST (2026-08-30T18:30:00Z &rarr; 2026-09-06T22:00:07Z UTC), 7 days<br/>
-<strong>Sources:</strong> grafanacloud-sleestack-prom (metrics), grafanacloud-sleestack-logs (logs)</p>
+<h1>QSC Core Health Report &mdash; Core-635c</h1>
+<p><strong>Reporting window:</strong> 2026-09-07 00:00 to 2026-09-14 03:30 (Asia/Calcutta) &mdash; previous Monday through today (7 days)</p>
+<p><strong>Overall status:</strong> <span style="color:#ff8b00;font-weight:bold;">WARNING</span></p>
 
 <h2>1. Core Identity</h2>
-<p>Core: <strong>Core-635c</strong></p>
-<p>Processes discovered (19): audio_engine, runtime_engine, video_engine, node, engine_discover, ClockEngine, otel_collector_manager, otelcol-contrib, xdp-daemon, system_ctrl, status_daemon, property_engine, qcert, qntp, ptp0, rsyslogd, crond, update_agent, eth1-zcworker</p>
-
-<h2>2. System Resource Summary</h2>
 <ul>
-<li>CPU: available. Peak 27.46% (audio_engine, user state); dominant load process is audio_engine.</li>
-<li>Memory: <strong>NO DATA</strong> &mdash; process_memory_utilization_ratio / process_memory_usage_bytes return zero series for Core-635c.</li>
-<li>Uptime: <strong>NO DATA</strong> &mdash; process_uptime_seconds has no series for Core-635c.</li>
-<li>Threads: <strong>NO DATA</strong> &mdash; process_threads has no series for Core-635c.</li>
+<li><strong>Core / instance:</strong> Core-635c</li>
+<li><strong>Builds observed in window:</strong> RC_10.5 build 2608.063 (dominant baseline), 10.5 build 0-2609.001, RC_10.5 build 2609.011 (active at end of window)</li>
+<li><strong>Processes discovered (18):</strong> ClockEngine, audio_engine, crond, engine_discover, eth1-zcworker, node, otel_collector_manager, otelcol-contrib, property_engine, ptp0, qcert, qntp, rsyslogd, runtime_engine, status_daemon, system_ctrl, video_engine, xdp-daemon</li>
+<li><strong>Focus processes:</strong> audio_engine, runtime_engine, video_engine, node, engine_discover</li>
 </ul>
 
+<h2>2. System Resource Summary</h2>
+<table border="1" cellpadding="6" cellspacing="0">
+<tr><th>Resource</th><th>Key Finding</th></tr>
+<tr><td>CPU (system-wide)</td><td>idle 58.2% avg, user 29.4% avg, system 11.3% avg (4 vCPUs)</td></tr>
+<tr><td>Memory (system-wide)</td><td>free 70.6% avg, cached 19.4% avg (declining), used 14.6% avg (stable)</td></tr>
+<tr><td>Available memory</td><td>13.5&ndash;15.0 GiB range, avg ~13.7 GiB</td></tr>
+<tr><td>Dominant process CPU</td><td>audio_engine, ~85% of all process CPU share</td></tr>
+<tr><td>Crashes / fatal stacktraces</td><td>0 detected (see Section 7 caveat)</td></tr>
+<tr><td>Restarts</td><td>2 restart events tied to build changes</td></tr>
+</table>
+
 <h2>3. CPU State Breakdown</h2>
+<p><em>System-wide (per-core aggregate):</em></p>
 <ul>
-<li>112 total CPU series; 92.9% (104/112) sit at ~0% (idle system daemons).</li>
-<li>audio_engine (4 pid instances): user avg 24.2-24.9%, peak 27.46% at 2026-09-06 10:50 IST. System-state avg 5.3-6.0%, anti-correlated with user (r&asymp;-0.999) &mdash; normal accounting behavior.</li>
-<li>runtime_engine: user avg ~2.8-3.1%, peak 3.15%.</li>
-<li>node: user avg ~0.6-1.0%, peak 1.66%.</li>
-<li>xdp-daemon: bursty (CV 0.49-0.51), level shift on pid 7294 at 2026-09-06 08:40 IST.</li>
-<li>crond/rsyslogd have sampling gaps up to ~11h, limiting trend confidence.</li>
+<li>idle: avg 58.2%, peak 66.3% (2026-09-11T04:30Z)</li>
+<li>user: avg 29.4%, peak 34.9% (2026-09-12T00:30Z)</li>
+<li>system: avg 11.3%, peak 19.9% (2026-09-10T08:30Z)</li>
+<li>wait / softirq / interrupt: combined &lt;1% of average share, high volatility, sparse samples</li>
+</ul>
+<p><em>Process-level (avg across all 18 processes, by CPU state):</em></p>
+<ul>
+<li>state=user: avg 1.9%, peak 2.4% (2026-09-11T05:00Z)</li>
+<li>state=system: avg 0.5%, peak 1.1% (2026-09-10T08:30Z)</li>
+<li>Both flat trend (~0.01%/h), 4 data gaps of up to 20.5 hours each</li>
 </ul>
 
 <h2>4. Memory State Breakdown</h2>
-<p>No memory series returned for Core-635c. Cannot assess memory pressure or per-process footprint. This is a telemetry gap &mdash; verify the memory exporter/scrape config on this Core.</p>
+<table border="1" cellpadding="6" cellspacing="0">
+<tr><th>State</th><th>Avg</th><th>Notes</th></tr>
+<tr><td>free</td><td>70.6%</td><td>peak 88% on 2026-09-09T09:30Z</td></tr>
+<tr><td>cached</td><td>19.4%</td><td>declined 39.1% over the week (26.7% &rarr; 16.3%)</td></tr>
+<tr><td>used</td><td>14.6%</td><td>stable, CV=0.041</td></tr>
+<tr><td>buffered</td><td>1.4%</td><td>volatile, CV=0.577</td></tr>
+<tr><td>slab_reclaimable</td><td>0.4%</td><td>declined 83.2% (2.2% &rarr; 0.4%)</td></tr>
+<tr><td>slab_unreclaimable</td><td>0.6%</td><td>flat</td></tr>
+</table>
+<p>Available memory ranged 13.5&ndash;15.0 GiB; a peak of 14.9 GiB on 2026-09-09T10:50Z was followed by a step-down to a sustained ~13.7 GiB, coincident with a restart (see Section 9). <strong>Note:</strong> requested metrics <code>process_memory_utilization_ratio</code> and <code>process_memory_usage_bytes</code> are not ingested for Core-635c &mdash; only system-wide memory telemetry is available.</p>
 
 <h2>5. Process-Level Analysis</h2>
 <table border="1" cellpadding="6" cellspacing="0">
-<tr><th>Process</th><th>Peak CPU (user)</th><th>Avg CPU (user)</th><th>Distinct PIDs (7d)</th></tr>
-<tr><td>audio_engine</td><td>27.46%</td><td>~24.2-24.9%</td><td>4</td></tr>
-<tr><td>runtime_engine</td><td>3.15%</td><td>~2.8-3.1%</td><td>4</td></tr>
-<tr><td>node</td><td>1.66%</td><td>~0.6-1.0%</td><td>4</td></tr>
-<tr><td>video_engine</td><td>~0.02%</td><td>~0%</td><td>6</td></tr>
-<tr><td>engine_discover</td><td>0.11%</td><td>~0%</td><td>4</td></tr>
-<tr><td>otel_collector_manager</td><td>0.01%</td><td>~0%</td><td>4</td></tr>
-<tr><td>ClockEngine</td><td>0.12%</td><td>~0%</td><td>2</td></tr>
-<tr><td>otelcol-contrib</td><td>0.33%</td><td>~0%</td><td>2</td></tr>
-<tr><td>xdp-daemon</td><td>0.18%</td><td>~0% (bursty)</td><td>2</td></tr>
-<tr><td>system_ctrl / status_daemon / property_engine / qcert / qntp / ptp0 / rsyslogd / crond / update_agent / eth1-zcworker</td><td>&lt;0.05% each</td><td>~0%</td><td>2 each</td></tr>
+<tr><th>Process</th><th>Peak CPU</th><th>Avg CPU</th><th>Avg Open FDs</th><th>Notes</th></tr>
+<tr><td>audio_engine</td><td>28.5%</td><td>~24.6% (combined) / 15.0% (avg state)</td><td>n/a</td><td>Most stable, dominant load, CV=0.058</td></tr>
+<tr><td>runtime_engine</td><td>3.5%</td><td>2.9% / 2.3%</td><td>441.4 (peak 456)</td><td>Highest FD user (55.4% of total), stable CV=0.018</td></tr>
+<tr><td>node</td><td>1.8%</td><td>0.8% / 0.5%</td><td>127.8</td><td>Most volatile FD count (CV=0.144), flat trend</td></tr>
+<tr><td>video_engine</td><td>~0%</td><td>~0.0%</td><td>134.5</td><td>Flat, zero variability</td></tr>
+<tr><td>engine_discover</td><td>~0.1%</td><td>~0.1%</td><td>14.0</td><td>Flat, zero variability</td></tr>
+<tr><td>Other 13 processes</td><td>~0%</td><td>~0%</td><td>n/a</td><td>crond, rsyslogd, udevd, ptp0, sshd, etc. &mdash; idle</td></tr>
 </table>
+<p><strong>process_threads</strong> metric is not ingested for Core-635c; open file descriptors used as the nearest available per-process resource proxy.</p>
 
 <h2>6. Memory Leak Detection</h2>
-<p>Not possible &mdash; no memory time series exist for Core-635c in this window. This is a telemetry gap, not a &quot;healthy&quot; finding; absence of data does not mean absence of a leak.</p>
+<ul>
+<li>No per-process memory metric is available for Core-635c (data gap) &mdash; leak detection relies on system-level available memory and FD proxies.</li>
+<li>System available memory: one build series (2609.011) shows a gradual ~0.7% decline over its active period; the larger 14.9GiB&rarr;13.7GiB drop on 2026-09-09 is a single step-change tied to a restart, not a continuous leak signature.</li>
+<li>Open file descriptors (leak proxy) for all 6 active processes are flat or stable (CV &le;0.144); runtime_engine slope is effectively 0 (&minus;0.01%/h) &mdash; no sustained upward drift.</li>
+<li><strong>Conclusion:</strong> No conclusive evidence of an active memory or FD leak in this window. Confidence is limited by missing per-process memory telemetry.</li>
+</ul>
 
 <h2>7. Crash and Stacktrace Analysis</h2>
-<p>Query <code>{service_name="stacktrace", instance="Core-635c"}</code> over 7 days returned <strong>0 log lines</strong>, and &quot;Core-635c&quot; does not appear at all as an instance value in that log stream. This indicates Core-635c is not shipping logs to the stacktrace stream &mdash; inconclusive, not confirmed crash-free.</p>
+<ul>
+<li><strong>Crash count: 0</strong> &mdash; no fatal stacktrace log lines matched <code>service_name="stacktrace"</code> for Core-635c over the 7-day window.</li>
+<li>Core-635c did not appear at all among the 12 active <code>service_instance_id</code> values seen in the stacktrace log stream during this period (e.g. Core-2fb4, Core-63d7-dj, Core-b245-shreya were present; Core-635c was not).</li>
+<li><strong>Caveat:</strong> this could mean either zero fatal errors occurred, or Core-635c is not currently shipping logs to this pipeline. Log-shipping health should be confirmed (see Recommended Actions).</li>
+</ul>
 
 <h2>8. Metrics and Log Correlation</h2>
-<p>No log lines exist to correlate against the PID-change (restart) events below. The absence of correlating stacktrace entries is explained by the logging gap in Section 7, not by clean restarts.</p>
+<ul>
+<li>With zero stacktrace events recorded, there is no log evidence to correlate against CPU/memory anomalies.</li>
+<li>The two uptime resets (2026-09-09 and 2026-09-10) occurred without any accompanying fatal log entries and without preceding CPU/memory saturation &mdash; consistent with planned restarts/build upgrades rather than crash-induced restarts.</li>
+<li>The available-memory step-down on 2026-09-09 aligns with the first uptime reset, supporting a reboot-driven memory reclaim rather than an OOM event.</li>
+</ul>
 
 <h2>9. Uptime and Restart Analysis</h2>
-<p>process_uptime_seconds is unavailable, so restarts are inferred from distinct-PID counts over the 7-day window:</p>
-<ul>
-<li>video_engine: 6 distinct PIDs &rarr; up to 5 restart events (highest in fleet)</li>
-<li>audio_engine, runtime_engine, node, engine_discover, otel_collector_manager: 4 distinct PIDs each &rarr; up to 3 restart events each</li>
-<li>All other 13 processes: 2 distinct PIDs each &rarr; consistent with one shared Core-wide restart (likely a single reboot/update) affecting every process once</li>
-</ul>
-<p>The uniform &quot;2 PIDs&quot; baseline across unrelated system daemons points to one shared reboot/update event; extra restarts isolated to the engine processes (especially video_engine) indicate independent instability beyond that shared event.</p>
+<table border="1" cellpadding="6" cellspacing="0">
+<tr><th>Build</th><th>Role</th><th>Uptime Avg</th><th>Peak Uptime</th><th>Restart Evidence</th></tr>
+<tr><td>RC_10.5 / 2608.063</td><td>Dominant baseline</td><td>403,103s (4.7d)</td><td>432,203s (5.0d) at 09-07T10:40Z</td><td>None &mdash; flat, no resets</td></tr>
+<tr><td>10.5 / 0-2609.001</td><td>Transitional build</td><td>58,753s (0.68d)</td><td>165,265s (1.9d) at 09-09T08:40Z</td><td>Dropped to 58s min at 09-09T09:30Z (restart)</td></tr>
+<tr><td>RC_10.5 / 2609.011</td><td>Active at window end</td><td>rising to 292,609s by 09-13T22:00Z</td><td>292,609s (3.4d)</td><td>Dropped to 79s min at 09-10T09:30Z (restart)</td></tr>
+</table>
+<p><strong>Interpretation:</strong> Core-635c underwent at least 2 restarts during the 7-day window, coincident with build/firmware version transitions (2608.063 &rarr; 0-2609.001 &rarr; 2609.011) &mdash; consistent with a staged upgrade rollout rather than unplanned crashes, since no fatal stacktraces were logged at those times.</p>
 
 <h2>10. Anomalies</h2>
 <ul>
-<li>video_engine: up to 5 restarts in 7 days &mdash; most unstable process on this Core.</li>
-<li>audio_engine, runtime_engine, node, engine_discover, otel_collector_manager: ~3 extra restarts each beyond baseline.</li>
-<li>xdp-daemon level shift (pid 7294) at 2026-09-06 08:40 IST with elevated burst volatility.</li>
-<li>Sustained ~25% single-core CPU concentration in audio_engine.</li>
-<li>Full-window absence of memory/uptime/thread telemetry.</li>
-<li>Absent log stream for this instance in the stacktrace source.</li>
-<li>crond/rsyslogd scrape gaps up to ~11h, likely coinciding with the reboot event.</li>
+<li>Available-memory step change: 14.9 GiB peak (09-09T10:50Z) &rarr; sustained ~13.7 GiB, correlated with the 09-09 restart &mdash; not a leak, but worth tracking.</li>
+<li>CPU level shifts detected 09-11T08:20Z (user state) and 09-12T09:00Z (system state) &mdash; small magnitude, within baseline.</li>
+<li>Cached memory declined 39.1% over the week &mdash; normal page-cache reclaim behavior on its own, but should be watched alongside available memory.</li>
+<li>Recurring monitoring data gaps: multiple metrics show 4 gaps of up to 20.5 hours each &mdash; an observability/scrape coverage issue, not a confirmed device health issue.</li>
+<li>Zero log coverage for Core-635c in the stacktrace pipeline versus 12 other active cores &mdash; possible log-shipping gap.</li>
 </ul>
 
-<h2>11. Summary and Risk Assessment</h2>
-<p style="display:inline-block;padding:8px 16px;border-radius:4px;color:#ffffff;background-color:#ff8b00;font-weight:bold;">WARNING</p>
-<ul>
-<li>No CPU crisis (peak 27.5%); memory unmeasurable due to missing telemetry.</li>
-<li>No confirmed fatal crashes, but log coverage for this instance is absent &mdash; inconclusive rather than clean.</li>
-<li>Repeated restarts (up to 5x video_engine, 3x each for 5 other engine processes) in 7 days is the primary driver of WARNING status.</li>
-<li>Missing memory/uptime/thread telemetry elevates uncertainty and blocks full verification.</li>
-</ul>
+<h2>11. Summary and Risk Assessment: <span style="color:#ff8b00;font-weight:bold;">WARNING</span></h2>
+<p>Core-635c shows no confirmed crashes and no confirmed memory leak, and its CPU/memory levels stayed within normal operating baselines throughout the 7-day window. audio_engine consistently carries the dominant, stable CPU load (~85% of process CPU share) and runtime_engine dominates file-descriptor usage &mdash; both without leak or saturation signatures. Two restarts were observed but line up with build/firmware version changes rather than faults.</p>
+<p>The rating is downgraded from HEALTHY to <strong style="color:#ff8b00;">WARNING</strong> because of observability gaps that prevent full validation: missing per-process memory and thread telemetry (blocks direct leak detection), recurring ~20.5-hour metric scrape gaps, and a complete absence of stacktrace log coverage for this specific core. These gaps mean confidence in the &quot;no crash / no leak&quot; conclusion is limited by data availability, not by confirmed good health alone.</p>
 
 <h2>12. Recommended Actions</h2>
 <ul>
-<li>Investigate video_engine restarts directly on-device (dmesg/watchdog logs) since centralized logging is absent for this Core.</li>
-<li>Restore log shipping for Core-635c to the stacktrace stream (service_name="stacktrace").</li>
-<li>Verify the memory/uptime/thread exporter/scrape config for Core-635c.</li>
-<li>Determine whether the 5 engine-process restart clusters share one root cause (e.g., firmware update) or are independent recurring crashes.</li>
-<li>Monitor audio_engine CPU (~25% avg, 27.5% peak) for further growth.</li>
-<li>Investigate the xdp-daemon level shift and crond/rsyslogd gaps for a correlated reboot/maintenance window.</li>
+<li>Verify/restore per-process memory metrics (<code>process_memory_utilization_ratio</code>, <code>process_memory_usage_bytes</code>) and <code>process_threads</code> emission for Core-635c to enable direct memory- and thread-leak detection.</li>
+<li>Confirm Loki log shipping for Core-635c under <code>service_name="stacktrace"</code> &mdash; it had zero log lines in 7 days while 12 other cores were active in the same stream; verify the logging agent/pipeline for this device.</li>
+<li>Investigate the recurring ~20.5-hour metric scrape gaps (4 occurrences) to rule out network or agent instability.</li>
+<li>Continue monitoring audio_engine; it sustains ~85% of process CPU share. Alert if its average exceeds current baseline (~25&ndash;30%).</li>
+<li>Confirm the two restarts (09-09, 09-10) correspond to a planned firmware rollout (2608.063 &rarr; 0-2609.001 &rarr; 2609.011); if unplanned, investigate build 0-2609.001 specifically &mdash; it showed the highest uptime volatility (CV=0.76).</li>
+<li>Track the cached-memory decline (&minus;39% over 7 days) and available-memory levels next week to confirm stabilization rather than continued pressure.</li>
 </ul>
